@@ -1,7 +1,8 @@
 import express from 'express';
+import tktCategory from "../middleware/ticketCategorySelect.js"
 const privateRoute = express();
 
-// privateRoute.post("/login", async (req, res) => {
+// privateRoute.get("/login", async (req, res) => {
     
 // })
 privateRoute.get("/feedback", async (req, res) => {
@@ -12,7 +13,7 @@ privateRoute.get("/category", async (req, res) => {
 })
 privateRoute.get("/account", async (req, res) => {
     res.render('account.ejs')
-})  
+})
 privateRoute.get("/account/settings", async (req, res) => {
     res.render('settings.ejs')
 })
@@ -22,6 +23,5 @@ privateRoute.get("/dashboard", async (req, res) => {
 privateRoute.get("/ticket-form", async (req, res) => {
     res.render('ticketForm.ejs')
 })
-
 
 export default privateRoute;

@@ -23,9 +23,19 @@ db.get("/ticket/:id", async (req, res) => {
 });
 
 db.post("/ticket/submit", async (req, res) => {
-    const { tktCategory, tktPublisher, tktPubStudId, tktSubj, tktDesc, tktFile} = req.body;
-    const ticket = await createTicket(tktCategory, tktPublisher, tktPubStudId, tktSubj, tktDesc, tktFile);
-    res.status(201).send(ticket);
+    const clientCookies = req.headers.cookie
+    const cookieObject = Object.fromEntries(
+        clientCookies.split('; ').map(cookie => cookie.split('='))
+    );
+
+    const uid = cookieObject.uid
+    
+    // console.log(req.body,'\n\n\n', uid)
+    const { categoryId, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile} = req.body;
+    const ticket = await createTicket( uid, categoryId, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile);
+    res.status(201).json({ticket, message: "Ticket has been submitted", statusCode:'40'})
 });
+
+
 
 export default db;

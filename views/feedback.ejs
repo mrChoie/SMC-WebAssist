@@ -10,39 +10,20 @@
 
 </head>
 <body>
-	<div id="modalContainer">
-		<div class="rounded shadow animate rounded-lg" id="modalLogin">
-			<div class="card text-center rounded-lg">
-				<i class="fa-solid fa-close mt-2 me-2" onclick="closeLogin()" id="closeLoginPrompt"></i>
-				<div class="card-body">
-					<img class="pt-4" src="/img/smcLogo.png" style="height: 40%; width: 40%; margin: auto;"><br><br>
-					<h5> SMC WEB-Assistant</h5>
-					<div class="row pt-5">
-						<div class="col-2 ps-5">
-							<i class="fa fa-user-circle pt-2" style="font-size: 1.2em;"></i>
+	<div id="noticeParent" style="display: none; z-index: 10;">
+		<div class="container-fluid animate position-fixed" id="noticeContainer">
+				<div class="col position-absolute top-50 start-50 translate-middle m-0 bg-light p-3 text-center" id="noticeChild">
+					<div>
+						<div class="row">
+							<h5> Successfully submitted, thank you for your Feedback!</h5>
 						</div>
-						<div class="col-9">
-							<input type="text" class="form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="userName" placeholder="Username">
-						</div>
-					</div>
-					<div class="row pt-2">
-						<div class="col-2 ps-5">
-							<i class="fa fa-lock pt-2" style="font-size: 1.2em;"></i>
-						</div>
-						<div class="col-9">
-							<input type="password" class="form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="userPass" placeholder="Password" onkeyup="showPassIcon()">
-							<div id="showPassIconDiv">
-								<i class="fa-solid fa-eye-slash" id="showPassIcon" onclick="showHidePass()"></i>
+						<div class="row">
+							<div class="col-sm-6 offset-sm-3 mt-4">
+								<button class="btn btn-outline-success ps-5 pe-5" type="button" id="successBtn" onclick="clearFields()">Done</button>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6 offset-md-3 pt-4">
-						<button class="btn btn-outline-success" type="button" id="LoginBtn" onclick="signIn()">Log In</button>
-					</div>
-					<br>
-					<p style="font-size: 13px;">Don't have an Account? <a style="cursor: pointer; color: rgb(2, 80, 145);" href="/smc-webassist/signup">Sign up!</a></p>
 				</div>
-			</div>
 		</div>
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
@@ -70,15 +51,22 @@
 				</li>
 			</ul>
 			<form class="d-flex">
-				<button class="btn border-0 ps-3" href="/smc-webassist/about">Sign in</button>
+				<div style="display: flex;" id="loggedInDiv">
+					<a class="btn border-0 ps-3" href="/smc-webassist/account">Profile</a>
+				</div>
+				<div style="display: flex;" id="loggedOutDiv">
+					<a class="btn border-0 ps-3" href="/smc-webassist/signin">Sign in</a>
+				</div>
 			</form>
 		</div>
 		</div>
 	</nav>
 	
+
 	
+
 	<div class="container-fluid pb-5" id="feedbackBodyContent1">
-		<div class="container mt-3 pb-5">
+		<div class="container mt-3">
 			<div class="row text-center">
 				<div class="offset-md-3 col-md-6 p-2 border border-warning rounded" style="color: rgb(110, 110, 110); font-style: italic;">
 					<b>Disclaimer!</b> <br>
@@ -88,32 +76,40 @@
 					but it is not guaranteed that it will be implemented.
 				</div>
 			</div>
-			<hr>
+			<hr style="position: relative; z-index: -1;">
+			
+			
+			
 			<h3 class="text-center mt-5">Send a Feedback to SMC</h3>
 			<h4 class="text-center mb-5">Help us improve by describing your feedback below</h4>
 			<form class="needs-validation" novalidate style="font-size: 16px;">
+
+				
+				
 				<div class="row mt-2">
 					<div class="col">
-						<label for="feedbackSubj" id="ticketLabel">Feedback Title</label>
-						<input type="text" class="form-control rounded-0 rounded-bottom" id="feedbackSubj" placeholder="Title" required>
+						<p for="feedbackSubj" id="ticketLabel">Feedback Title</p>
+						<input type="text" class="form-control rounded-0 rounded-bottom" id="feedbackTitle" name="feedbackTitle" placeholder="Title" required>
+					</div>
+				</div>
+				
+				
+
+				<div class="row mt-2">
+					<div class="col">
+						<p for="feedbackDesc" id="ticketLabel">Description</p>
+						<textarea class="form-control rounded-0 rounded-bottom" id="feedbackDesc" name="feedbackDesc" rows="6" placeholder="description..." required></textarea>
 					</div>
 				</div>
 				<div class="row mt-2">
 					<div class="col">
-						<label for="feedbackDesc" id="ticketLabel">Description</label>
-						<textarea class="form-control rounded-0 rounded-bottom" id="feedbackDesc" rows="8" placeholder="Inquiry description..." required></textarea>
+						<p for="feedbackFile" id="ticketLabel">Attache a File</p>
+						<input type="file" class="form-control rounded-0 rounded-bottom" id="feedbackFile" name="feedbackFile">
 					</div>
 				</div>
-				<div class="row mt-2">
-					<div class="col">
-						<label for="feedbackFile" id="ticketLabel">Attache a File</label>
-						<input type="file" class="form-control rounded-0 rounded-bottom" id="feedbackFile">
-					</div>
-				</div>
-				<i class="mt-4 ps-1 text-danger" id="feedbackInvalidNotice" style="display: none; position: absolute; ">Note: Fields with ! are required.</i>
-				<div class="row mt-5 text-center">
+				<div class="row mt-3 text-center">
 					<div class="col pt-4">
-						<button class="btn btn-success ps-5 pe-5" type="submit" onclick="toggleInvalidNotice('feedback')">Submit Feedback</button>
+						<button class="btn btn-success ps-5 pe-5" id="feedbackBtn" type="submit">Submit Feedback</button>
 						<button class="btn btn-outline-danger text-center" type="reset" style="float: right;"><i class="fa-solid fa-trash"></i></button>
 					</div>
 				</div>
@@ -121,11 +117,8 @@
 		</div>
 	</div>
 
-	<div class="container-fluid pt-5" id="aboutBodyContent2">
-		
-	</div>
 	<div class="container">
-		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
 			<p class="col-md-4 mb-0 text-dark">&copy; 2025 BSCPE SENIORS INC.</p>
 				<ul class="nav col-md-4 justify-content-end">
 				<li class="nav-item"><a href="/smc-webassist/home" class="nav-link px-2 text-dark">Home</a></li>
@@ -137,7 +130,7 @@
 	<br>
 	<script src="https://kit.fontawesome.com/67f996be23.js" crossorigin="anonymous"></script>
 	<script src="/js/script.js"></script>
-	<script src="/js/signupScript.js"></script>
+	<script src="/js/feedback.js"></script>
 	<script src="/bootstrap/bootstrap-5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 </html>

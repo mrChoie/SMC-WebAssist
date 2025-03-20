@@ -10,41 +10,6 @@
 
 </head>
 <body>
-	<div id="modalContainer">
-		<div class="rounded shadow animate rounded-lg" id="modalLogin">
-			<div class="card text-center rounded-lg">
-				<i class="fa-solid fa-close mt-2 me-2" onclick="closeLogin()" id="closeLoginPrompt"></i>
-				<div class="card-body">
-					<img class="pt-4" src="/img/smcLogo.png" style="height: 40%; width: 40%; margin: auto;"><br><br>
-					<h5> SMC WEB-Assistant</h5>
-					<div class="row pt-5">
-						<div class="col-2 ps-5">
-							<i class="fa fa-user-circle pt-2" style="font-size: 1.2em;"></i>
-						</div>
-						<div class="col-9">
-							<input type="text" class="form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="userName" placeholder="Username">
-						</div>
-					</div>
-					<div class="row pt-2">
-						<div class="col-2 ps-5">
-							<i class="fa fa-lock pt-2" style="font-size: 1.2em;"></i>
-						</div>
-						<div class="col-9">
-							<input type="password" class="form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="userPass" placeholder="Password" onkeyup="showPassIcon()">
-							<div id="showPassIconDiv">
-								<i class="fa-solid fa-eye-slash" id="showPassIcon" onclick="showHidePass()"></i>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 offset-md-3 pt-4">
-						<button class="btn btn-outline-success" type="button" id="LoginBtn" onclick="signIn()">Log In</button>
-					</div>
-					<br>
-					<p style="font-size: 13px;">Don't have an Account? <a style="cursor: pointer; color: rgb(2, 80, 145);" href="/smc-webassist/signup">Sign up!</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
 	<nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
 		<div class="container-fluid">
 		<a class="navbar-brand ps-3" href="/smc-webassist/home">SMC-Web Assist</a>
@@ -70,19 +35,41 @@
 				</li>
 			</ul>
 			<form class="d-flex">
-				<button class="btn border-0 ps-3" href="/smc-webassist/about">Sign in</button>
+				<div style="display: flex;" id="loggedInDiv">
+					<div class="container">
+						<a class="btn btn-danger" id="logoutBtn" type="button" href="/smc-webassist/logout">Log out</a>
+					</div>
+					
+				</div>
+				
+				<div style="display: flex;" id="loggedOutDiv">
+					<a class="btn border-0 ps-3" href="/smc-webassist/signin">Sign in</a>
+				</div>
 			</form>
 		</div>
 		</div>
 	</nav>
 	
 	
-	<div class="container-fluid pb-5" id="aboutBodyContent1">
-		Content 1
-	</div>
-
-	<div class="container-fluid pt-5" id="aboutBodyContent2">
-		Content 2
+	<div class="container" id="accountBodyContent1">
+		<div class="row mt-5">
+			<div class="col-sm-3 text-center pt-3 bg-light">
+				<i class="fa-solid fa-user-circle mb-4" style="font-size: 9em; color: rgb(98, 158, 30);"></i>
+				<p class="m-0 p-0" id="userProfileName">name</p>
+				<p class="m-0 p-0" id="userProfileStudId">id</p>
+				<p class="m-0 p-0" id="userProfileDateCreated">date created</p>
+				
+			</div>
+			<div class="col-sm-9 p-4">
+				<p class="display-6"> Dashboard </p>
+				<div id="ticketContainer" class="container border border-dark rounded">
+					<p id="ticketTitle">Title</p>
+					<p id="ticketId">ticket id #</p>
+					<p id="ticketContent">Some content</p>
+					<p id="ticketDateCreated">date created</p>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="container">
 		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -96,8 +83,9 @@
 	</div>
 	<br>
 	<script src="https://kit.fontawesome.com/67f996be23.js" crossorigin="anonymous"></script>
+	<script src="/js/account.js"></script>
 	<script src="/js/script.js"></script>
-	<script src="/js/signupScript.js"></script>
+	<script  src="/js/logout.js"></script>
 	<script src="/bootstrap/bootstrap-5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 </html>

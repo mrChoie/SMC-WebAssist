@@ -10,41 +10,6 @@
 
 </head>
 <body>
-	<div id="modalContainer">
-		<div class="rounded shadow animate rounded-lg" id="modalLogin">
-			<div class="card text-center rounded-lg">
-				<i class="fa-solid fa-close mt-2 me-2" onclick="closeLogin()" id="closeLoginPrompt"></i>
-				<div class="card-body">
-					<img class="pt-4" src="/img/smcLogo.png" style="height: 40%; width: 40%; margin: auto;"><br><br>
-					<h5> SMC WEB-Assistant</h5>
-					<div class="row pt-5">
-						<div class="col-2 ps-5">
-							<i class="fa fa-user-circle pt-2" style="font-size: 1.2em;"></i>
-						</div>
-						<div class="col-9">
-							<input type="text" class="form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="userName" placeholder="Username">
-						</div>
-					</div>
-					<div class="row pt-2">
-						<div class="col-2 ps-5">
-							<i class="fa fa-lock pt-2" style="font-size: 1.2em;"></i>
-						</div>
-						<div class="col-9">
-							<input type="password" class="form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="userPass" placeholder="Password" onkeyup="showPassIcon()">
-							<div id="showPassIconDiv">
-								<i class="fa-solid fa-eye-slash" id="showPassIcon" onclick="showHidePass()"></i>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 offset-md-3 pt-4">
-						<button class="btn btn-outline-success" type="button" id="LoginBtn" onclick="signIn()">Log In</button>
-					</div>
-					<br>
-					<p style="font-size: 13px;">Don't have an Account? <a style="cursor: pointer; color: rgb(2, 80, 145);" href="/smc-webassist/signup">Sign up!</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
 	<nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
 		<div class="container-fluid">
 		<a class="navbar-brand ps-3" href="/smc-webassist/home">SMC-Web Assist</a>
@@ -70,7 +35,13 @@
 				</li>
 			</ul>
 			<form class="d-flex">
-				<button class="btn border-0 ps-3" href="/smc-webassist/about">Sign in</button>
+				<div style="display: flex;" id="loggedInDiv">
+					<a class="btn border-0 ps-3" href="/smc-webassist/account">Profile</a>
+				</div>
+				
+				<div style="display: flex;" id="loggedOutDiv">
+					<a class="btn border-0 ps-3" href="/smc-webassist/signin">Sign in</a>
+				</div>
 			</form>
 		</div>
 		</div>

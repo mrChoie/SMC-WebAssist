@@ -10,39 +10,20 @@
 
 </head>
 <body>
-	<div id="modalContainer">
-		<div class="rounded shadow animate rounded-lg" id="modalLogin">
-			<div class="card text-center rounded-lg">
-				<i class="fa-solid fa-close mt-2 me-2" onclick="closeLogin()" id="closeLoginPrompt"></i>
-				<div class="card-body">
-					<img class="pt-4" src="/img/smcLogo.png" style="height: 40%; width: 40%; margin: auto;"><br><br>
-					<h5> SMC WEB-Assistant</h5>
-					<div class="row pt-5">
-						<div class="col-2 ps-5">
-							<i class="fa fa-user-circle pt-2" style="font-size: 1.2em;"></i>
+	<div class="" id="noticeParent" style="display: none; z-index: 10;">
+		<div class="container-fluid animate position-fixed" id="noticeContainer">
+				<div class="col animate-0 position-absolute top-50 start-50 translate-middle m-0 bg-light p-3 text-center" id="noticeChild">
+					<div>
+						<div class="row">
+							<h5> Successfully submitted, thank you for your Ticket!</h5>
 						</div>
-						<div class="col-9">
-							<input type="text" class="form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="userName" placeholder="Username">
-						</div>
-					</div>
-					<div class="row pt-2">
-						<div class="col-2 ps-5">
-							<i class="fa fa-lock pt-2" style="font-size: 1.2em;"></i>
-						</div>
-						<div class="col-9">
-							<input type="password" class="form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="userPass" placeholder="Password" onkeyup="showPassIcon()">
-							<div id="showPassIconDiv">
-								<i class="fa-solid fa-eye-slash" id="showPassIcon" onclick="showHidePass()"></i>
+						<div class="row">
+							<div class="col-sm-6 offset-sm-3 mt-4">
+								<button class="btn btn-outline-success ps-5 pe-5" type="button" id="successBtn" onclick="clearFields()">Done</button>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6 offset-md-3 pt-4">
-						<button class="btn btn-outline-success" type="button" id="LoginBtn" onclick="signIn()">Log In</button>
-					</div>
-					<br>
-					<p style="font-size: 13px;">Don't have an Account? <a style="cursor: pointer; color: rgb(2, 80, 145);" href="/smc-webassist/signup">Sign up!</a></p>
 				</div>
-			</div>
 		</div>
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
@@ -70,25 +51,31 @@
 				</li>
 			</ul>
 			<form class="d-flex">
-				<button class="btn border-0 ps-3" href="/smc-webassist/about">Sign in</button>
+				<div style="display: flex;" id="loggedInDiv">
+					<a class="btn border-0 ps-3" href="/smc-webassist/account">Profile</a>
+				</div>
+				
+				<div style="display: flex;" id="loggedOutDiv">
+					<a class="btn border-0 ps-3" href="/smc-webassist/signin">Sign in</a>
+				</div>
 			</form>
 		</div>
 		</div>
 	</nav>
 	
 	
-	<div class="container-fluid pb-5" id="aboutBodyContent1">
+	<div class="container-fluid pb-5" id="ticketBodyContent1">
 		<div class="container mt-3 pb-5">
-			<h3 class="mt-5">CATEGORY #1 TITLE</h3>
-			<form action="/smc-webassist/ticket/submit" method="POST" class="needs-validation" novalidate style="font-size: 16px;">
+			<h3 class="mt-5" id="categoryTitle">CATEGORY TITLE</h3>
+			<form class="needs-validation" novalidate style="font-size: 16px;">
 				<div class="row mt-3">
 					<div class="col-8">
 						<label for="ticketStudName" id="ticketLabel">Student Name</label>
-						<input type="text" class="form-control rounded-0 rounded-bottom" id="ticketStudName" placeholder="Last Name, First Name" name="tktPublisher" required>
+						<input type="text" class="form-control rounded-0 rounded-bottom" disabled id="ticketStudName2" placeholder="Last Name, First Name" name="tktOwner" required>
 					</div>
 					<div class="col-4">
 						<label for="ticketIdNum" id="ticketLabel">ID Number</label>
-						<input type="text" class="form-control rounded-0 rounded-bottom" id="ticketIdNum" placeholder="" name="tktPubStudId" required>
+						<input type="text" class="form-control rounded-0 rounded-bottom" disabled id="ticketIdNum2" placeholder="" name="tktOwnerDBid" required>
 					</div>
 				</div>
 				<div class="row mt-2">
@@ -106,7 +93,7 @@
 				<div class="row mt-2">
 					<div class="col">
 						<label for="ticketFile" id="ticketLabel">Attache a File</label>
-						<input type="file" class="form-control rounded-0 rounded-bottom" id="ticketFile">
+						<input type="file" class="form-control rounded-0 rounded-bottom" id="ticketFile" name="ticketFile">
 					</div>
 				</div>
 				<i class="mt-4 ps-1 text-danger" id="ticketInvalidNotice" style="display: none; position: absolute; ">Note: Fields with ! are required.</i>
@@ -116,6 +103,9 @@
 						<button class="btn btn-outline-danger" type="reset" style="float: right;"><i class="fa-solid fa-trash"></i></button>
 				</div>
 				</div>
+				<input type="hidden" class="form-control"id="ticketStudName" name="tktOwner">
+				<input type="hidden" class="form-control"id="ticketIdNum" name="tktOwnerDBid">
+				<input type="hidden" class="form-control"id="categoryID" name="categoryID">
 			</form>
 		</div>
 	</div>
@@ -137,7 +127,7 @@
 	<br>
 	<script src="https://kit.fontawesome.com/67f996be23.js" crossorigin="anonymous"></script>
 	<script src="/js/script.js"></script>
-	<script src="/js/signupScript.js"></script>
+	<script src="/js/tktCategory.js"></script>
 	<script src="/bootstrap/bootstrap-5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 </html>

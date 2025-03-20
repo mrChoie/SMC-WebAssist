@@ -1,44 +1,22 @@
-const responseDivSuccess = document.getElementById("responseSuccess")
-const responseDivInvalidPass = document.getElementById("responseDivInvalidPass")
-const responseDivUserNotExist = document.getElementById("responseUserNotExist")
-const usernameInput = document.getElementById("userName")
-const passwordInput = document.getElementById("userPass")
-const signBtn = document.getElementById("signBtn")
+const loggedInDiv = document.getElementById("loggedInDiv")
+const loggedOutDiv = document.getElementById("loggedOutDiv")
+const profileDropdownBtn = document.getElementById("profileDropdownBtn")
+const profileDdContent = document.getElementById("profileDdContent")
+
 // import responseDiv from "document.getElementById("response")"
 // import signBtn from "document.getElementById("signBtn")"
 // import ejs from 'ejs'
 // import document from '../../views/home.ejs'
 
-// window.onload; {
-//   let element = document.getElementById("modalContainer");
-//   element.style.display = "none";
-//   let logoutBtn = document.getElementById("logoutBtn");
-//   logoutBtn.style.display= "none";
-// }
-
-signBtn.addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent form submission if needed
-    const userName = usernameInput.value;
-    const userPass = passwordInput.value;
-    login(userName, userPass);
-});
-
-passwordInput.addEventListener("keydown", function (event) {
-    responseDivInvalidPass.textContent = "";
-})
-usernameInput.addEventListener("keydown", function (event) {
-    responseDivUserNotExist.textContent = "";
-    responseDivInvalidPass.textContent = "";
-})
-
-function login(userName, userPass) {
-    fetch ("http://127.0.0.1:8080/smc-webassist/login", {
-        method: "POST",
+window.onload; {
+    // 20 = not logged in, display sign-in div
+    // 21 = logged in, display profile div
+    fetch ('/checkCookie', {
+        method: "GET",	
         credentials: "include",
         headers: {
         "Content-Type": "application/json"
         },
-        body: JSON.stringify({ userName, userPass })
     })
     .then(res => {
         if (!res.ok) {
@@ -47,22 +25,43 @@ function login(userName, userPass) {
         return res.json(); // Parse JSON response
     })
     .then(data => {
-        console.log(data);
-        if (data.statusCode == '11') {
-            responseDivSuccess.textContent = data.message; // Display the result
-        } else if (data.statusCode == '01') {
-            responseDivUserNotExist.textContent = data.message; // Display the result
+        // console.log(data);
+        if (data.statusCode == '21') {
+            // document.cookie = `accessToken=${data.user.username}; path=/; expires=${new Date(Date.now() + 1000*60*60*2).toUTCString()}`
+            loggedInDiv.style.display = "flex";
+            loggedOutDiv.style.display = "none";
         } else {
-            responseDivInvalidPass.textContent = data.message; // Display the result
+            loggedInDiv.style.display = "none";
+            loggedOutDiv.style.display = "flex";
         }
     })
     .catch(err => {
-        console.log("Fetched JSON:", data);
-        responseDiv.textContent = "Error fetching user.";
+        console.log(err);
+        // responseDiv.textContent = "Error fetching user.";
     });
-    // .then(res => console.log(res))
-    // .then(data => (responseDiv.textContent = data))  
 }
+
+// function testFunct(){
+//     document.getElementById("signBtn").addEventListener("click", function(){
+//         console.log("Button clicked");
+//     });
+// }
+
+// profileDropdownBtn.addEventListener("click", function(event){
+//     profileDdContent.style.display = "flex"
+// })
+
+// profileDropdownBtn.addEventListener("mouseleave", function(event){
+//     profileDdContent.style.display = "none"
+// })
+
+// signBtn.addEventListener("click", function (event) {
+//     event.stopPropagation();
+//     event.preventDefault(); // Prevent form submission if needed
+//     const userName = usernameInput.value;
+//     const userPass = passwordInput.value;
+//     login(userName, userPass);
+// });
 
 function openLogin() {
     //document.getElementById("navBar").style.backgroundColor = "red";
@@ -95,7 +94,7 @@ function closeLogin(){
 function toggleInvalidNotice(page){
 
     let ticket = document.getElementById("ticketInvalidNotice");
-    let feedback = document.getElementById("feedbackInvalidNotice");
+    let feedbackNotice = document.getElementById("feedbackInvalidNotice");
 
     if (page == 'ticket') {
         if (document.getElementById("ticketStudName").value != "" &&
@@ -107,11 +106,11 @@ function toggleInvalidNotice(page){
         ticket.style.display = "flex";
         }
     } else {
-        if (document.getElementById("feedbackSubj").value != "" &&
+        if (document.getElementById("feedbackTitle").value != "" &&
         document.getElementById("feedbackDesc").value != "" ){
-        feedback.style.display = "none";
+        feedbackNotice.style.display = "none";
         } else {
-        feedback.style.display = "flex";
+        feedbackNotice.style.display = "flex";
         }
     }
 

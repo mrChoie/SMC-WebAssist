@@ -10,6 +10,17 @@ const connection = mysql.createConnection({
     database: process.env.MYSQL_DATABASE
 }).promise()
 
+
+// export async function verifyToken(token, callback) {
+//     const [result] = await getUserbyName(token)
+//     if (result) {
+//         callback(null)
+//     } else {
+//         callback("Invalid token")
+//     }
+//     return result
+// }
+
 export async function getTickets() {
     const [rows] = await connection.query("SELECT * FROM tickets")
     return rows
@@ -24,30 +35,40 @@ export async function getTicket(tktID){
     return rows[0]
 }
 
-export async function createTicket(tktCategory, tktPublisher, tktPubStudId, tktSubj, tktDesc, tktFile) {
+export async function createTicket(tktUID, categoryID, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile) {
     const [result] = await connection.query(`
-            INSERT INTO tickets (tktCategory, tktPublisher, tktPubStudId, tktSubj, tktDesc, tktFile)
-            VALUES (?, ?, ?, ?, ?, ?)
-            `, [tktCategory, tktPublisher, tktPubStudId, tktSubj, tktDesc, tktFile])
+            INSERT INTO tickets ( tktUID, tktCategoryID, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            `, [tktUID, categoryID, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile])
     const id = result.insertId
     return getTicket(id)
 }
-// export async function createTicket(tktCategory, tktPublisher) {
+// export async function createTicket(categoryID, tktPublisher) {
 //     const [result] = await connection.query(`
-//         INSERT INTO tickets (tktCategory, tktPublisher)
+//         INSERT INTO tickets (categoryID, tktPublisher)
 //         VALUES (?, ?)
-//         `, [tktCategory, tktPublisher])
+//         `, [categoryID, tktPublisher])
 //     const id = result.insertId
 //     return getTicket(id)
 // }
 
-export async function updateTicket(tktID, tktCategory, tktPublisher, tktPubStudId, tktSubj, tktDesc, tktFile) {
+export async function updateTicket(tktID, categoryID, tktPublisher, tktPubStudId, tktSubj, tktDesc, tktFile) {
     const [result] = await connection.query(`
         UPDATE tickets
-        SET tktCategory = ?, tktPublisher = ?, tktPubStudId = ?, tktSubj = ?, tktDesc = ?, tktFile = ?
+        SET tktCategoryID = ?, tktPublisher = ?, tktPubStudId = ?, tktSubj = ?, tktDesc = ?, tktFile = ?
         WHERE tktID = ?
-        `, [tktCategory, tktPublisher, tktPubStudId, tktSubj, tktDesc, tktFile, tktID])
+        `, [categoryID, tktPublisher, tktPubStudId, tktSubj, tktDesc, tktFile, tktID])
     return getTicket(tktID)
+}
+
+export async function getCategoryById(cId) {
+    const [result] = await connection.query(`
+        SELECT *
+        FROM categories
+        WHERE categoryId = ?
+        `, [cId])
+        // console.log(result)
+        return result[0]
 }
 
 export async function getUsers() {
@@ -106,4 +127,12 @@ export async function updateUser(userID, userName, userStudId, userPass) {
         WHERE userID = ?
         `, [userName, userStudId, userPass, userID])
     return getUserByID(userID)
+}
+
+export async function submitFeedback(feedbackUID, feedbackTitle, feedbackDesc, feedbackFile ) {
+    const [result] = await connection.query(`
+        INSERT INTO feedbacks (feedbackUID, feedbackTitle, feedbackDesc, feedbackFile)
+        VALUES (?, ?, ?, ?)
+        `, [feedbackUID, feedbackTitle, feedbackDesc, feedbackFile ])
+    return
 }

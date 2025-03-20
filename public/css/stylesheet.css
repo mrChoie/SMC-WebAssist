@@ -31,14 +31,23 @@ nav {
 	color: black;
 }
 
+#profileCollapse {
+	background-color: rgb(139, 195, 74);
+	color: black;
+}
+
+#profileDdContent {
+	position: absolute;
+	width: 100%;
+}
 
 #modalContainer {
 	z-index: 10;
-	position: fixed;
+	position: absolute;
 	height: 100%;
 	width: 100%;
 	background-color: rgba(5, 5, 5, 0.3);
-	display: none;
+	display: flex;
 
 }
 #modalLogin {
@@ -49,6 +58,34 @@ nav {
 	width: 360px;
 	height: 502px;
 	background-color: rgb(139, 195, 74);
+}
+
+/* #feedbackBodyContent1 {
+	position: relative;
+	z-index: 10;
+} */
+#ticketBodyContent1 {
+	position: relative;
+	z-index: 10;
+}
+
+#modalNoticeContainer {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(5, 5, 5, 0.3);
+	display: flex;
+
+}
+
+#noticeContainer {
+	background-color: #1a642646;
+	height: 100%;
+}
+
+#noticeChild {
+	border-radius: 8px;
+	box-shadow: 0px 0px 50px #00000021;
 }
 
 .animate {
@@ -116,4 +153,24 @@ nav {
 	padding-left: 6px;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
+	margin-bottom: 0px;
+}
+
+#ticketTitle {
+	font-size: 22px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+#ticketId {
+	font-size: 12px;
+	color: gray;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+#ticketContent {
+	font-size: 18px;
+}
+#ticketDateCreated {
+	font-size: 12px;
+	color: gray;
 }

@@ -36,17 +36,33 @@
 				</li>
 			</ul>
 			<form class="d-flex">
-				<% if (loginStatus==1) { %>
-					<a class="btn border-0 ps-3" href="/smc-webassist/account"><%= profile %></a>
-				<% } %>
-				<% if (loginStatus==0) { %>
-					<a class="btn border-0 ps-3" href="/smc-webassist/signin"><%= sign_in %></a>
-				<% } %>
+				<div style="display: flex;" id="loggedInDiv">
+					<a class="btn border-0 ps-3" href="/smc-webassist/account">Profile</a>
+				</div>
+				
+				<div style="display: flex;" id="loggedOutDiv">
+					<a class="btn border-0 ps-3" href="/smc-webassist/signin">Sign in</a>
+				</div>
 			</form>
 		</div>
 		</div>
+		
 	</nav>
 	
+	<!-- <div class="dropdown" id="profileDdContent" aria-labelledby="profileDropdownBtn">
+		<button class="btn nav-link text-dark pt-0 pb-0 dropdown-toggle" id="profileDropdownBtn" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user-circle pt-2" style="font-size: 1.2em;"></i></button>
+						
+		<ul class="dropdown-menu list-group">
+			<li class="list-group-item border-0 "><a class="nav-link text-dark" href="">Profile</a></li>
+			<li class="list-group-item border-0 "><a class="nav-link text-dark" href="">Settings</a></li>
+			<li class="list-group-item border-0 "><a class="nav-link text-dark" href="">Logout</a></li>
+		</ul>
+		<div class="dropdown-menu" aria-labelledby="profileDropdownBtn">
+			<a class="dropdown-item" href="#">Action</a>
+			<a class="dropdown-item" href="#">Another action</a>
+			<a class="dropdown-item" href="#">Something else here</a>
+		</div>
+	</div> -->
 	<div class="container-fluid pb-5" id="homeBodyContent1">
 		<h6 class="text-center pt-5">SOUTHERN MINDANAO COLLEGES</h6>
 		<p class="text-center display-2 mb-4" id="headline" style="margin-top: -12px;">WEB Assistant</p>
@@ -115,8 +131,7 @@
 		</footer>
 	</div>
 	<br>
-	
-	<script src="https://kit.fontawesome.com/67f996be23.js" crossorigin="anonymous"></script>
+	<button class="btn" id="signBtn"btn>btn</button>
 	<script src="/js/script.js"></script>
 	<script src="/js/signupScript.js"></script>
 	<script>
