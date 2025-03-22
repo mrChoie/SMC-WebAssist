@@ -31,9 +31,10 @@ const auth = async (req, res, next) => {
         clientCookies.split('; ').map(cookie => cookie.split('='))
     );
 
+    
+    const lvl = cookieObject.lvl
     const token = cookieObject.token
     const userToken = cookieObject.user
-
     // console.log("Token: ", token)
     // console.log("\n\nuser: ", userToken)
     try {

@@ -2,6 +2,7 @@ const loggedInDiv = document.getElementById("loggedInDiv")
 const loggedOutDiv = document.getElementById("loggedOutDiv")
 const profileDropdownBtn = document.getElementById("profileDropdownBtn")
 const profileDdContent = document.getElementById("profileDdContent")
+const adminBtn = document.getElementById("adminBtn")
 
 // import responseDiv from "document.getElementById("response")"
 // import signBtn from "document.getElementById("signBtn")"
@@ -25,13 +26,16 @@ window.onload; {
         return res.json(); // Parse JSON response
     })
     .then(data => {
-        // console.log(data);
-        if (data.statusCode == '21') {
+        // console.log(data.lvl," : ", data.message," : ", data.statusCode," : ", data.cookies)
+        if (data.statusCode == 21) { // logged in
             // document.cookie = `accessToken=${data.user.username}; path=/; expires=${new Date(Date.now() + 1000*60*60*2).toUTCString()}`
-            loggedInDiv.style.display = "flex";
-            loggedOutDiv.style.display = "none";
+            if (data.lvl==4){
+                adminBtn.style.display="flex"
+                loggedInDiv.style.display = "flex";
+            } else {
+                loggedInDiv.style.display = "flex";
+            }
         } else {
-            loggedInDiv.style.display = "none";
             loggedOutDiv.style.display = "flex";
         }
     })
@@ -74,15 +78,6 @@ function openLogin() {
     // accNavBarElement.hasAttribute("disabled");
     
 };
-
-function signIn(){
-    console.log("signIn Funct call")
-    if (document.getElementById("userName").value != "") {
-        console.log("Signed in!");
-    } else {
-        console.log("Fill in the username first!");
-    }
-}
 
 function closeLogin(){
     let element = document.getElementById("modalContainer");

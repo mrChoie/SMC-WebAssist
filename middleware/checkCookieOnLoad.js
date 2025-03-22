@@ -6,16 +6,21 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const checkCookie = async (req, res, next) => {
-    const token = req.headers.cookie && req.headers.cookie.split('=')[1]
-    // console.log("Token:", token)
+    // const token = req.headers.cookie && req.headers.cookie.split('=')
+    const cookies = Object.fromEntries(req.headers.cookie?.split('; ').map(c => c.split('=')) || []);
+    const token = cookies;
+    const lvl = cookies.lvl;
+    // console.log("Token:", lvl)
     // 20 = not logged in, display sign-in div
     // 21 = logged in, display profile div
-    if (!token){
-        res.json({ message: "User is not logged in", statusCode:'20' });
+    if (cookies.token==null){
+        res.json({token, message: "User is not logged in", statusCode:20 });
         // next(json({message: "User is not logged in", statusCode:'20'}))
+        // res.json({token})
     } else {
-        res.json({ message: "User is logged in", statusCode:'21' });
+        res.json({cookies, lvl, message: "User is logged in", statusCode:21 });
         // next(json({message: "User is logged in", statusCode:'21'}))
+        // res.json({token})
         
     }
     // try {

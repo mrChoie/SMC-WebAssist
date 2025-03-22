@@ -20,10 +20,18 @@ const connection = mysql.createConnection({
 //     }
 //     return result
 // }
+export async function getMyTickets(uid){
+    const [result] = await connection.query(`
+        SELECT *
+        FROM tickets
+        WHERE tktUID = ?
+    `, [uid])
+    return [result]
+}
 
 export async function getTickets() {
     const [rows] = await connection.query("SELECT * FROM tickets")
-    return rows
+    return [rows]
 }
 
 export async function getTicket(tktID){
@@ -95,7 +103,8 @@ export async function getUserByID(userID){
     return rows[0]
 }
 
-export async function checkDuplicateUser(userName, userStudId, userPass){
+export async function checkDuplicateUser(userName, userStudId, userPass, userLevel){
+    console.log(userName, userStudId, userPass, userLevel)
     const [result] = await connection.query(`
         SELECT EXISTS (
             SELECT 1 
@@ -103,19 +112,19 @@ export async function checkDuplicateUser(userName, userStudId, userPass){
             WHERE username = ? OR stud_id = ?) AS is_exists;
         `, [userName, userStudId])
     if (!result[0].is_exists) {
-        console.log("user registered! \n")
-        return await createUser(userName, userStudId, userPass);
+        // console.log("user registered! \n")
+        return await createUser(userName, userStudId, userPass, userLevel);
     } else {
-        console.log("user already exist \n")
+        // console.log("user already exist \n")
     }
     return result[0].is_exists;
 }
 
-export async function createUser(userName, userStudId, userPass) {
+export async function createUser(userName, userStudId, userPass, userLevel) {
     const [result] = await connection.query(`
-        INSERT INTO users (username, stud_id, password)
-        VALUES (?, ?, ?)
-        `, [userName, userStudId, userPass])
+        INSERT INTO users (username, stud_id, password, user_level)
+        VALUES (?, ?, ?, ?)
+        `, [userName, userStudId, userPass, userLevel])
     const id = result.insertId
     return getUserByID(id)
 }

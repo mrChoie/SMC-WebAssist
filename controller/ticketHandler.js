@@ -5,8 +5,15 @@ import { getTickets, getTicket, createTicket, updateTicket} from '../model/datab
 const db = express();
 db.use('/smc-webassist/auth', auth);
 
+db.post('/', async (req, res) => {
+    const [tickets] = await getTickets();
+    const numOfTkts = tickets.length
+    // console.log("number of tickets: ",numOfTkts)
+    res.json(tickets, numOfTkts)
+})
+
 db.get("/tickets", async (req, res) => {
-    const tickets = await getTickets();
+    const [tickets] = await getTickets();
     res.send(tickets);
 });
 

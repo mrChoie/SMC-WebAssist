@@ -19,21 +19,29 @@
 				<div class="card-body">
 					<img class="pt-4" src="/img/smcLogo.png" style="height: 40%; width: 40%; margin: auto;"><br><br>
 					<h5> SMC WEB-Assistant</h5>
-					<form action="/smc-webassist/register" method="POST" class="needs-validation" novalidate>
-						<div class="row pt-5">
+					<form class="needs-validation" novalidate>
+						<div style="height: 20px; padding: 0px;">
+							<div class="col-sm-3 responseContainer">
+								<div class="text-danger start-50 translate-middle" id="responseUserIsExist">
+									
+								</div>
+							</div>
+						</div>
+						<div class="row mt-4">
 							<div class="col-2 ps-5">
 								<i class="fa-solid fa-user-circle pt-2" style="font-size: 1.2em;"></i>
 							</div>
 							<div class="col-9">
-								<input type="text" class="form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="userName" placeholder="Username" name="userName" required>
+								<input type="text" class="pb-0 form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="userName" placeholder="Username" name="userName" required>
 							</div>
 						</div>
-						<div class="row pt-2">
+						
+						<div class="row pt-4">
 							<div class="col-2 ps-5 pt-2">
-								
+								<i class="fa-solid fa-hashtag pt-1" style="font-size: 1.2em;"></i>
 							</div>
 							<div class="col-9">
-								<input type="text" class="form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="userStudId" placeholder="Student ID" name="userStudId" required>
+								<input type="text" class="pb-0 form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="userStudId" placeholder="Student ID" name="userStudId" required>
 							</div>
 						</div>
 						<div class="row pt-4">
@@ -41,15 +49,25 @@
 								<i class="fa-solid fa-lock pt-2" style="font-size: 1.2em;"></i>
 							</div>
 							<div class="col-9">
-								<input type="password" class="form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="userPass" placeholder="Password" onkeyup="showPassIcon()" name="userPass" required>
+								<input type="password" class="pb-0 form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="userPass" placeholder="Password" onkeyup="showPassIcon()" name="userPass" required>
 								<div id="showPassIconDiv">
 									<i class="fa-solid fa-eye-slash" id="showPassIcon" onclick="showHidePass()"></i>
 								</div>
 							</div>
 						</div>
+						<!-- <div class="row mt-1">
+							<div class="col-2 ps-5">
+								<div id="showPassIconDiv2">
+									<i class="fa-solid fa-eye-slash pt-2" id="showPassIcon" onclick="showHidePass()"></i>
+								</div>
+							</div>
+							<div class="col-9">
+								<input type="password" class="pb-0 form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="passConfirm" placeholder="Confirm Password" onkeyup="showPassIcon()">
+							</div>
+						</div> -->
 						<div class="row text-center mt-4">
 							<div class="col-md-6 offset-md-3">
-									<button class="btn btn-outline-success" type="submit" onclick="signIn()">Create Account</button>
+									<button class="btn btn-outline-success" type="submit">Create Account</button>
 							</div>
 						</div>
 					</form>

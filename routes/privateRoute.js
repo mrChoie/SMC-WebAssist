@@ -23,5 +23,7 @@ privateRoute.get("/dashboard", async (req, res) => {
 privateRoute.get("/ticket-form", async (req, res) => {
     res.render('ticketForm.ejs')
 })
-
+privateRoute.get("/admin/view-tickets", async (req, res) => {
+    res.render('admintickets.ejs')
+})
 export default privateRoute;

@@ -1,0 +1,51 @@
+
+nav {
+	background-color: rgb(139, 195, 74);
+	color: black;
+}
+
+.animate {
+	-webkit-animation: animatezoom 0.6s;
+	animation: animatezoom 0.6s
+}
+@-webkit-keyframes animatezoom {
+	from {-webkit-transform: scale(0)}
+	to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+	from {transform: scale(0)}
+	to {transform: scale(1)}
+}
+
+#footer {
+	width: 100%;
+	background-color: rgb(139, 195, 74);
+}
+
+.pending {
+	background-color: rgb(238, 237, 159);
+}
+.resolved {
+	background-color: rgb(201, 255, 188);
+}
+
+.ptitle {
+	/* font-style: bold; */
+	font-size: 15px;
+	margin-top: 4px;
+	margin-bottom: 0px;
+}
+.pid {
+	font-size: 9px;
+	color: #000;
+	margin: 0;
+}
+.pcontent {
+	margin: 0;
+	font-size: 10px;
+}
+.pdate {
+	font-size: 9px;
+	color: #000;
+}

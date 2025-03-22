@@ -4,10 +4,10 @@ import checkCookie from '../middleware/checkCookieOnLoad.js';
 import publicRoute from '../routes/publicRoute.js';
 import user from './userHandler.js';
 import auth from '../middleware/authenticator.js';
+import admin from '../middleware/adminAuth.js'
 import feedb from './feedbackHandler.js';
 import privateRoute from "../routes/privateRoute.js";
 import db from './ticketHandler.js';
-import cookieParser from 'cookie-parser';
 
 const app = express();
 // app.engine("html", ejs.renderFile);
@@ -17,11 +17,12 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 app.use('/checkCookie', checkCookie);
+app.use('/getTickets', db);
 app.use('/getInfo', user);
 app.use('/smc-webassist', publicRoute);
 // app.use(auth)
 // app.use('/smc-webassist', auth);
-
+app.use('/smc-webassist/admin', admin);
 app.use('/smc-webassist', user, auth, privateRoute)
 app.use('/smc-webassist', feedb);
 app.use('/smc-webassist', db);
