@@ -9,7 +9,7 @@ db.post('/', async (req, res) => {
     const [tickets] = await getTickets();
     const numOfTkts = tickets.length
     // console.log("number of tickets: ",numOfTkts)
-    res.json(tickets, numOfTkts)
+    res.json({tickets, numOfTkts})
 })
 
 db.get("/tickets", async (req, res) => {

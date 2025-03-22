@@ -9,6 +9,7 @@ const cat4 = document.getElementById("ticketCategory4")
 const cat5 = document.getElementById("ticketCategory5")
 const cat6 = document.getElementById("ticketCategory6")
 const cat7 = document.getElementById("ticketCategory7")
+const cat8 = document.getElementById("ticketCategory8")
 
 const ticketTitle = document.getElementById("ticketTitle")
 const ticketId = document.getElementById("ticketId")
@@ -52,14 +53,16 @@ window.onload; {
 // const ticketContent
 // const ticketDate
 
-const catDivArr = [null,cat1, cat2, cat3, cat4, cat5, cat6, cat7]
+const catDivArr = [null,cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8]
 
 async function displayTickets(tickets) {
     // console.log("all tickets: ",tickets)
     // console.log("number of tickets: ",tickets.numOfTkts)
-    const len = tickets.length
+    const len = tickets.tickets.length
 
-    for (x = 0; x<8; x++) {
+    // console.log("length: ",len)
+
+    for (x = 0; x<9; x++) {
         // console.log("x: ",x)
 
         for (y=0; y<len;y++) {
@@ -73,10 +76,10 @@ async function displayTickets(tickets) {
             var date=document.createElement("p");
             var owner=document.createElement("p");
 
-            if (tickets[y].tktStatus==1) {
-                div.classList.add("pending","container","border","border-dark","rounded","animate","mt-2");
+            if (tickets.tickets[y].tktStatus==1) {
+                div.classList.add("pending","container","border","border-dark","rounded","animate","mt-2","p-1");
             } else {
-                div.classList.add("resolved","container","border","border-dark","rounded","animate","mt-2");
+                div.classList.add("resolved","container","border","border-dark","rounded","animate","mt-2","p-1");
             }
             title.classList.add("ptitle")
             id.classList.add("pid")
@@ -84,12 +87,12 @@ async function displayTickets(tickets) {
             date.classList.add("pdate")
             owner.classList.add("pdate")
 
-            if (tickets[y].tktCategoryID==x){
-                owner.textContent = tickets[y].tktOwner;
-                title.textContent = tickets[y].tktSubj;
-                id.textContent = "Ticket ID: "+ tickets[y].tktID;
-                content.textContent = tickets[y].tktDesc.substring(0, 80) + ". . .";
-                date.textContent = tickets[y].tktTimestamp;
+            if (tickets.tickets[y].tktCategoryID==x){
+                owner.textContent = tickets.tickets[y].tktOwner;
+                title.textContent = tickets.tickets[y].tktSubj;
+                id.textContent = "Ticket ID: "+ tickets.tickets[y].tktID;
+                content.textContent = tickets.tickets[y].tktDesc.substring(0, 80) + ". . .";
+                date.textContent = tickets.tickets[y].tktTimestamp;
             } else {
                 continue
             }
