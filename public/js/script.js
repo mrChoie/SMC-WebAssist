@@ -33,7 +33,7 @@ window.onload; {
                 adminBtn.style.display="flex"
                 loggedInDiv.style.display = "flex";
             } else {
-                loggedInDiv.style.display = "flex";
+            loggedInDiv.style.display = "flex";
             }
         } else {
             loggedOutDiv.style.display = "flex";
