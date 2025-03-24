@@ -51,11 +51,15 @@
 				</li>
 			</ul>
 			<form class="d-flex">
-				<div style="display: flex;" id="loggedInDiv">
-					<a class="btn border-0 ps-3" href="/smc-webassist/account">Profile</a>
+				<div style="display: none;" id="adminBtn">
+					<a class="nav-link text-dark" aria-current="page" href="/smc-webassist/admin/view-tickets">Review Tickets</a>
 				</div>
-				<div style="display: flex;" id="loggedOutDiv">
-					<a class="btn border-0 ps-3" href="/smc-webassist/signin">Sign in</a>
+				<div style="display: none;" id="loggedInDiv">
+					<a class="nav-link text-dark" href="/smc-webassist/account">Profile</a>
+				</div>
+				
+				<div style="display: none;" id="loggedOutDiv">
+					<a class="nav-link text-dark" href="/smc-webassist/signin">Sign in</a>
 				</div>
 			</form>
 		</div>
