@@ -165,6 +165,33 @@ nav {
 	border-top-right-radius: 10px;
 	margin-bottom: 0px;
 }
+.ticketLink {
+	align-content: center;
+	border-top-right-radius: 13px;
+	border-bottom-right-radius: 13px;
+	& .fa-solid {
+		font-size: 22px;
+		color: rgb(98, 158, 30);
+	}
+}
+#ticketContainer {
+	& .ticketContent {
+		/* background-color: red; */
+		border-top-left-radius: 13px;
+		border-bottom-left-radius: 13px;
+	}
+}
+#ticketContainer .row {
+	margin-bottom: 8px;
+	margin-top: 8px;
+	border-radius: 13px;
+	border:2px solid rgb(98, 158, 30);
+}
+
+#ticketContainer .row:hover {
+	box-shadow: 0px 0px 30px #30303085;
+	transition: box-shadow 0.4s;
+}
 
 .ptitle {
 	/* font-style: bold; */
@@ -185,3 +212,4 @@ nav {
 	font-size: 12px;
 	color: gray;
 }
+
