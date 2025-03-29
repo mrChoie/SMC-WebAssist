@@ -51,12 +51,15 @@
 				</li>
 			</ul>
 			<form class="d-flex">
-				<div style="display: flex;" id="loggedInDiv">
-					<a class="btn border-0 ps-3" href="/smc-webassist/account">Profile</a>
+				<div style="display: none;" id="adminBtn">
+					<a class="nav-link text-dark" aria-current="page" href="/smc-webassist/admin/view-tickets">Review Tickets</a>
+				</div>
+				<div style="display: none;" id="loggedInDiv">
+					<a class="nav-link text-dark" href="/smc-webassist/account">Profile</a>
 				</div>
 				
-				<div style="display: flex;" id="loggedOutDiv">
-					<a class="btn border-0 ps-3" href="/smc-webassist/signin">Sign in</a>
+				<div style="display: none;" id="loggedOutDiv">
+					<a class="nav-link text-dark" href="/smc-webassist/signin">Sign in</a>
 				</div>
 			</form>
 		</div>
@@ -67,17 +70,18 @@
 	<div class="container-fluid pb-5" id="ticketBodyContent1">
 		<div class="container mt-3 pb-5">
 			<h3 class="mt-5" id="categoryTitle">CATEGORY TITLE</h3>
-			<form class="needs-validation" novalidate style="font-size: 16px;">
-				<div class="row mt-3">
-					<div class="col-8">
-						<label for="ticketStudName" id="ticketLabel">Student Name</label>
-						<input type="text" class="form-control rounded-0 rounded-bottom" disabled id="ticketStudName2" placeholder="Last Name, First Name" name="tktOwner" required>
-					</div>
-					<div class="col-4">
-						<label for="ticketIdNum" id="ticketLabel">ID Number</label>
-						<input type="text" class="form-control rounded-0 rounded-bottom" disabled id="ticketIdNum2" placeholder="" name="tktOwnerDBid" required>
-					</div>
+			<div class="row mt-3">
+				<div class="col-8">
+					<label for="ticketStudName" id="ticketLabel">Student Name</label>
+					<input type="text" class="form-control rounded-0 rounded-bottom" disabled id="ticketStudName2" placeholder="Last Name, First Name" name="tktOwner" required>
 				</div>
+				<div class="col-4">
+					<label for="ticketIdNum" id="ticketLabel">ID Number</label>
+					<input type="text" class="form-control rounded-0 rounded-bottom" disabled id="ticketIdNum2" placeholder="" name="tktOwnerDBid" required>
+				</div>
+			</div>
+			<form class="needs-validation" novalidate style="font-size: 16px;">
+				
 				<div class="row mt-2">
 					<div class="col">
 						<label for="ticketSubj" id="ticketLabel">Subject Title</label>

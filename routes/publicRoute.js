@@ -2,11 +2,7 @@ import express from 'express';
 const publicRoute = express.Router();
 
 publicRoute.get("/home", (req, res) => {
-    res.render('home.ejs', {
-        loginStatus: 0,
-        profile : "Profile",
-        sign_in : "Sign in"
-    })
+    res.render('home.ejs')
 })
 publicRoute.get("/about", async (req, res) => {  
     res.render('about.ejs')

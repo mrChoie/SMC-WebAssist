@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SMC Web-Assist | Profile</title>
+	<title>SMC Web-Assist | Settings</title>
 	<link rel="icon" type="image/x-icon" href="/img/smcLogo.ico">
 	<link href="/bootstrap/bootstrap-5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
@@ -23,7 +22,7 @@
 				</li>
 				<li class="nav-item ps-3">
 				<!-- Submit Button -->
-				<a class="nav-link" aria-current="page" href="/smc-webassist/category">Submit</a>
+				<a class="nav-link active" aria-current="page" href="/smc-webassist/category">Submit</a>
 				</li>
 				<li class="nav-item ps-3">
 				<!-- Feedback Button -->
@@ -38,50 +37,50 @@
 				<div style="display: none;" id="adminBtn">
 					<a class="nav-link text-dark" aria-current="page" href="/smc-webassist/admin/view-tickets">Review Tickets</a>
 				</div>
-				<div style="display: flex;" id="loggedInDiv">
-					<div class="container">
-						<a class="btn btn-danger" id="logoutBtn" type="button" href="/smc-webassist/logout">Log out</a>
-					</div>
-					
+				<div style="display: none;" id="loggedInDiv">
+					<a class="nav-link text-dark" href="/smc-webassist/account">Profile</a>
+				</div>
+				
+				<div style="display: none;" id="loggedOutDiv">
+					<a class="nav-link text-dark" href="/smc-webassist/signin">Sign in</a>
 				</div>
 			</form>
 		</div>
 		</div>
 	</nav>
 	
-	
-	<div class="container" id="accountBodyContent1">
-		<div class="row mt-5">
-			<div class="col-sm-3 text-center pt-3 bg-light">
-				<i class="fa-solid fa-user-circle mb-4 mt-3" style="font-size: 9em; color: rgb(98, 158, 30);"></i>
-				<p class="m-0 p-0" id="userProfileName">name</p>
-				<p class="m-0 p-0" id="userProfileStudId">id</p>
-				<p class="m-0 p-0 mb-4" id="userProfileDateCreated">date created</p>
-				
-			</div>
-			<div id="ticketContainer" class="col-sm-9 p-4">
-				<p class="display-6"> Dashboard </p>
-				<p class="pb-2 mb-4"> Open a ticket by clicking the <i class="fa-solid fa-circle-chevron-right" style="color: rgb(98, 158, 30);"></i> icon</p>
-
-
-				<!-- <div class="row bg-light">
-					<div class="col-11 ticketContent">
-						<p class="ptitle">Title</p>
-						<p class="pid">ticket id #</p>
-						<p class="pcontent">Some content</p>
-						<p class="pdate">date created</p>
-					</div>
-					<div class="col-1 ticketLink">
-						<a class="" href="">
-							<i class="fa-solid fa-circle-chevron-right"></i>
-						</a>
-					</div>
-				</div> -->
-
-		
+	<div id="viewTicketContainer" class="container">
+		<div class="row mt-2">
+			<div class="viewTicketContent border rounded">
+				<p class="ptitle">Title</p>
+				<p class="pid">ticket id #</p>
+				<p class="pcontent">Some content</p>
+				<p class="pdate">date created</p>
 			</div>
 		</div>
+		
+		<div class="row mt-2 mb-2 bg-light">
+			
+			<p class="pSender"><i class="fa-solid fa-user-circle" style="font-size: 20px; color: rgb(98, 158, 30);"></i> Sender</p>
+			<p class="pMessage">message content</p>
+			<p class="pid text-end">timestamp</p>
+		</div>
 	</div>
+	
+	<div id="ticketMsgBox" class="container">
+		<hr>
+		<form>
+			<div class="row mt-2">
+				<div class="col-sm-9">
+					<textarea class="form-control rounded-0 rounded-bottom" id="feedbackDesc" name="feedbackDesc" rows="4" placeholder="Send reply. . ." required></textarea>
+				</div>
+				<div class="col text-center align-self-center">
+					<button class="btn btn-success ps-5 pe-5" id="feedbackBtn" type="submit">Send</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
 	<div class="container">
 		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
 			<p class="col-md-4 mb-0 text-dark">&copy; 2025 BSCPE SENIORS INC.</p>
@@ -94,9 +93,7 @@
 	</div>
 	<br>
 	<script src="https://kit.fontawesome.com/67f996be23.js" crossorigin="anonymous"></script>
-	<script src="/js/account.js"></script>
 	<script src="/js/script.js"></script>
-	<script  src="/js/logout.js"></script>
+    <script src="/js/viewticket.js"></script>
 	<script src="/bootstrap/bootstrap-5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
-</html>

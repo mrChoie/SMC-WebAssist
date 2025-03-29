@@ -24,6 +24,7 @@ user.post('/', async (req, res) => {
         delete user.password
         res.json({user, categoryTitle})
     } else {
+        console.log("logged in")
         const [tickets] = await getMyTickets(uid)
         const user = await getUserByID(uid)
         const numOfTkts = tickets.length
@@ -48,28 +49,31 @@ user.post('/login', async (req, res) => {
             delete user.password
             // console.log(user)
             res.cookie('token', token, {
-                httpOnly: true,  // Inaccessible to JavaScript
-                secure: true,    // Only sent over HTTPS (recommended for production)
+                // httpOnly: true,  // Inaccessible to JavaScript
+                // secure: true,    // Only sent over HTTPS (recommended for production)
                 maxAge: 60 * 60 * 1000  // 1 hour in milliseconds (60 minutes * 60 seconds * 1000 ms)
             });
             res.cookie('user', user.username, {
-                httpOnly: true,  // Inaccessible to JavaScript
-                secure: true,    // Only sent over HTTPS (recommended for production)
+                // httpOnly: true,  // Inaccessible to JavaScript
+                // secure: true,    // Only sent over HTTPS (recommended for production)
                 maxAge: 60 * 60 * 1000  // 1 hour in milliseconds (60 minutes * 60 seconds * 1000 ms)
             });
             res.cookie('uid', user.uid, {
-                httpOnly: true,  // Inaccessible to JavaScript
-                secure: true,    // Only sent over HTTPS (recommended for production)
+                // httpOnly: true,  // Inaccessible to JavaScript
+                // secure: true,    // Only sent over HTTPS (recommended for production)
                 maxAge: 60 * 60 * 1000  // 1 hour in milliseconds (60 minutes * 60 seconds * 1000 ms)
             });
             res.cookie('lvl', user.user_level, {
-                httpOnly: true,  // Inaccessible to JavaScript
-                secure: true,    // Only sent over HTTPS (recommended for production)
+                // httpOnly: true,  // Inaccessible to JavaScript
+                // secure: true,    // Only sent over HTTPS (recommended for production)
                 maxAge: 60 * 60 * 1000  // 1 hour in milliseconds (60 minutes * 60 seconds * 1000 ms)
             });
+            console.log("User successfully obtained a cookie")
             res.json({user, message: "Login Successful", statusCode:'11'})
+            
             // res.json({ user: user, message: "Login Successful", statusCode:'11'});
         } else {
+            console.log("User did not obtain a cookie")
             res.json({ message: "Invalid Password", statusCode:'02' });
             // res.render('signin.ejs', {
             //     returnStatement: "Invalid Password"
@@ -82,7 +86,7 @@ user.post('/login', async (req, res) => {
         //     returnStatement: "User does not exist"
         // })
     }
-    console.log("Login form input:", userName, userPass)
+    // console.log("Login form input:", userName, userPass)
     // next();
     // res.render('home.ejs',{
     //     loginStatus : 1,
