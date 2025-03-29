@@ -20,7 +20,7 @@ const testDiv = document.getElementById("testDiv")
 
 window.onload; {
 
-    const category = 0;
+    // const category = 0;
 
     fetch ('/getTickets', {
         method: "POST",	
@@ -28,7 +28,7 @@ window.onload; {
         headers: {
         "Content-Type": "application/json"
         },
-        body: JSON.stringify({ category })
+        // body: JSON.stringify({ category })
     })
     .then(res => {
         if (!res.ok) {
@@ -91,7 +91,7 @@ async function displayTickets(tickets) {
                 owner.textContent = tickets.tickets[y].tktOwner;
                 title.textContent = tickets.tickets[y].tktSubj;
                 id.textContent = "Ticket ID: "+ tickets.tickets[y].tktID;
-                content.textContent = tickets.tickets[y].tktDesc.substring(0, 80) + ". . .";
+                content.textContent = tickets.tickets[y].tktDesc.substring(0, 80) + " . . .";
                 date.textContent = tickets.tickets[y].tktTimestamp;
             } else {
                 continue

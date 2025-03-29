@@ -22,14 +22,16 @@ app.use(express.urlencoded({ extended: false }));
 // })
 app.use('/checkCookie', checkCookie);
 app.use('/getTickets', db);
+app.use('/getATicket', db);
 app.use('/getInfo', user);
 app.use('/smc-webassist', publicRoute);
 // app.use(auth)
 // app.use('/smc-webassist', auth);
 app.use('/smc-webassist/admin', admin);
 app.use('/smc-webassist', user, auth, privateRoute)
+app.use('/smc-webassist', db)
 app.use('/smc-webassist', feedb);
-app.use('/smc-webassist', db);
+
 
 // app.post('/smc-webassist/auth/register', async (req, res) => {
 //     console.log("Registering user");

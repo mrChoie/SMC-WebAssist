@@ -212,4 +212,12 @@ nav {
 	font-size: 12px;
 	color: gray;
 }
-
+.pSender {
+	/* font-style: bold; */
+	font-size: 20px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+.pMessage {
+	padding-left: 50px;
+}

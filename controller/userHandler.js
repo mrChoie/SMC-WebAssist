@@ -24,6 +24,7 @@ user.post('/', async (req, res) => {
         delete user.password
         res.json({user, categoryTitle})
     } else {
+        console.log("logged in")
         const [tickets] = await getMyTickets(uid)
         const user = await getUserByID(uid)
         const numOfTkts = tickets.length
@@ -85,7 +86,7 @@ user.post('/login', async (req, res) => {
         //     returnStatement: "User does not exist"
         // })
     }
-    console.log("Login form input:", userName, userPass)
+    // console.log("Login form input:", userName, userPass)
     // next();
     // res.render('home.ejs',{
     //     loginStatus : 1,
