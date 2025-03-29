@@ -33,3 +33,5 @@
 - Note: npm must be installed before initializing
 - type in terminal:
     ``npm init -y``
+
+Dont mess with branching!
