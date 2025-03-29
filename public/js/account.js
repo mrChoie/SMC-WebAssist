@@ -78,6 +78,7 @@ function displayTickets(tickets) {
         id.textContent = "Ticket ID: "+ tickets.tickets[x].tktID;
         content.textContent = tickets.tickets[x].tktDesc.substring(0, 170) + ". . .";
         date.textContent = tickets.tickets[x].tktTimestamp;
+        // btn.textContent = "Open";
 
         ticketDiv.appendChild(rowDiv)
 
