@@ -2,6 +2,12 @@ const profileName = document.getElementById("userProfileName")
 const profileStudId = document.getElementById("userProfileStudId")
 const profileDate = document.getElementById("userProfileDateCreated")
 
+const pendingBtn = document.getElementById('pending-toggle');
+const resolvedBtn = document.getElementById('resolved-toggle');
+const archivedBtn = document.getElementById('archived-toggle');
+
+
+
 const cat1 = document.getElementById("ticketCategory1")
 const cat2 = document.getElementById("ticketCategory2")
 const cat3 = document.getElementById("ticketCategory3")
@@ -19,7 +25,9 @@ const ticketDate = document.getElementById("ticketDateCreated")
 const testDiv = document.getElementById("testDiv")
 
 window.onload; {
-
+    // toggleTickets('pending', pendingBtn.checked);
+    // toggleTickets('resolved', resolvedBtn.checked);
+    // toggleTickets('archived', archivedBtn.checked);
     // const category = 0;
 
     fetch ('/getTickets', {
@@ -75,29 +83,35 @@ async function displayTickets(tickets) {
             var content=document.createElement("p");
             var date=document.createElement("p");
             var owner=document.createElement("p");
+            var link=document.createElement("a");
 
             if (tickets.tickets[y].tktStatus==1) {
-                div.classList.add("pending","container","border","border-dark","rounded","animate","mt-2","p-1");
-            } else {
-                div.classList.add("resolved","container","border","border-dark","rounded","animate","mt-2","p-1");
+                div.classList.add("collapse","ticket","pending","container","border","rounded","mt-2","p-1");
+            } else if (tickets.tickets[y].tktStatus==2){
+                div.classList.add("collapse","ticket","archived","container","border","rounded","mt-2","p-1");
+            } else if (tickets.tickets[y].tktStatus==3) {
+                div.classList.add("collapse","ticket","resolved","container","border","rounded","mt-2","p-1");
             }
             title.classList.add("ptitle")
             id.classList.add("pid")
             content.classList.add("pcontent")
             date.classList.add("pdate")
             owner.classList.add("pdate")
+            
 
             if (tickets.tickets[y].tktCategoryID==x){
                 owner.textContent = tickets.tickets[y].tktOwner;
                 title.textContent = tickets.tickets[y].tktSubj;
                 id.textContent = "Ticket ID: "+ tickets.tickets[y].tktID;
                 content.textContent = tickets.tickets[y].tktDesc.substring(0, 80) + " . . .";
-                date.textContent = tickets.tickets[y].tktTimestamp;
+                date.textContent = tickets.tickets[y].formatted_time;
+                link.href = "/smc-webassist/view-ticket/ticket?id="+tickets.tickets[y].tktID;
             } else {
                 continue
             }
             
-            catDivArr[x].appendChild(div)
+            catDivArr[x].appendChild(link)
+            link.appendChild(div)
             div.appendChild(title)
             div.appendChild(id)
             div.appendChild(content)
@@ -107,13 +121,58 @@ async function displayTickets(tickets) {
     }
 }
 
+/* <div class="text-end">
+					<button 
+                    class="btn" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#optionDiv" 
+                    aria-expanded="false" 
+                    aria-controls="optionDiv">
+                    id="optionBtn" 
+					</button>
+				</div>
+				<div class="position-relative">
+					<div 
+                    class="rounded collapse" 
+                    id="optionDiv">
+						
+					</div>
+				</div> */
+// Get Btnes
+
+
+// Function to toggle visibility
+function toggleTickets(category, bool) {
+    const color = "rgb(139, 195, 74)"
+  const tickets = document.querySelectorAll(`.${category}`);
+  tickets.forEach(ticket => {
+    ticket.style.backgroundColor = (bool==color) ? 'lightgrey' :color ;
+  });
+}
+
+// Add event listeners
+pendingBtn.addEventListener('click', (e) => {
+    // console.log("toggle pending tickets")
+  toggleTickets('pendingBtn', e.target.style.backgroundColor);
+  console.log(e.target.style.backgroundColor)
+});
+
+resolvedBtn.addEventListener('click', (e) => {
+    // console.log("toggle resolved tickets")
+  toggleTickets('resolvedBtn', e.target.style.backgroundColor);
+});
+
+archivedBtn.addEventListener('click', (e) => {
+    // console.log("toggle archived tickets")
+  toggleTickets('archivedBtn', e.target.style.backgroundColor);
+});
 // var div= document.createElement("div");
 // var title=document.createElement("p");
 // var id=document.createElement("p");
 // var content=document.createElement("p");
 // var date=document.createElement("p");
 
-// div.classList.add("container","border","border-dark","rounded");
+// div.classList.add("container","border","rounded");
 // title.textContent = tickets.tickets[x].tktSubj;
 // id.textContent = tickets.tickets[x].tktID;
 // content.textContent = tickets.tickets[x].tktDesc;

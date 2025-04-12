@@ -48,34 +48,69 @@
 		</div>
 		</div>
 	</nav>
-	
-	<div id="viewTicketContainer" class="container">
-		<div class="row mt-2">
-			<div class="viewTicketContent border rounded">
-				<p class="ptitle">Title</p>
-				<p class="pid">ticket id #</p>
-				<p class="pcontent">Some content</p>
-				<p class="pdate">date created</p>
+	<div class="container">
+		<div class="row mt-3">
+			<div class="col-sm-9">
+				<p class="btn border-warning" id="archivedNotice">
+					This ticket has been archived and you can no longer reply to it.
+					Make a new one <a href="/smc-webassist/category" class="d-inline">here</a>
+				</p>
+			</div>
+			<div class="col-sm-3">
+				
+				<div class="text-end">
+					<button class="btn" data-bs-toggle="collapse" id="optionBtn" data-bs-target="#optionDiv" aria-expanded="false" aria-controls="optionDiv">
+						<!-- <i class="fa-solid fa-gear"></i> -->
+						<i class="fa-solid fa-grip-lines"></i>
+					</button>
+				</div>
+				<div class="position-relative">
+					<div class="rounded collapse" id="optionDiv">
+						<ul class="p-0 m-0 ">
+							<li class="rounded m-1">
+								<button class="btn w-100 text-end" id="archivedBtn">Archive Ticket</button>
+							  </li>
+							  <li class="rounded m-1">
+								<button class="btn w-100 text-end" id="resolvedBtn">Mark as Resolved</button>
+							  </li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
-		
-		<div class="row mt-2 mb-2 bg-light">
-			
-			<p class="pSender"><i class="fa-solid fa-user-circle" style="font-size: 20px; color: rgb(98, 158, 30);"></i> Sender</p>
-			<p class="pMessage">message content</p>
-			<p class="pid text-end">timestamp</p>
+		<div class="row">
+			<div id="viewTicketContainer" class="container">
+				<!-- <div class="row mt-2">
+					<div class="viewTicketContent border rounded">
+						<p class="ptitle">Title</p>
+						<p class="pid"></p>
+						<p class="pcontent">Some content</p>
+						<p class="pdate">date created</p>
+					</div>
+				</div> -->
+			</div>
+			<div class="container" id="messagesContainer">
+				<!-- <div class="row mt-2 mb-2 bg-light">
+					
+					<p class="pSender"><i class="fa-solid fa-user-circle"></i> Sender</p>
+					<p class="pMessage">message content</p>
+					<p class="pid text-end">timestamp</p>
+				</div> -->
+			</div>
 		</div>
 	</div>
+	
+	
 	
 	<div id="ticketMsgBox" class="container">
 		<hr>
 		<form>
 			<div class="row mt-2">
 				<div class="col-sm-9">
-					<textarea class="form-control rounded-0 rounded-bottom" id="feedbackDesc" name="feedbackDesc" rows="4" placeholder="Send reply. . ." required></textarea>
+					<textarea class="form-control rounded-0 rounded-bottom" id="msgBox" name="msgBox" rows="4" placeholder="Send reply. . ." required></textarea>
 				</div>
 				<div class="col text-center align-self-center">
-					<button class="btn btn-success ps-5 pe-5" id="feedbackBtn" type="submit">Send</button>
+					<button class="btn btn-success ps-5 pe-5 mt-2" id="sendReplyBtn" type="submit">Send</button>
 				</div>
 			</div>
 		</form>

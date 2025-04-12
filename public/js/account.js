@@ -33,7 +33,7 @@ window.onload; {
         // console.log(data)
         profileName.textContent=data.user.username
         profileStudId.textContent=data.user.stud_id
-        profileDate.textContent="Joined since "+ data.user.user_timestamp.split('T')
+        profileDate.textContent="Joined since "+ data.user.formatted_time
         displayTickets(data)
     })
     .catch(err => {
@@ -77,7 +77,7 @@ function displayTickets(tickets) {
         title.textContent = tickets.tickets[x].tktSubj;
         id.textContent = "Ticket ID: "+ tickets.tickets[x].tktID;
         content.textContent = tickets.tickets[x].tktDesc.substring(0, 170) + ". . .";
-        date.textContent = tickets.tickets[x].tktTimestamp;
+        date.textContent = tickets.tickets[x].formatted_time;
         // btn.textContent = "Open";
 
         ticketDiv.appendChild(rowDiv)

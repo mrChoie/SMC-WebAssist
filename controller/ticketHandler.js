@@ -1,5 +1,5 @@
 import express from 'express';
-import { getTickets, getTicket, createTicket, updateTicket} from '../model/database.js';
+import { getTickets, getTicket, createTicket, updateTicket, getCategories} from '../model/database.js';
 
 const db = express();
 
@@ -32,6 +32,11 @@ db.get("/view-ticket/ticket/:id", async (req, res) => {
     const token = cookies;
     const lvl = cookies.lvl;
     const id = req.params.id;
+    res.cookie('currticket', id, {
+        // httpOnly: true,  // Inaccessible to JavaScript
+        // secure: true,    // Only sent over HTTPS (recommended for production)
+        maxAge: 60 * 60 * 1000  // 1 hour in milliseconds (60 minutes * 60 seconds * 1000 ms)
+    });
     // console.log(id)
     const ticket = await getTicket(id);
     if (ticket) {
@@ -60,6 +65,16 @@ db.post("/ticket/submit", async (req, res) => {
     res.status(201).json({ticket, message: "Ticket has been submitted", statusCode:'40'})
 });
 
+db.post("/ticket/update", async (req, res) => {
+    const tktStatus = req.body.tktStatus
+    const tktID = req.body.tktID
+    const result = await updateTicket(tktID, tktStatus)
+    res.json(result)
+})
 
+db.get("/categories", async (req, res) => {
+    const result = await getCategories()
+    res.json(result)
+})
 
 export default db;

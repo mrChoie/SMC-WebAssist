@@ -53,7 +53,35 @@
 	</nav>
 
 	<div class="container-fluid bg-light">
-		<div class="row p-0 pt-2 pb-2 mt-1 border">
+		<div class="row p-1">
+			<div class="col-sm-10 align-self-center">
+				<p> Only authorized users can access this page</p>
+				<ul>
+					<li>Review Ticket</li>
+					<li>Manage Ticket</li>
+				</ul>
+			</div>
+			<div class="col-sm-2 align-self-center">
+				<ul style="list-style: none;">
+					<li><button type="checkbox" id="pending-toggle" checked
+						class="btn pendingBtn border m-1 w-100"
+						data-bs-toggle="collapse" 
+						aria-expanded="true" 
+						data-bs-target=".pending"> Pending</button></li>
+					<li><button type="checkbox" id="resolved-toggle" checked
+						class="btn resolvedBtn border m-1 w-100"
+						data-bs-toggle="collapse" 
+						aria-expanded="true" 
+						data-bs-target=".resolved"> Resolved</button></li>
+					<li><button type="checkbox" id="archived-toggle" checked
+						class="btn archivedBtn border m-1 w-100"
+						data-bs-toggle="collapse" 
+						aria-expanded="true" 
+						data-bs-target=".archived"> Archived </button></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row p-0 pt-2 pb-2 mt-1 border row1Category">
 			<div class="col-sm-2 text-center">
 				<p>Category 1</p>
 			</div>

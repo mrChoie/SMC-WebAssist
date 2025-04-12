@@ -8,6 +8,7 @@ import admin from '../middleware/adminAuth.js'
 import feedb from './feedbackHandler.js';
 import privateRoute from "../routes/privateRoute.js";
 import db from './ticketHandler.js';
+import msg from './messageHandler.js';
 
 const app = express();
 // app.engine("html", ejs.renderFile);
@@ -24,6 +25,7 @@ app.use('/checkCookie', checkCookie);
 app.use('/getTickets', db);
 app.use('/getATicket', db);
 app.use('/getInfo', user);
+app.use('/msg', msg);
 app.use('/smc-webassist', publicRoute);
 // app.use(auth)
 // app.use('/smc-webassist', auth);

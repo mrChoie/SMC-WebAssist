@@ -22,7 +22,7 @@ const connection = mysql.createConnection({
 // }
 export async function getMyTickets(uid){
     const [result] = await connection.query(`
-        SELECT *
+        SELECT *, DATE_FORMAT(tktTimestamp, '%M %e, %l:%i %p') AS formatted_time
         FROM tickets
         WHERE tktUID = ?
     `, [uid])
@@ -30,13 +30,13 @@ export async function getMyTickets(uid){
 }
 
 export async function getTickets() {
-    const [rows] = await connection.query("SELECT * FROM tickets")
+    const [rows] = await connection.query("SELECT *, DATE_FORMAT(tktTimestamp, '%M %e, %l:%i %p') AS formatted_time FROM tickets")
     return [rows]
 }
 
 export async function getTicket(tktID){
     const [rows] = await connection.query(`
-        SELECT * 
+        SELECT *, DATE_FORMAT(tktTimestamp, '%M %e, %l:%i %p') AS formatted_time
         FROM tickets
         WHERE tktID = ?
         `, [tktID])
@@ -60,13 +60,14 @@ export async function createTicket(tktUID, categoryID, tktOwner, tktOwnerDBid, t
 //     return getTicket(id)
 // }
 
-export async function updateTicket(tktID, categoryID, tktPublisher, tktPubStudId, tktSubj, tktDesc, tktFile) {
+export async function updateTicket(tktID, tktStatus) {
     const [result] = await connection.query(`
         UPDATE tickets
-        SET tktCategoryID = ?, tktPublisher = ?, tktPubStudId = ?, tktSubj = ?, tktDesc = ?, tktFile = ?
+        SET tktStatus = ?
         WHERE tktID = ?
-        `, [categoryID, tktPublisher, tktPubStudId, tktSubj, tktDesc, tktFile, tktID])
-    return getTicket(tktID)
+        `, [tktStatus, tktID])
+        // console.log(result)
+    return 0
 }
 
 export async function getCategoryById(cId) {
@@ -96,7 +97,7 @@ export async function getUserbyName(name) {
 
 export async function getUserByID(userID){
     const [rows] = await connection.query(`
-        SELECT * 
+        SELECT *, DATE_FORMAT(user_timestamp, '%M %e') AS formatted_time 
         FROM users
         WHERE uid = ?
         `, [userID])
@@ -104,7 +105,7 @@ export async function getUserByID(userID){
 }
 
 export async function checkDuplicateUser(userName, userStudId, userPass, userLevel){
-    console.log(userName, userStudId, userPass, userLevel)
+    // console.log(userName, userStudId, userPass, userLevel)
     const [result] = await connection.query(`
         SELECT EXISTS (
             SELECT 1 
@@ -144,4 +145,51 @@ export async function submitFeedback(feedbackUID, feedbackTitle, feedbackDesc, f
         VALUES (?, ?, ?, ?)
         `, [feedbackUID, feedbackTitle, feedbackDesc, feedbackFile ])
     return
+}
+
+export async function sendMessage(ticketId, sender, content) {
+    const [result] = await connection.query(`
+        INSERT INTO messages (ticket_id, sender_id, content)
+        VALUES (?, ?, ?)
+        `, [ticketId, sender, content])
+    const id = result.insertId
+    return getMessage(id)
+}
+
+export async function getMessages(ticketId) {
+    // console.log("getting messages")
+    // const [rows] = await connection.query(`
+    // SELECT * 
+    //     FROM messages
+    //     WHERE ticket_id = ?
+    //     `, [ticketId])
+    const [rows] = await connection.query(`
+        SELECT 
+            m.id,
+            m.ticket_id,
+            m.sender_id,
+            m.content,
+            DATE_FORMAT(sent_at, '%M %e, %l:%i %p') AS formatted_time,
+            u.username AS sender_username,
+            u.uid
+        FROM messages m
+        JOIN users u ON m.sender_id = u.uid
+        WHERE m.ticket_id = ?
+        ORDER BY m.sent_at ASC;
+        `,[ticketId])
+    // console.log("result: ",rows)
+    return rows
+}
+
+export async function getMessage(id) {
+    const [rows] = await connection.query(`
+        SELECT * 
+        FROM messages
+        WHERE id = ?
+        `, [id])
+    return rows[0]
+}
+
+export async function getCategories(){
+    const [rows] = await connection.query("SELECT * FROM categories")
 }
