@@ -53,15 +53,29 @@
 	</nav>
 
 	<div class="container-fluid bg-light">
-		<div class="row p-1">
-			<div class="col-sm-10 align-self-center">
+		<div class="row p-1 d-flex align-items-stretch">
+			<div class="col-sm-3 align-self-center align-items-stretch">
 				<p> Only authorized users can access this page</p>
 				<ul>
 					<li>Review Ticket</li>
 					<li>Manage Ticket</li>
 				</ul>
 			</div>
-			<div class="col-sm-2 align-self-center">
+			<div class="col-sm-7 align-self-center align-items-stretch">
+				<div class="container">
+					<div class="btn border-warning mt-2 mb-1" id="earlyAccessNotice">
+						<div class="card-body">
+							<h5 class="card-title">Notice!</h5>
+							<p class="card-text">
+								This is an Early Access of the SMC Web-Assist App. 
+								Avoid using personal information. 
+								Please report any bugs or issues to the developers.</p>
+								<a href="/smc-webassist/feedback" class="btn border-warning">Report Issue</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2 align-self-center align-items-stretch">
 				<ul style="list-style: none;">
 					<li><button type="checkbox" id="pending-toggle" checked
 						class="btn pendingBtn border m-1 w-100"

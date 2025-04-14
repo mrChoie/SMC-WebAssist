@@ -1,0 +1,126 @@
+
+> smc-webassist@1.0.0 start
+> npx nodemon ./controller/server.js
+
+[nodemon] 3.1.9
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node ./controller/server.js`
+Server is running on port 8080
+[Router-Logger]: 14-04-2025-[TIME]19_40 >> homepage page loaded to client
+[Router-Logger]: 14-04-2025-[TIME]19_40 >> sign-in page loaded to client
+[Server-Logger]:: 14-04-2025-[TIME]19_41 >> client tried to log-in [ Drazille Toledo ] with invalid credentials.
+[Server-Logger]:: 14-04-2025-[TIME]19_41 >> client with a username [ Drazille Toledo ] successfully logged in.
+[Router-Logger]: 14-04-2025-[TIME]19_41 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]19_41 >> account page loaded by client: Drazille%20Toledo
+[Router-Logger]:: 14-04-2025-[TIME]19_41 >> view ticket page loaded by client: Drazille%20Toledo
+[Router-Logger]:: 14-04-2025-[TIME]19_41 >> feedback page loaded by client: Drazille%20Toledo
+[Server-Logger]:: 14-04-2025-[TIME]19_42 >> client with a username [ Drazille%20Toledo ] submitted a feedback
+[Router-Logger]:: 14-04-2025-[TIME]19_42 >> feedback page loaded by client: Drazille%20Toledo
+[nodemon] restarting due to changes...
+[nodemon] starting `node ./controller/server.js`
+Server is running on port 8080
+[Router-Logger]:: 14-04-2025-[TIME]19_43 >> category page loaded by client: Drazille%20Toledo
+[Router-Logger]:: 14-04-2025-[TIME]19_43 >> ticket-form page loaded by client: Drazille%20Toledo
+[Server-Logger]:: 14-04-2025-[TIME]19_44 >> client with a username [ Drazille%20Toledo ] submitted a ticket
+[Router-Logger]:: 14-04-2025-[TIME]19_44 >> category page loaded by client: Drazille%20Toledo
+[Router-Logger]:: 14-04-2025-[TIME]19_44 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]19_54 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]19_55 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]19_57 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]19_57 >> sign-in page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]19_58 >> sign-up page loaded to client
+[Server-Logger]:: 14-04-2025-[TIME]19_58 >> client registered an account with status code: 50
+[Router-Logger]:: 14-04-2025-[TIME]19_58 >> sign-in page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]19_59 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_02 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_08 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_08 >> sign-in page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_08 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_11 >> about page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_11 >> sign-in page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_28 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_28 >> sign-in page loaded to client
+[Server-Logger]:: 14-04-2025-[TIME]20_29 >> client with a username [ Syarisssa ] successfully logged in.
+[Router-Logger]:: 14-04-2025-[TIME]20_29 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_29 >> account page loaded by client: Syarisssa
+[Server-Logger]:: 14-04-2025-[TIME]20_29 >> client [ Syarisssa ] has logout
+[Router-Logger]:: 14-04-2025-[TIME]20_29 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_29 >> sign-in page loaded to client
+[Server-Logger]:: 14-04-2025-[TIME]20_30 >> client tried to log-in [ Syarisssa ] with invalid credentials.
+[Server-Logger]:: 14-04-2025-[TIME]20_30 >> client tried to log-in [ Syarisssa ] with invalid credentials.
+[Server-Logger]:: 14-04-2025-[TIME]20_30 >> client tried to log-in [ Syarisssa ] with invalid credentials.
+[Server-Logger]:: 14-04-2025-[TIME]20_30 >> client tried to log-in [ Syarisssa ] with invalid credentials.
+[Server-Logger]:: 14-04-2025-[TIME]20_30 >> client tried to log-in [ Syarisssa ] with invalid credentials.
+[Server-Logger]:: 14-04-2025-[TIME]20_31 >> client with a username [ Syarisssa ] successfully logged in.
+[Router-Logger]:: 14-04-2025-[TIME]20_31 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_31 >> account page loaded by client: Syarisssa
+[Server-Logger]:: 14-04-2025-[TIME]20_32 >> client [ Syarisssa ] has logout
+[Router-Logger]:: 14-04-2025-[TIME]20_32 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_32 >> sign-in page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_33 >> sign-in page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_33 >> sign-in page loaded to client
+[Server-Logger]:: 14-04-2025-[TIME]20_33 >> client with a username [ Drazille Toledo ] successfully logged in.
+[Router-Logger]:: 14-04-2025-[TIME]20_33 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_33 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_33 >> category page loaded by client: Drazille%20Toledo
+[Router-Logger]:: 14-04-2025-[TIME]20_37 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_37 >> account page loaded by client: Drazille%20Toledo
+[Server-Logger]:: 14-04-2025-[TIME]20_37 >> client [ Drazille%20Toledo ] has logout
+[Router-Logger]:: 14-04-2025-[TIME]20_37 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_37 >> sign-in page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_37 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_40 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_40 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_40 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_41 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_41 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_42 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_42 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_43 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_43 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_43 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_43 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_44 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_44 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_44 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_45 >> sign-up page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_45 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_46 >> sign-in page loaded to client
+[Server-Logger]:: 14-04-2025-[TIME]20_46 >> client with a username [ admin ] successfully logged in.
+[Router-Logger]:: 14-04-2025-[TIME]20_46 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_46 >> feedback page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_46 >> feedback page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_47 >> category page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_47 >> ticket-form page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_47 >> ticket-form page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_48 >> ticket-form page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_48 >> ticket-form page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_48 >> feedback page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_48 >> feedback page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_49 >> feedback page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_49 >> category page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_49 >> ticket-form page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_50 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_50 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_51 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_52 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_53 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_53 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_53 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_54 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_54 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_55 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_55 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_57 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_57 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_58 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_59 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_59 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_59 >> admin tickets page loaded by client: admin
+[Router-Logger]:: 14-04-2025-[TIME]20_59 >> homepage page loaded to client
+[Router-Logger]:: 14-04-2025-[TIME]20_59 >> account page loaded by client: admin
+[Server-Logger]:: 14-04-2025-[TIME]21_00 >> client [ admin ] has logout
+[Router-Logger]:: 14-04-2025-[TIME]21_00 >> homepage page loaded to client
+Terminate batch job (Y/N)?

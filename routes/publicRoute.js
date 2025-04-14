@@ -8,19 +8,19 @@ function getTime(){
 }
 
 publicRoute.get("/home", (req, res) => {
-    console.log("[Router-Logger]:",getTime(),">> homepage page loaded to client")
+    console.log("[Router-Logger]::",getTime(),">> homepage page loaded to client")
     res.render('home.ejs')
 })
 publicRoute.get("/about", async (req, res) => {
-    console.log("[Router-Logger]:",getTime(),">> about page loaded to client")
+    console.log("[Router-Logger]::",getTime(),">> about page loaded to client")
     res.render('about.ejs')
 })
 publicRoute.get("/signup", async (req, res) => {
-    console.log("[Router-Logger]:",getTime(),">> sign-up page loaded to client")
+    console.log("[Router-Logger]::",getTime(),">> sign-up page loaded to client")
     res.render('signup.ejs')
 })
 publicRoute.get("/signin", async (req, res) => {
-    console.log("[Router-Logger]:",getTime(),">> sign-in page loaded to client")
+    console.log("[Router-Logger]::",getTime(),">> sign-in page loaded to client")
     res.render('signin.ejs', {
         returnStatement : ""
     })

@@ -278,3 +278,13 @@ nav {
 		color: rgb(103, 121, 0);
 	}
 }
+
+#earlyAccessNotice {
+	display: flex;
+	color: rgb(143, 121, 0);
+	background-color: rgba(255, 196, 0, 0.342);
+	& a {
+		white-space:nowrap;
+		color: rgb(103, 121, 0);
+	}
+}
