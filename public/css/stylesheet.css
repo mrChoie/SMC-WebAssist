@@ -208,6 +208,10 @@ nav {
 .pcontent {
 	font-size: 18px;
 }
+.pAuthor {
+	font-size: 16px;
+	color: rgb(86, 86, 86);
+}
 .pdate {
 	font-size: 12px;
 	color: gray;

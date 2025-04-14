@@ -168,27 +168,31 @@ function displayTicket(ticket) {
     var rowDiv = document.createElement("div");
     var ticketDiv = document.createElement("div");
     var title = document.createElement("p");
-    var id = document.createElement("p");
+    // var id = document.createElement("p");
     var content = document.createElement("p");
     var date = document.createElement("p");
+    var author = document.createElement("p");
 
     rowDiv.classList.add("row","mt-2");
     ticketDiv.classList.add("viewTicketContent","border","rounded");
     title.classList.add("ptitle")
-    id.classList.add("pid")
+    // id.classList.add("pid")
     content.classList.add("pcontent")
     date.classList.add("pdate")
+    author.classList.add("pAuthor")
 
     title.textContent = ticket.tktSubj;
-    id.textContent = "Ticket ID: "+ ticket.tktID;
+    // id.textContent = "Ticket ID: "+ ticket.tktID;
     content.textContent = ticket.tktDesc;
     date.textContent = ticket.formatted_time;
+    author.textContent = "Author: "+ ticket.tktOwner;
     
     ticketContainer.appendChild(rowDiv)
     rowDiv.appendChild(ticketDiv)
     ticketDiv.appendChild(title)
-    ticketDiv.appendChild(id)
+    // ticketDiv.appendChild(id)
     ticketDiv.appendChild(content)
+    ticketDiv.appendChild(author)
     ticketDiv.appendChild(date)
 }
 
