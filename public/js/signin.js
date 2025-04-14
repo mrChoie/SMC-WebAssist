@@ -37,7 +37,7 @@ function login(userName, userPass) {
         return res.json(); // Parse JSON response
     })
     .then(data => {
-        console.log(data);
+        // console.log(data);
         if (data.statusCode == '11') {
             // document.cookie = `accessToken=${data.user.username}; path=/; expires=${new Date(Date.now() + 1000*60*60*2).toUTCString()}`
             // document.cookie("user", data.user.username)

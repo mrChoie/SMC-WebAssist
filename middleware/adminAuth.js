@@ -1,5 +1,5 @@
-import express from 'express';
-import cookieParser from 'cookie-parser';
+// import express from 'express';
+// import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 // import openLogin from '../public/js/script.js'
 dotenv.config();

@@ -154,7 +154,7 @@ function toggleTickets(category, bool) {
 pendingBtn.addEventListener('click', (e) => {
     // console.log("toggle pending tickets")
   toggleTickets('pendingBtn', e.target.style.backgroundColor);
-  console.log(e.target.style.backgroundColor)
+//   console.log(e.target.style.backgroundColor)
 });
 
 resolvedBtn.addEventListener('click', (e) => {

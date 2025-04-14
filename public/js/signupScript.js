@@ -3,13 +3,19 @@ const idInput = document.getElementById("userStudId")
 const passInput = document.getElementById("userPass")
 const responseDiv = document.getElementById("responseUserIsExist")
 // const passConfirmInput = document.getElementById("passConfirm")
-const eyeIcon = document.getElementById("showPassIcon");
-const showPassIconDiv = document.getElementById("showPassIconDiv");
-
+const eyeIcon = document.getElementById("showPassIcon")
+const showPassIconDiv = document.getElementById("showPassIconDiv")
+const noticePar = document.getElementById("noticeParent")
+const proceedBtn = document.getElementById("proceedBtn")
+const createAccBtn = document.getElementById("createAccBtn")
 var showPassIndicator=false;
 
 nameInput.addEventListener("keydown", function (event) {
     responseDiv.textContent = "";
+})
+
+proceedBtn.addEventListener("click", function (event) {
+    window.location.href = "/smc-webassist/signin";
 })
 
 function submitCreateAccReq(){
@@ -33,16 +39,19 @@ function submitCreateAccReq(){
     })
     .then(data => {
         // do function
-        console.log(data)
+        // console.log(data)
         if (data.statusCode=='50') {
             // console.log(data)
-            window.location.href = "/smc-webassist/signin";
+            noticePar.style.display="flex"
+            createAccBtn.setAttribute('disabled','1');
+            // loadsignin()
+            // window.location.href = "/smc-webassist/signin";
             // console.log(data.message, data.statusCode)
             // responseDiv.textContent = data.message;
         } else {
             // console.log(data)
             responseDiv.textContent = data.message;
-            console.log(data.message, data.statusCode)
+            // console.log(data.message, data.statusCode)
         }
     })
     .catch(err => {

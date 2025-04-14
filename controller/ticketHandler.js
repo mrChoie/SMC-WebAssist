@@ -3,6 +3,12 @@ import { getTickets, getTicket, createTicket, updateTicket, getCategories} from 
 
 const db = express();
 
+function getTime(){
+    var d = new Date();
+    var time = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + d.getFullYear() + "-[TIME]" + ("0" + d.getHours()).slice(-2) + "_" + ("0" + d.getMinutes()).slice(-2);
+    return time
+}
+
 db.post('/', async (req, res) => {
     const [tickets] = await getTickets();
     const numOfTkts = tickets.length
@@ -58,8 +64,10 @@ db.post("/ticket/submit", async (req, res) => {
     );
 
     const uid = cookieObject.uid
-    
+    const client = cookieObject.user
+    console.log("[Server-Logger]::",getTime(),">> client with a username [",client,"] submitted a ticket")
     // console.log(req.body,'\n\n\n', uid)
+
     const { categoryId, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile} = req.body;
     const ticket = await createTicket( uid, categoryId, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile);
     res.status(201).json({ticket, message: "Ticket has been submitted", statusCode:'40'})

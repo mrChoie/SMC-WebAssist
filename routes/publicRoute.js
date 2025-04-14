@@ -1,16 +1,26 @@
 import express from 'express';
 const publicRoute = express.Router();
 
+function getTime(){
+    var d = new Date();
+    var time = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + d.getFullYear() + "-[TIME]" + ("0" + d.getHours()).slice(-2) + "_" + ("0" + d.getMinutes()).slice(-2);
+    return time
+}
+
 publicRoute.get("/home", (req, res) => {
+    console.log("[Router-Logger]:",getTime(),">> homepage page loaded to client")
     res.render('home.ejs')
 })
-publicRoute.get("/about", async (req, res) => {  
+publicRoute.get("/about", async (req, res) => {
+    console.log("[Router-Logger]:",getTime(),">> about page loaded to client")
     res.render('about.ejs')
 })
 publicRoute.get("/signup", async (req, res) => {
+    console.log("[Router-Logger]:",getTime(),">> sign-up page loaded to client")
     res.render('signup.ejs')
 })
 publicRoute.get("/signin", async (req, res) => {
+    console.log("[Router-Logger]:",getTime(),">> sign-in page loaded to client")
     res.render('signin.ejs', {
         returnStatement : ""
     })

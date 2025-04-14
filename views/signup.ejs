@@ -13,6 +13,20 @@
 	<nav class="navbar d-flex justify-content-center p-3" id="navBar">
 		<a class="text-dark navbar-brand ps-3 " href="/smc-webassist/home">SMC-Web Assist</a>
 	</nav>
+	<div class="container">
+		<div id="noticeParent" class="container m-0 p-0 top-50 start-50 translate-middle" style="position: absolute; display: none; z-index: 9999;">
+			<div class="text-center border bg-light p-1 m-0 position-absolute top-50 start-50 translate-middle rounded shadow" style="width: 400px;">
+				<div class="container p-3">
+					<div class="row mt-3">
+						<h5> User successfully created!</h5>
+					</div>
+					<div class="col mt-3 mb-3">
+						<button class="btn btn-outline-success ps-5 pe-5" type="button" id="proceedBtn">Proceed</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div>
 		<div class="rounded shadow" id="modalLogin" style="height: 548px;">
 			<div class="card text-center">
@@ -67,7 +81,7 @@
 						</div> -->
 						<div class="row text-center mt-4">
 							<div class="col-md-6 offset-md-3">
-									<button class="btn btn-outline-success" type="submit">Create Account</button>
+									<button class="btn btn-outline-success" type="submit" id="createAccBtn">Create Account</button>
 							</div>
 						</div>
 					</form>

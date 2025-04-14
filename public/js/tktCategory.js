@@ -31,7 +31,7 @@ window.onload; {
         return res.json(); // Parse JSON response
     })
     .then(data => {
-        console.log(data)
+        // console.log(data)
         tkOwner2.value = data.user.username;
         tkOwnerID2.value = data.user.stud_id;
         tkOwner.value = data.user.username;

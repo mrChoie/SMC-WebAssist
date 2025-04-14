@@ -5,7 +5,8 @@
   "main": "./controller/server.js",
   "scripts": {
     "start": "npx nodemon ./controller/server.js",
-    "start2": "npx nodemon ./middleware/authMiddleware.js"
+    "start2": "npx nodemon ./middleware/authMiddleware.js",
+    "log": "logger.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "ejs": "^3.1.10",
     "express": "^5.0.1",
     "jsonwebtoken": "^9.0.2",
+    "logger": "^0.0.1",
     "mysql2": "^3.13.0"
   },
   "devDependencies": {

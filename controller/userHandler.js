@@ -8,6 +8,11 @@ const user = express();
 user.use(express.json());
 user.use(express.urlencoded({ extended: false }));
 
+function getTime(){
+    var d = new Date();
+    var time = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + d.getFullYear() + "-[TIME]" + ("0" + d.getHours()).slice(-2) + "_" + ("0" + d.getMinutes()).slice(-2);
+    return time
+}
 
 user.post('/', async (req, res) => {
     const clientCookies = req.headers.cookie
@@ -24,7 +29,7 @@ user.post('/', async (req, res) => {
         delete user.password
         res.json({user, categoryTitle})
     } else {
-        console.log("logged in")
+        // console.log("logged in")
         const [tickets] = await getMyTickets(uid)
         const user = await getUserByID(uid)
         const numOfTkts = tickets.length
@@ -68,12 +73,13 @@ user.post('/login', async (req, res) => {
                 // secure: true,    // Only sent over HTTPS (recommended for production)
                 maxAge: 60 * 60 * 1000  // 1 hour in milliseconds (60 minutes * 60 seconds * 1000 ms)
             });
-            console.log("User successfully obtained a cookie")
+            console.log("[Server-Logger]::",getTime(),">> client with a username [",user.username,"] successfully logged in.")
             res.json({user, message: "Login Successful", statusCode:'11'})
             
             // res.json({ user: user, message: "Login Successful", statusCode:'11'});
         } else {
-            console.log("User did not obtain a cookie")
+            // console.log("User did not obtain a cookie")
+            console.log("[Server-Logger]::",getTime(),">> client tried to log-in [",user.username,"] with invalid credentials.")
             res.json({ message: "Invalid Password", statusCode:'02' });
             // res.render('signin.ejs', {
             //     returnStatement: "Invalid Password"
@@ -97,28 +103,43 @@ user.post('/login', async (req, res) => {
 });
 
 user.post('/register', async (req, res) => {
+    var statusCode
     const {userName, userStudId, userPass, userLevel} = req.body;
     if (userLevel==4){
         const user = await checkDuplicateUser(userName, userStudId, userPass, userLevel);
         if (user!=1) {
-            res.json({user, message: "User successfully created", statusCode:'50' });
+            statusCode='50'
+            res.json({user, message: "User successfully created", statusCode });
         } else {
-            res.json({user, message: "User already exist", statusCode:'51' });
+            statusCode='51'
+            res.json({user, message: "User already exist", statusCode});
         }
     } else {
         const user = await checkDuplicateUser(userName, userStudId, userPass, '1');
-        console.log(user,"-------------------------")
+        // console.log(user,"-------------------------")
         if (user!=1) {
-            console.log(user,"-------------------------")
-            res.json({message: "User successfully created", statusCode:'50' });
+            statusCode='50'
+            res.json({message: "User successfully created", statusCode});
         } else {
+            statusCode='51'
             console.log(user,"-------------------------")
-            res.json({message: "User already exist", statusCode:'51' });
+            res.json({message: "User already exist", statusCode});
         }
+        // console.log("-------------------------")
+    }
+    if (statusCode=='50'){
+        console.log("[Server-Logger]::",getTime(),">> client registered an account with status code:",statusCode)
     }
 });
 
 user.get('/logout', async (req, res) =>{
+    const clientCookies = req.headers.cookie
+    const cookieObject = Object.fromEntries(
+        clientCookies.split('; ').map(cookie => cookie.split('='))
+    );
+    const client = cookieObject.user
+
+    console.log("[Server-Logger]::",getTime(),">> client [",client,"] has logout")
     res.clearCookie('lvl',  { path: '/' })
     res.clearCookie('token',  { path: '/' })
     res.clearCookie('uid',  { path: '/' })

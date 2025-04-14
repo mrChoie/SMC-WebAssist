@@ -1,4 +1,4 @@
-import express from 'express'
+// import express from 'express'
 import mysql from 'mysql2'
 import dotenv from 'dotenv'
 dotenv.config()
@@ -112,11 +112,14 @@ export async function checkDuplicateUser(userName, userStudId, userPass, userLev
             FROM users 
             WHERE username = ? OR stud_id = ?) AS is_exists;
         `, [userName, userStudId])
+    // console.log(result)
     if (!result[0].is_exists) {
         // console.log("user registered! \n")
+        // console.log("after IF: ",!result[0].is_exists)
         return await createUser(userName, userStudId, userPass, userLevel);
     } else {
         // console.log("user already exist \n")
+        // console.log("after IF: ",!result[0].is_exists)
     }
     return result[0].is_exists;
 }

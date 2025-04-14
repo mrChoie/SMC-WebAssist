@@ -21,12 +21,12 @@ sendReplyBtn.addEventListener("click", function (event) {
 
 archivedBtn.addEventListener("click", function (event) {
     updateTicket('2')
-    console.log("ticket status updated to: 2")
+    // console.log("ticket status updated to: 2")
     location.reload();
 })
 resolvedBtn.addEventListener("click", function (event) {
     updateTicket('3')
-    console.log("ticket status updated to: 3")
+    // console.log("ticket status updated to: 3")
     location.reload();
 })
 // optionBtn.addEventListener("click", function (event){
@@ -54,7 +54,7 @@ window.onload; {
         return res.json(); // Parse JSON response
     })
     .then(data => {
-        console.log(data)
+        // console.log(data)
         // window.location.href = "/smc-webassist/view-ticket/ticket/"+data.ticket.tktID;
         // history.replaceState({}, '', "/smc-webassist/view-ticket/ticket/"+data.ticket.tktID);
 
@@ -139,7 +139,7 @@ function updateTicket(tktStatus){
     const urlParams = new URLSearchParams(window.location.search);
     const tktID = urlParams.get("id");
 
-    console.log("tktStatus: ",tktStatus, "tktID: ", tktID)
+    // console.log("tktStatus: ",tktStatus, "tktID: ", tktID)
     fetch ('/smc-webassist/ticket/update', {
         method: "POST",	
         credentials: "include",
@@ -155,7 +155,7 @@ function updateTicket(tktStatus){
         return res.json(); // Parse JSON response
     })
     .then(data => {
-        console.log("data recieved: ",data)
+        // console.log("data recieved: ",data)
         // execute code
     })
     .catch(err => {
