@@ -18,6 +18,14 @@ proceedBtn.addEventListener("click", function (event) {
     window.location.href = "/smc-webassist/signin";
 })
 
+function openNotice(){
+    noticePar.style.display="flex"
+    createAccBtn.setAttribute('disabled','1');
+    nameInput.setAttribute('disabled','1');
+    idInput.setAttribute('disabled','1');
+    passInput.setAttribute('disabled','1');
+}
+
 function submitCreateAccReq(){
     const userName = nameInput.value
     const userStudId = idInput.value
@@ -44,6 +52,9 @@ function submitCreateAccReq(){
             // console.log(data)
             noticePar.style.display="flex"
             createAccBtn.setAttribute('disabled','1');
+            nameInput.setAttribute('disabled','1');
+            idInput.setAttribute('disabled','1');
+            passInput.setAttribute('disabled','1');
             // loadsignin()
             // window.location.href = "/smc-webassist/signin";
             // console.log(data.message, data.statusCode)

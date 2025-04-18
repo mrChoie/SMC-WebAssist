@@ -1,13 +1,8 @@
 import express from 'express';
 import { getTickets, getTicket, createTicket, updateTicket, getCategories} from '../model/database.js';
+import { getTime } from '../utils/getTime.js';
 
 const db = express();
-
-function getTime(){
-    var d = new Date();
-    var time = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + d.getFullYear() + "-[TIME]" + ("0" + d.getHours()).slice(-2) + "_" + ("0" + d.getMinutes()).slice(-2);
-    return time
-}
 
 db.post('/', async (req, res) => {
     const [tickets] = await getTickets();

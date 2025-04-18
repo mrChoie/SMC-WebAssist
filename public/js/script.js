@@ -1,4 +1,5 @@
 const loggedInDiv = document.getElementById("loggedInDiv")
+const signUpDiv = document.getElementById("signUpDiv")
 const loggedOutDiv = document.getElementById("loggedOutDiv")
 const profileDropdownBtn = document.getElementById("profileDropdownBtn")
 const profileDdContent = document.getElementById("profileDdContent")
@@ -36,6 +37,7 @@ window.onload; {
             loggedInDiv.style.display = "flex";
             }
         } else {
+            signUpDiv.style.display = "flex";
             loggedOutDiv.style.display = "flex";
         }
     })

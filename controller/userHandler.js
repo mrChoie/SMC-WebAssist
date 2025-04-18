@@ -3,16 +3,12 @@ import jwt from 'jsonwebtoken';
 import cookie from 'cookie-parser';
 import dotenv from 'dotenv';
 import { getMyTickets, getCategoryById, getUserByID, getTickets, getUserbyName, checkDuplicateUser, createUser, updateUser, getTicket } from '../model/database.js';
+import { getTime } from '../utils/getTime.js';
 dotenv.config();
 const user = express();
 user.use(express.json());
 user.use(express.urlencoded({ extended: false }));
 
-function getTime(){
-    var d = new Date();
-    var time = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + d.getFullYear() + "-[TIME]" + ("0" + d.getHours()).slice(-2) + "_" + ("0" + d.getMinutes()).slice(-2);
-    return time
-}
 
 user.post('/', async (req, res) => {
     const clientCookies = req.headers.cookie

@@ -1,8 +1,11 @@
-start npm start
+start "[XAMPP HOST]" "C:\xampp\mysql_start.bat"
 
-start ssh.bat
+start "[SQL DB]" mysql -u root -h 127.0.0.1 -P 3306
 
-node logger.js
+start "nodejs" npm start
+
+pktriot http 8080
+
+@REM start "ssh" ssh.bat
 
 pause
-> txt2.txt

@@ -1,6 +1,6 @@
 import express from 'express';
 // import connection from '../model/database.js';
-import checkCookie from '../middleware/checkCookieOnLoad.js';
+// import checkCookie from '../middleware/checkCookieOnLoad.js';
 import publicRoute from '../routes/publicRoute.js';
 import user from './userHandler.js';
 import auth from '../middleware/authenticator.js';
@@ -18,13 +18,27 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
+app.get("/", (req, res) => {
+    // console.log("[Router-Logger]::",getTime(),">> homepage page loaded to client")
+    res.render('index.ejs')
+})
 // app.use('/',(req, res) => {
 //     res.render('home.ejs')
 // })
-app.use('/checkCookie', checkCookie);
-app.use('/getTickets', db);
-app.use('/getATicket', db);
-app.use('/getInfo', user);
+app.get('/checkCookie', async (req, res) => {
+    const cookies = Object.fromEntries(req.headers.cookie?.split('; ').map(c => c.split('=')) || []);
+    const token = cookies;
+    const lvl = cookies.lvl;
+    
+    if (cookies.token==null){
+        res.json({token, message: "User is not logged in", statusCode:20 });
+    } else {
+        res.json({cookies, lvl, message: "User is logged in", statusCode:21 });
+    }
+});
+app.use('/getTickets',auth, db);
+app.use('/getATicket',auth, db);
+app.use('/getInfo',auth, user);
 app.use('/msg', msg);
 app.use('/smc-webassist', publicRoute);
 // app.use(auth)

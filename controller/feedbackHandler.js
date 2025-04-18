@@ -1,14 +1,11 @@
 import express from 'express'
 import { submitFeedback } from '../model/database.js'
+import { getTime } from '../utils/getTime.js'
 const feedb = express()
 feedb.use(express.json());
 feedb.use(express.urlencoded({ extended: false }));
 
-function getTime(){
-    var d = new Date();
-    var time = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + d.getFullYear() + "-[TIME]" + ("0" + d.getHours()).slice(-2) + "_" + ("0" + d.getMinutes()).slice(-2);
-    return time
-}
+
 
 feedb.post('/submit/feedback', async (req, res) => {
     // console.log("Route hit: /submit/feedback");

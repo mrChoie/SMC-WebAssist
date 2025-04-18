@@ -1,11 +1,8 @@
 import express from 'express';
+import { getTime } from '../utils/getTime.js'
 const publicRoute = express.Router();
 
-function getTime(){
-    var d = new Date();
-    var time = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + d.getFullYear() + "-[TIME]" + ("0" + d.getHours()).slice(-2) + "_" + ("0" + d.getMinutes()).slice(-2);
-    return time
-}
+
 
 publicRoute.get("/home", (req, res) => {
     console.log("[Router-Logger]::",getTime(),">> homepage page loaded to client")
