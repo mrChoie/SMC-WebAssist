@@ -63,6 +63,19 @@ function displayTickets(tickets) {
         var link=document.createElement("a");
         var btn=document.createElement("i");
 
+        if (tickets.tickets[x].tktStatus==1) {
+            // rowDiv.classList.add("row","bg-light","animate","AccTktpending");
+            // colDivContent.classList.add("col-10","ticketContent","AccTktpending");
+            colDivLink.classList.add("col-2","ticketLink","text-center","AccTktpending");
+        } else if (tickets.tickets[x].tktStatus==2){
+            // rowDiv.classList.add("row","bg-light","animate","AccTktarchived");
+            // colDivContent.classList.add("col-10","ticketContent","AccTktarchived");
+            colDivLink.classList.add("col-2","ticketLink","text-center","AccTktarchived");
+        } else if (tickets.tickets[x].tktStatus==3) {
+            // rowDiv.classList.add("row","bg-light","animate","AccTktresolved");
+            // colDivContent.classList.add("col-10","ticketContent","AccTktresolved");
+            colDivLink.classList.add("col-2","ticketLink","text-center","AccTktresolved");
+        }
         rowDiv.classList.add("row","bg-light","animate");
         colDivContent.classList.add("col-10","ticketContent");
         colDivLink.classList.add("col-2","ticketLink","text-center");

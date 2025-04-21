@@ -48,6 +48,12 @@ window.onload; {
         // execute when fetching is successful
         // console.log(data)
         displayTickets(data)
+        // pendingBtn.addEventListener('click')
+        // resolvedBtn.addEventListener('click')
+        // archivedBtn.addEventListener('click')
+        pendingBtn.click()
+        resolvedBtn.click()
+        archivedBtn.click()
     })
     .catch(err => {
         console.log(err);
@@ -86,11 +92,11 @@ async function displayTickets(tickets) {
             var link=document.createElement("a");
 
             if (tickets.tickets[y].tktStatus==1) {
-                div.classList.add("collapse","ticket","pending","container","border","rounded","mt-2","p-1");
+                div.classList.add("collapse","ticket","pending","container","border","rounded","mt-2","p-2");
             } else if (tickets.tickets[y].tktStatus==2){
-                div.classList.add("collapse","ticket","archived","container","border","rounded","mt-2","p-1");
+                div.classList.add("collapse","ticket","archived","container","border","rounded","mt-2","p-2");
             } else if (tickets.tickets[y].tktStatus==3) {
-                div.classList.add("collapse","ticket","resolved","container","border","rounded","mt-2","p-1");
+                div.classList.add("collapse","ticket","resolved","container","border","rounded","mt-2","p-2");
             }
             title.classList.add("ptitle")
             id.classList.add("pid")

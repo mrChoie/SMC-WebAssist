@@ -61,6 +61,7 @@ export async function createTicket(tktUID, categoryID, tktOwner, tktOwnerDBid, t
 // }
 
 export async function updateTicket(tktID, tktStatus) {
+    // console.log("updating ticket")
     const [result] = await connection.query(`
         UPDATE tickets
         SET tktStatus = ?
@@ -174,6 +175,7 @@ export async function getMessages(ticketId) {
             m.content,
             DATE_FORMAT(sent_at, '%M %e, %l:%i %p') AS formatted_time,
             u.username AS sender_username,
+            u.user_level AS sender_level,
             u.uid
         FROM messages m
         JOIN users u ON m.sender_id = u.uid

@@ -39,7 +39,7 @@ user.post('/login', async (req, res) => {
     const user = await getUserbyName(userName)
     
     if (!user) {
-        res.json({ message: "User does not exist", statusCode:'01' });
+        res.json({ message: "Account does not exist", statusCode:'01' });
 
     } else if (userName == user.username) {
 
@@ -74,7 +74,7 @@ user.post('/login', async (req, res) => {
             
             // res.json({ user: user, message: "Login Successful", statusCode:'11'});
         } else {
-            // console.log("User did not obtain a cookie")
+            // console.log("Account did not obtain a cookie")
             console.log("[Server-Logger]::",getTime(),">> client tried to log-in [",user.username,"] with invalid credentials.")
             res.json({ message: "Invalid Password", statusCode:'02' });
             // res.render('signin.ejs', {
@@ -85,7 +85,7 @@ user.post('/login', async (req, res) => {
     } else {
         res.status(400)
         // res.render('signin.ejs', {
-        //     returnStatement: "User does not exist"
+        //     returnStatement: "Account does not exist"
         // })
     }
     // console.log("Login form input:", userName, userPass)
@@ -105,21 +105,21 @@ user.post('/register', async (req, res) => {
         const user = await checkDuplicateUser(userName, userStudId, userPass, userLevel);
         if (user!=1) {
             statusCode='50'
-            res.json({user, message: "User successfully created", statusCode });
+            res.json({user, message: "Account successfully created", statusCode });
         } else {
             statusCode='51'
-            res.json({user, message: "User already exist", statusCode});
+            res.json({user, message: "Account already exist", statusCode});
         }
     } else {
         const user = await checkDuplicateUser(userName, userStudId, userPass, '1');
         // console.log(user,"-------------------------")
         if (user!=1) {
             statusCode='50'
-            res.json({message: "User successfully created", statusCode});
+            res.json({message: "Account successfully created", statusCode});
         } else {
             statusCode='51'
-            console.log(user,"-------------------------")
-            res.json({message: "User already exist", statusCode});
+            // console.log(user,"-------------------------")
+            res.json({message: "Account already exist", statusCode});
         }
         // console.log("-------------------------")
     }

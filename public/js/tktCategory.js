@@ -2,10 +2,10 @@ const tkOwner2 = document.getElementById("ticketStudName2")
 const tkOwnerID2 = document.getElementById("ticketIdNum2")
 const tkOwner = document.getElementById("ticketStudName")
 const tkOwnerdbid = document.getElementById("ticketIdNum")
-const tkSubj = document.getElementById("ticketSubj")
-const tkDesc = document.getElementById("ticketDesc")
+const tkSubj = document.getElementById("ticketSubj")            //ticketSubj
+const tkDesc = document.getElementById("ticketDesc")            //ticketDesc
 const categoryTitle = document.getElementById("categoryTitle")
-const ticketFile = document.getElementById("ticketFile")
+const ticketFile = document.getElementById("ticketFile")        //ticketFile
 const categoryID = document.getElementById("categoryID")
 const noticePar = document.getElementById("noticeParent")
 const succBtn = document.getElementById("successBtn")
@@ -77,9 +77,12 @@ function submitTicket() {
         if (data.statusCode == '40') {
             // do function
             // console.log(data.message)
+            tkSubj.setAttribute('disabled','1');
+            tkDesc.setAttribute('disabled','1');
+            ticketFile.setAttribute('disabled','1');
             noticePar.style.display="flex"
             blurDiv.style.zIndex= '-1'
-            blurDiv.style.filter ="blur(1px)"
+            // blurDiv.style.filter ="blur(1px)"
             
         }
     })

@@ -53,69 +53,83 @@
 	</nav>
 
 	<div class="container-fluid bg-light">
-		<div class="row p-1 d-flex align-items-stretch">
-			<div class="col-sm-3 align-self-center align-items-stretch">
-				<p> Only authorized users can access this page</p>
+		<div class="row p-1">
+			<div class="col-sm-3 d-flex flex-column adminNoticeCol">
+				<i>To do:</i>
 				<ul>
 					<li>Review Ticket</li>
 					<li>Manage Ticket</li>
 				</ul>
 			</div>
-			<div class="col-sm-7 align-self-center align-items-stretch">
-				<div class="container">
-					<div class="btn border-warning mt-2 mb-1" id="earlyAccessNotice">
-						<div class="card-body">
-							<h5 class="card-title">Notice!</h5>
-							<p class="card-text">
-								This is an Early Access of the SMC Web-Assist App. 
-								Avoid using personal information. 
-								Please report any bugs or issues to the developers.</p>
-								<a href="/smc-webassist/feedback" class="btn border-warning">Report Issue</a>
-						</div>
+			<div class="col-sm-7 p-2 adminNoticeCol">
+				<i>Notice Board</i>
+				<div class="container p-2 border rounded border-warning text-center d-flex flex-column" id="earlyAccessNotice">
+					<h5 class="m-0">Notice!</h5>
+					<p class="m-0">
+						This is an Early Access of the SMC Web-Assist App. 
+						Avoid using personal information. 
+						Please report any bugs or issues to the developers.  </p>
+						<p class="m-0 p-0 d-flex justify-content-center">
+							<button class="btn border-warning mt-1 mb-1" id="reportLink">Report Issue</button>
+						</p>
 					</div>
-				</div>
+				<!-- <div class="btn border-warning m-2 d-flex flex-column" id="earlyAccessNotice">
+					<h5 class="card-title">Notice!</h5>
+					<p class="card-text">
+						This is an Early Access of the SMC Web-Assist App. 
+						Avoid using personal information. 
+						Please report any bugs or issues to the developers.</p>
+						<a href="/smc-webassist/feedback" class="btn border-warning">Report Issue</a>
+				</div> -->
 			</div>
-			<div class="col-sm-2 align-self-center align-items-stretch">
-				<ul style="list-style: none;">
-					<li><button type="checkbox" id="pending-toggle" checked
-						class="btn pendingBtn border m-1 w-100"
+			<div class="col-sm-2 d-flex flex-column adminNoticeCol">
+				<i>Settings</i>
+				<ul class="w-100 ps-0 ms-0" style="list-style: none;">
+					<li class="p-0 m-0">
+						<button type="checkbox" id="pending-toggle" checked
+						class="btn pendingBtn border w-100 mt-1"
 						data-bs-toggle="collapse" 
 						aria-expanded="true" 
 						data-bs-target=".pending"> Pending</button></li>
-					<li><button type="checkbox" id="resolved-toggle" checked
-						class="btn resolvedBtn border m-1 w-100"
+					<li class="p-0 m-0">
+						<button type="checkbox" id="resolved-toggle" checked
+						class="btn resolvedBtn border w-100 mt-1"
 						data-bs-toggle="collapse" 
 						aria-expanded="true" 
 						data-bs-target=".resolved"> Resolved</button></li>
-					<li><button type="checkbox" id="archived-toggle" checked
-						class="btn archivedBtn border m-1 w-100"
+					<li class="p-0 m-0">
+						<button type="checkbox" id="archived-toggle" checked
+						class="btn archivedBtn border w-100 mt-1"
 						data-bs-toggle="collapse" 
 						aria-expanded="true" 
 						data-bs-target=".archived"> Archived </button></li>
 				</ul>
 			</div>
 		</div>
+		<div class="row" style="background-color: rgba(255, 0, 0, 0.198);">
+			<i style="color:darkred;">Only authorized users can access this page</i>
+		</div>
 		<div class="row p-0 pt-2 pb-2 mt-1 border row1Category">
-			<div class="col-sm-2 text-center">
-				<p>Category 1</p>
+			<div class="col-sm-2 text-center bg-white">
+				<p>School Resources</p>
 			</div>
 			<div class="col-sm-2 text-center">
-				<p>Category 2</p>
+				<p>Institutional Functionality</p>
+			</div>
+			<div class="col-sm-2 text-center bg-white">
+				<p>School Policies & Governance</p>
 			</div>
 			<div class="col-sm-2 text-center">
-				<p>Category 3</p>
+				<p>School Environment & Infrastructure</p>
+			</div>
+			<div class="col-sm-2 text-center bg-white">
+				<p>Student's Well-being & Stressors</p>
 			</div>
 			<div class="col-sm-2 text-center">
-				<p>Category 4</p>
-			</div>
-			<div class="col-sm-2 text-center">
-				<p>Category 5</p>
-			</div>
-			<div class="col-sm-2 text-center">
-				<p>Category 6</p>
+				<p>Social Behavior</p>
 			</div>
 		</div>
-		<div class="row border">
+		<div class="row border bg-white">
 			<div id="ticketCategory1" class="col-sm-2 p-1">
 				
 			</div>
@@ -137,13 +151,13 @@
 		</div>
 		<div class="row p-0 pt-2 pb-2 mt-1 border">
 			<div class="col-sm-2 text-center">
-				<p>Category 7</p>
+				<p>Inquire / Interest</p>
 			</div>
-			<div class="col-sm-2 text-center">
-				<p>Category 8</p>
+			<div class="col-sm-2 text-center bg-white">
+				<p>Other School Matter</p>
 			</div>
 		</div>
-		<div class="row border">
+		<div class="row border bg-white">
 			<div id="ticketCategory7" class="col-sm-2 p-1">
 				
 			</div>

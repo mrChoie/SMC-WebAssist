@@ -85,7 +85,7 @@ nav {
 }
 
 #noticeContainer {
-	background-color: #1a642646;
+	/* background-color: #1a642646; */
 	height: 100%;
 }
 
@@ -120,7 +120,7 @@ nav {
 	display: none;
 	position: relative;
     float: right;
-    margin-top: -22px;
+    margin-top: -24px;
 	margin-right: 34px;
 	opacity: 0.3;
 }
@@ -185,7 +185,7 @@ nav {
 	margin-bottom: 8px;
 	margin-top: 8px;
 	border-radius: 13px;
-	border:2px solid rgb(98, 158, 30);
+	border:1px solid rgb(98, 158, 30);
 }
 
 #ticketContainer .row:hover {
@@ -226,11 +226,11 @@ nav {
 	padding-left: 50px;
 }
 
-.pSender .fa-user-circle {
+.pSender .fa-user,.fa-user-tie {
 	padding-top: 6px;
-    margin-right: 5px;
+    margin-right: 10px;
 	float: inline-start;
-	font-size: 20px;
+	font-size: 18px;
 	color: rgb(98, 158, 30);
 }
 
@@ -246,11 +246,14 @@ nav {
 
 #optionDiv {
 	/* position: relative; */
+	/* float: left; */
 	/* justify-content: center; */
+	/* border-radius: 10px; */
 	position: absolute;
-	margin: 5px;
+	/* margin: 5px; */
 	right: 0;
-	border: 1px solid lightgray;
+	padding: 0px;
+	/* border: 1px solid lightgray; */
 	box-shadow: 0px 0px 10px #30303056;
 	background-color: rgb(196, 243, 143);
 }
@@ -265,17 +268,39 @@ nav {
 	& :hover {
 		background-color: rgb(255, 255, 255);
 		color: black;
-		transition: 0.3s;
 	}
 }
 
+#optionDiv button {
+	margin: 0px;
+	color: white;
+}
+
+
 #archivedNotice {
+	
 	display: none;
 	color: rgb(143, 121, 0);
 	background-color: rgba(255, 196, 0, 0.342);
 	& a {
 		white-space:nowrap;
-		color: rgb(103, 121, 0);
+		color: rgb(143, 121, 0);
+	}
+	& button {
+		color: rgb(143, 121, 0);
+	}
+}
+
+#resolvedNotice {
+	display: none;
+	color: rgb(15, 175, 0);
+	background-color: rgba(0, 255, 34, 0.342);
+	& a {
+		white-space:nowrap;
+		color: rgb(15, 175, 0);
+	}
+	& button {
+		color: rgb(15, 175, 0);
 	}
 }
 
@@ -287,4 +312,29 @@ nav {
 		white-space:nowrap;
 		color: rgb(103, 121, 0);
 	}
+}
+
+.accInforContainer {
+	border-radius: 13px;
+	border-radius: 13px;
+	/* border:1px solid rgb(203, 203, 203); */
+}
+
+.AccTktpending {
+	background-image: url("../img/pending.png");
+	background-size: 200px 200px;
+	/* background-color: rgb(238, 238, 238); */
+}
+.AccTktresolved {
+	background-image: url("../img/resolved.png");
+	background-size: 200px 200px;
+	/* background-color: #b4ffa2; */
+}
+.AccTktarchived {
+	background-image: url("../img/archived.png");
+	background-size: 200px 200px;
+	/* background-image: url("../img/bg-grid.png");
+	background-size: 20px 20px; */
+	/* opacity: 0.3; */
+	/* background-color: #ffdf6b; */
 }

@@ -3,8 +3,10 @@ const msgBox = document.getElementById("msgBox")
 const optionBtn = document.getElementById("optionBtn")
 const optionDiv = document.getElementById("optionDiv")
 const archivedNotice = document.getElementById("archivedNotice")
+const resolvedNotice = document.getElementById("resolvedNotice")
 const archivedBtn = document.getElementById("archivedBtn")
 const resolvedBtn = document.getElementById("resolvedBtn")
+const submitLink = document.getElementById("submitLink")
 
 
 const ticketContainer = document.getElementById("viewTicketContainer")
@@ -29,6 +31,9 @@ resolvedBtn.addEventListener("click", function (event) {
     // console.log("ticket status updated to: 3")
     location.reload();
 })
+submitLink.addEventListener("click", function (event) {
+    window.location.href = "/smc-webassist/ticket/submit";
+})
 // optionBtn.addEventListener("click", function (event){
 //     // optionDiv.style.width= "210px";
 //     // optionDiv.style.transition="height 1s";
@@ -38,6 +43,8 @@ resolvedBtn.addEventListener("click", function (event) {
 window.onload; {
     const urlParams = new URLSearchParams(window.location.search);
     const tktID = urlParams.get("id");
+    archivedNotice.classList.remove("d-flex")
+    resolvedNotice.classList.remove("d-flex")
 
     fetch ('/getATicket/view-ticket/ticket/'+tktID, {
         method: "GET",	
@@ -57,10 +64,21 @@ window.onload; {
         // console.log(data)
         // window.location.href = "/smc-webassist/view-ticket/ticket/"+data.ticket.tktID;
         // history.replaceState({}, '', "/smc-webassist/view-ticket/ticket/"+data.ticket.tktID);
+        if (data.lvl == '1') {
+            archivedBtn.setAttribute('disabled','1');
+        }
 
+        if (data.ticket.tktStatus=='2') {     // ticket is archived
+            archivedNotice.classList.add("d-flex")
+            resolvedBtn.setAttribute('disabled','1');
+            archivedBtn.setAttribute('disabled','1');
+            msgBox.setAttribute('disabled','1');
+            sendReplyBtn.setAttribute('disabled','1');
 
-        if (data.ticket.tktStatus==2) {     // ticket is archived
-            archivedNotice.style.display="flex";
+        } else if (data.ticket.tktStatus=='3') { // ticket is resolved
+            resolvedNotice.classList.add("d-flex")
+            resolvedBtn.setAttribute('disabled','1');
+            archivedBtn.setAttribute('disabled','1');
             msgBox.setAttribute('disabled','1');
             sendReplyBtn.setAttribute('disabled','1');
         }
@@ -209,7 +227,13 @@ function displayMessages(data) {
         sender.classList.add("pSender")
         content.classList.add("pMessage")
         date.classList.add("pid","text-end")
-        userIcon.classList.add("fa-solid","fa-user-circle")
+
+        if (data.messages[x].sender_level=='4') {
+            userIcon.classList.add("fa-solid","fa-user-tie")
+        } else {
+            userIcon.classList.add("fa-solid","fa-user")
+        }
+        
         
 
         sender.textContent = data.messages[x].sender_username;

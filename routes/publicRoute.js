@@ -5,7 +5,7 @@ const publicRoute = express.Router();
 
 
 publicRoute.get("/home", (req, res) => {
-    console.log("[Router-Logger]::",getTime(),">> homepage page loaded to client")
+    console.log("%c[Router-Logger]::","color:#0B",getTime(),">> homepage page loaded to client")
     res.render('home.ejs')
 })
 publicRoute.get("/about", async (req, res) => {

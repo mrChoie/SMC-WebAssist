@@ -42,7 +42,7 @@ db.get("/view-ticket/ticket/:id", async (req, res) => {
     const ticket = await getTicket(id);
     if (ticket) {
         // console.log("Ticket obtained: ",ticket)
-        res.json({ticket})
+        res.json({ticket, lvl})
         // next();
         // res.send(ticket);
     } else {

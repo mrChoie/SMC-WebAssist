@@ -5,23 +5,29 @@ const usernameInput = document.getElementById("userName")
 const passwordInput = document.getElementById("userPass")
 const signBtn = document.getElementById("signBtn")
 
-signBtn.addEventListener("click", function (event) {
-    event.stopPropagation();
-    event.preventDefault(); // Prevent form submission if needed
-    const userName = usernameInput.value;
-    const userPass = passwordInput.value;
-    login(userName, userPass);
-});
+// signBtn.addEventListener("click", function (event) {
+//     event.stopPropagation();
+//     event.preventDefault(); // Prevent form submission if needed
+//     const userName = usernameInput.value;
+//     const userPass = passwordInput.value;
+//     login(userName, userPass);
+// });
 
 passwordInput.addEventListener("keydown", function (event) {
+    passwordInput.classList.remove("border-danger")
     responseDivInvalidPass.textContent = "";
 })
 usernameInput.addEventListener("keydown", function (event) {
+    usernameInput.classList.remove("border-danger")
+    
     responseDivUserNotExist.textContent = "";
     responseDivInvalidPass.textContent = "";
 })
 
-function login(userName, userPass) {
+function login() {
+    const userName = usernameInput.value;
+    const userPass = passwordInput.value;
+    console.log("Fetching user...")
     fetch ("/smc-webassist/login", {
         method: "POST",	
         credentials: "include",
@@ -46,8 +52,19 @@ function login(userName, userPass) {
             // localStorage.setItem("user", JSON.stringify(data.user.username));
             window.location.href = "/smc-webassist/home";
         } else if (data.statusCode == '01') {
-            responseDivUserNotExist.textContent = data.message; // Display the result
+            var form = document.querySelector('.needs-validation')
+            
+            form.classList.remove('was-validated')
+            // form.classList.add('was-validated')
+            usernameInput.classList.add("border-danger")
+            responseDivUserNotExist.textContent = data.message; // Display the result`
+            
         } else {
+            var form = document.querySelector('.needs-validation')
+            
+            form.classList.remove('was-validated')
+            // form.classList.add('was-validated')
+            passwordInput.classList.add("border-danger")
             responseDivInvalidPass.textContent = data.message; // Display the result
         }
     })
@@ -59,54 +76,70 @@ function login(userName, userPass) {
     // .then(data => (responseDiv.textContent = data))  
 }
 
-
-
-
-
-
-
-
-
 var showPassIndicator=false;
 
 function showPassIcon(){
-  let divBox = document.getElementById("showPassIconDiv");
-  let userPass = document.getElementById("userPass");
-  if (userPass.value!=""){
-    divBox.style.display = "flex";
-  } else {
-    divBox.style.display = "none";
-    let eyeIcon = document.getElementById("showPassIcon");
-  }
+    let divBox = document.getElementById("showPassIconDiv");
+    let userPass = document.getElementById("userPass");
+    if (userPass.value!=""){
+        divBox.style.display = "flex";
+    } else {
+        divBox.style.display = "none";
+        let eyeIcon = document.getElementById("showPassIcon");
+    }
 }
 
 function showHidePass(){
-  let eyeIcon = document.getElementById("showPassIcon");
-  let opacityIcon = document.getElementById("showPassIconDiv");
-  if (showPassIndicator==true){
-    showPassText();
-    showPassIndicator=false;
-    eyeIcon.classList.add("fa-eye-slash");
-    eyeIcon.classList.remove("fa-eye");
-    opacityIcon.style.opacity = "0.3";
-    // console.log("pass hide");
-  } else {
-    showPassText();
-    showPassIndicator=true;
-    eyeIcon.classList.add("fa-eye");
-    eyeIcon.classList.remove("fa-eye-slash");
-    opacityIcon.style.opacity = "0.6";
-    // console.log("pass show");
-  }
+    let eyeIcon = document.getElementById("showPassIcon");
+    let opacityIcon = document.getElementById("showPassIconDiv");
+    if (showPassIndicator==true){
+        showPassText();
+        showPassIndicator=false;
+        eyeIcon.classList.add("fa-eye-slash");
+        eyeIcon.classList.remove("fa-eye");
+        opacityIcon.style.opacity = "0.3";
+        // console.log("pass hide");
+    } else {
+        showPassText();
+        showPassIndicator=true;
+        eyeIcon.classList.add("fa-eye");
+        eyeIcon.classList.remove("fa-eye-slash");
+        opacityIcon.style.opacity = "0.6";
+        // console.log("pass show");
+    }
 }
 
 function showPassText() {
-  var x = document.getElementById("userPass");
-  if (x.type === "password") {
-    x.type = "text";
-    showPassIndicator=true;
-  } else {
-    x.type = "password";
-    showPassIndicator=false;
-  }
+    var x = document.getElementById("userPass");
+    if (x.type === "password") {
+        x.type = "text";
+        showPassIndicator=true;
+    } else {
+        x.type = "password";
+        showPassIndicator=false;
+    }
 }
+
+(function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+
+        .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+            // console.log("form object value: ",forms)
+            } else {
+                event.preventDefault()
+                login()
+            }
+            form.classList.add('was-validated')
+        }, false)
+        })
+    })
+()

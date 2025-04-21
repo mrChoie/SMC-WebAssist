@@ -11,6 +11,7 @@ const createAccBtn = document.getElementById("createAccBtn")
 var showPassIndicator=false;
 
 nameInput.addEventListener("keydown", function (event) {
+    nameInput.classList.remove("border-danger")
     responseDiv.textContent = "";
 })
 
@@ -61,8 +62,15 @@ function submitCreateAccReq(){
             // responseDiv.textContent = data.message;
         } else {
             // console.log(data)
+            // nameInput.checkValidity
+            // form.classList.add('was-validated')
+            var form = document.querySelector('.needs-validation')
+            
+            form.classList.remove('was-validated')
+            // form.classList.add('was-validated')
+            nameInput.classList.add("border-danger")
             responseDiv.textContent = data.message;
-            // console.log(data.message, data.statusCode)
+            console.log(form)
         }
     })
     .catch(err => {
@@ -135,6 +143,7 @@ function showPassText() {
             if (!form.checkValidity()) {
             event.preventDefault()
             event.stopPropagation()
+            // console.log("form object value: ",forms)
             } else {
                 event.preventDefault()
                 submitCreateAccReq()
