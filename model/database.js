@@ -111,8 +111,8 @@ export async function checkDuplicateUser(userName, userStudId, userPass, userLev
         SELECT EXISTS (
             SELECT 1 
             FROM users 
-            WHERE username = ? OR stud_id = ?) AS is_exists;
-        `, [userName, userStudId])
+            WHERE username = ?) AS is_exists;
+        `, [userName])
     // console.log(result)
     if (!result[0].is_exists) {
         // console.log("user registered! \n")

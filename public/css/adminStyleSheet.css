@@ -4,6 +4,18 @@ nav {
 	color: black;
 }
 
+#profileBtn {
+	background-color: rgb(99, 151, 40);
+}
+
+#ticketsBtn {
+	background-color: #e76800;
+}
+
+#feedbackBtn {
+	background-color: #e76800;
+}
+
 .animate {
 	-webkit-animation: animatezoom 0.6s;
 	animation: animatezoom 0.6s

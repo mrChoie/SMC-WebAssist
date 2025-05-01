@@ -12,7 +12,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
 		<div class="container-fluid">
-		<a class="navbar-brand ps-3" href="/smc-webassist/home">SMC-Web Assist</a>
+		<a class="navbar-brand ps-3" href="/smc-webassist/home">SMC Web Assist</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -35,14 +35,35 @@
 				</li>
 			</ul>
 			<form class="d-flex">
-				<div style="display: none;" id="adminBtn">
-					<a class="nav-link text-dark" aria-current="page" href="/smc-webassist/admin/view-tickets">Review Tickets</a>
+				<div id="adminBtn" style="display: none;">
+					<button class="btn p-0" style="display: flex;" id="feedbackBtn">
+						<div style="display: flex;" id="feedbackLink">
+							<a class="nav-link text-light">Feedbacks</a>
+						</div>
+					</button>
+					<button class="btn p-0 ms-2" style="display: flex;" id="ticketsBtn">
+						<div style="display: flex;" id="ticketLink">
+							<a class="nav-link text-light">Tickets</a>
+						</div>
+					</button>
 				</div>
-				<div style="display: flex;" id="loggedInDiv">
-					<div class="container">
-						<a class="btn btn-danger" id="logoutBtn" type="button" href="/smc-webassist/logout">Log out</a>
+				<button class="btn p-0 ms-2" style="display: none;" id="profileBtn">
+					<div style="display: none;" id="navUserIcon">
+						<i class="text-light fa-solid fa-user d-flex align-items-center pt-0 m-0 ps-3"></i>
 					</div>
-					
+					<div style="display: none;" id="navAdminIcon">
+						<i class="text-light fa-solid fa-user-tie d-flex align-items-center pt-0 m-0 ps-3"></i>
+					</div>
+					<div style="display: none;" id="loggedInDiv">
+						<a class="nav-link text-light">Profile</a>
+					</div>
+				</button>
+				
+				</button>
+				<div style="display: flex;" id="loggedInDiv">
+					<button class="btn btn-danger p-0 ms-2" id="logoutBtn">
+						<a class="nav-link text-light">Logout</a>
+					</button>
 				</div>
 			</form>
 		</div>

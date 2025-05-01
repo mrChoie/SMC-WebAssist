@@ -8,6 +8,8 @@ const ticketId = document.getElementById("ticketId")
 const ticketContent = document.getElementById("ticketContent")
 const ticketDate = document.getElementById("ticketDateCreated")
 
+const logoutBtn = document.getElementById("logoutBtn")
+
 const testDiv = document.getElementById("testDiv")
 
 window.onload; {
@@ -31,6 +33,7 @@ window.onload; {
     .then(data => {
         // execute when fetching is successful
         // console.log(data)
+        document.getElementById("profileBtn").style.display="none";
         profileName.textContent=data.user.username
         profileStudId.textContent=data.user.stud_id
         profileDate.textContent="Joined since "+ data.user.formatted_time
@@ -41,6 +44,11 @@ window.onload; {
         // responseDiv.textContent = "Error fetching user.";
     });
 }
+
+logoutBtn.addEventListener("click", function(event) {
+    event.preventDefault()
+    window.location.href = "/smc-webassist/logout";
+})
 
 // const ticketDiv
 // const ticketTitle

@@ -13,7 +13,7 @@
 
 	<nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
 		<div class="container-fluid">
-		<a class="navbar-brand ps-3" href="/smc-webassist/home">SMC-Web Assist</a>
+		<a class="navbar-brand ps-3" href="/smc-webassist/home">SMC Web Assist</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -36,12 +36,31 @@
 				</li>
 			</ul>
 			<form class="d-flex">
-				<div style="display: none;" id="adminBtn">
-					<a class="nav-link text-dark" aria-current="page" href="/smc-webassist/admin/view-tickets">Review Tickets</a>
+				<div id="adminBtn" style="display: none;">
+					<button class="btn p-0" style="display: flex;" id="feedbackBtn">
+						<div style="display: flex;" id="feedbackLink">
+							<a class="nav-link text-light">Feedbacks</a>
+						</div>
+					</button>
+					<button class="btn p-0 ms-2" style="display: flex;" id="ticketsBtn">
+						<div style="display: flex;" id="ticketLink">
+							<a class="nav-link text-light">Tickets</a>
+						</div>
+					</button>
 				</div>
-				<div style="display: none;" id="loggedInDiv">
-					<a class="nav-link text-dark" href="/smc-webassist/account">Profile</a>
-				</div>
+				
+				<button class="btn p-0 ms-2" style="display: none;" id="profileBtn">
+					<div style="display: none;" id="navUserIcon">
+						<i class="text-light fa-solid fa-user d-flex align-items-center pt-0 m-0 ps-3"></i>
+					</div>
+					<div style="display: none;" id="navAdminIcon">
+						<i class="text-light fa-solid fa-user-tie d-flex align-items-center pt-0 m-0 ps-3"></i>
+					</div>
+					<div style="display: none;" id="loggedInDiv">
+						<a class="nav-link text-light">Profile</a>
+					</div>
+				</button>
+
 				<div style="display: none;" id="loggedOutDiv">
 					<a class="nav-link text-dark" href="/smc-webassist/signin">Log in</a>
 				</div>
@@ -60,12 +79,12 @@
 		<div class="container">
 			<div class="row">
 				<div class="text-center p-0 mt-3 mb-5 h6">
-					<h3>SMC Web-Assistant is an online consultation platform aims to provide a safe place for students to submit their school-related concerns and interest.</h3>
+					<h3>SMC Web-Assistant is an online consultation platform aims to provide a safe place for students to submit their school-related inquiries and concerns.</h3>
 				</div>
 			</div>
 			<p class="mb-5 text-center" style="font-style: italic;"> Simplifying Student Support - Submit Your Concerns, Get Prompt Solutions!</p>
-			<div class="row text-center">
-				<div class="col-sm-3 offset-sm-3 mb-4">
+			<div class="row text-center d-flex justify-content-center">
+				<!-- <div class="col-sm-3 offset-sm-3 mb-4">
 					<div class="card">
 						<div class="card-body rounded-lg p-0">
 							<img class="card-img rounded-0" src="/img/inquire2.png">
@@ -86,13 +105,34 @@
 							</a>
 						</div>
 					</div>
+				</div> -->
+				<div class="card p-0 m-2" style="width: 18rem;">
+					<img src="/img/inquire2.png" class="card-img-top" alt="...">
+					<div class="card-body">
+						<p class="m-4">Want to inquire for school matters? Submit a ticket to the DSA Office</p>
+						<a href="/smc-webassist/category">
+							<button class="btn btn-outline-success rounded-lg mb-4" type="button">Learn More</button>
+						</a>
+					</div>
+				</div>
+				
+				<div class="card p-0 m-2" style="width: 18rem;">
+					<img src="/img/feedback2.png" class="card-img-top" alt="...">
+					<div class="card-body">
+						<p class="m-4">Have a feedback about the school? Get it reviewed by the school</p>
+						<a href="/smc-webassist/feedback">
+							<button class="btn btn-outline-success rounded-lg mb-4" type="button">Learn More</button>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div style="background-color: rgb(250, 251, 253);">
+
 	
 	<!-- <div class="container-fluid pt-5" id="homeBodyContent2"> -->
-		<div class="container-fluid" id="homeBodyContent2">
+		<div class="container" id="homeBodyContent2">
 			<div class="row">
 				<div class="col-sm-6 p-3 text-center">
 					<p class="h1">Our Ticketing System</p>
@@ -100,10 +140,9 @@
 				</div>
 				<div class="col-sm-6">
 					<p class="p-3 pt-5">
-						With our Ticketing System, handling of inquiries are made easy! Tickets 
-						are treated as support request, each one having a unique identifier
-						to easily manage it. Tickets that are submitted are organized in our
-						database and can be monitored through the <a class="text-success" href="/smc-webassist/account">dashboard</a> page.
+						Handling of inquiries are made easy! Tickets 
+						are treated as support request, each one is reviewed, tracked, and managed by our Operators. 
+						Users can monitor their ticket through the <a class="text-success" href="/smc-webassist/account">dashboard</a> page.
 					</p>
 					<p class="p-3 pt-1">
 						
@@ -112,7 +151,7 @@
 			</div>
 		<!-- </div> -->
 		
-
+	
 	</div>
 	<div class="container">
 		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" style="font-size: 13px;">
@@ -125,6 +164,8 @@
 		</footer>
 	</div>
 	<br>
+
+	<script src="https://kit.fontawesome.com/67f996be23.js" crossorigin="anonymous"></script>
 	<script src="/js/script.js"></script>
 	<script src="/bootstrap/bootstrap-5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>

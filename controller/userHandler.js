@@ -100,7 +100,8 @@ user.post('/login', async (req, res) => {
 
 user.post('/register', async (req, res) => {
     var statusCode
-    const {userName, userStudId, userPass, userLevel} = req.body;
+    var {userName, userStudId, userPass, userLevel} = req.body;
+    userStudId="xxxx-xxx-xxx"
     if (userLevel==4){
         const user = await checkDuplicateUser(userName, userStudId, userPass, userLevel);
         if (user!=1) {

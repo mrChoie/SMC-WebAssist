@@ -13,7 +13,7 @@
 
 	<nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
 		<div class="container-fluid">
-		<a class="navbar-brand ps-3" href="/smc-webassist/home">SMC-Web Assist</a>
+		<a class="navbar-brand ps-3" href="/smc-webassist/home">SMC Web Assist</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -36,16 +36,29 @@
 				</li>
 			</ul>
 			<form class="d-flex">
-				<div style="display: none;" id="adminBtn">
-					<a class="nav-link text-dark" aria-current="page" href="/smc-webassist/admin/view-tickets">Review Tickets</a>
+				<div id="adminBtn" style="display: none;">
+					<button class="btn p-0" style="display: flex;" id="feedbackBtn">
+						<div style="display: flex;" id="feedbackLink">
+							<a class="nav-link text-light">Feedbacks</a>
+						</div>
+					</button>
+					<button class="btn p-0 ms-2" style="display: flex;" id="ticketsBtn">
+						<div style="display: flex;" id="ticketLink">
+							<a class="nav-link text-light">Tickets</a>
+						</div>
+					</button>
 				</div>
-				<div style="display: none;" id="loggedInDiv">
-					<a class="nav-link text-dark" href="/smc-webassist/account">Profile</a>
-				</div>
-				
-				<div style="display: none;" id="loggedOutDiv">
-					<a class="nav-link text-dark" href="/smc-webassist/signin">Sign in</a>
-				</div>
+				<button class="btn p-0 ms-2" style="display: flex;" id="profileBtn">
+					<div style="display: none;" id="navUserIcon">
+						<i class="text-light fa-solid fa-user d-flex align-items-center pt-0 m-0 ps-3"></i>
+					</div>
+					<div style="display: none;" id="navAdminIcon">
+						<i class="text-light fa-solid fa-user-tie d-flex align-items-center pt-0 m-0 ps-3"></i>
+					</div>
+					<div style="display: flex;" id="loggedInDiv">
+						<a class="nav-link text-light">Profile</a>
+					</div>
+				</button>
 			</form>
 		</div>
 		</div>
@@ -61,17 +74,17 @@
 					<li>Manage Ticket</li>
 				</ul>
 			</div>
-			<div class="col-sm-7 p-2 adminNoticeCol">
+			<div class="col-sm-7 p-2 pt-0 pb-0 adminNoticeCol">
 				<i>Notice Board</i>
 				<div class="container p-2 border rounded border-warning text-center d-flex flex-column" id="earlyAccessNotice">
-					<h5 class="m-0">Notice!</h5>
-					<p class="m-0">
+					<h5 class="m-0">Notice Example!</h5>
+					<!-- <p class="m-0">
 						This is an Early Access of the SMC Web-Assist App. 
 						Avoid using personal information. 
 						Please report any bugs or issues to the developers.  </p>
 						<p class="m-0 p-0 d-flex justify-content-center">
 							<button class="btn border-warning mt-1 mb-1" id="reportLink">Report Issue</button>
-						</p>
+						</p> -->
 					</div>
 				<!-- <div class="btn border-warning m-2 d-flex flex-column" id="earlyAccessNotice">
 					<h5 class="card-title">Notice!</h5>
@@ -106,7 +119,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="row" style="background-color: rgba(255, 0, 0, 0.198);">
+		<div class="row text-center" style="background-color: rgba(255, 0, 0, 0.198);">
 			<i style="color:darkred;">Only authorized users can access this page</i>
 		</div>
 		<div class="row p-0 pt-2 pb-2 mt-1 border row1Category">
@@ -180,6 +193,7 @@
 		</footer>
 	</div>
 	<br>
+	<script src="https://kit.fontawesome.com/67f996be23.js" crossorigin="anonymous"></script>
 	<script src="/js/adminTicket.js"></script>
 	<script src="/js/script.js"></script>
 	<script src="/bootstrap/bootstrap-5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>

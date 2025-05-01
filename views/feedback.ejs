@@ -19,7 +19,7 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-6 offset-sm-3 mt-4">
-								<button class="btn btn-outline-success ps-5 pe-5" type="button" id="successBtn" onclick="clearFields()">Done</button>
+								<button class="btn btn-outline-success ps-5 pe-5" type="button" id="successBtn">Done</button>
 							</div>
 						</div>
 					</div>
@@ -28,7 +28,7 @@
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
 		<div class="container-fluid">
-		<a class="navbar-brand ps-3" href="/smc-webassist/home">SMC-Web Assist</a>
+		<a class="navbar-brand ps-3" href="/smc-webassist/home">SMC Web Assist</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -51,12 +51,30 @@
 				</li>
 			</ul>
 			<form class="d-flex">
-				<div style="display: none;" id="adminBtn">
-					<a class="nav-link text-dark" aria-current="page" href="/smc-webassist/admin/view-tickets">Review Tickets</a>
+				<div id="adminBtn" style="display: none;">
+					<button class="btn p-0" style="display: flex;" id="feedbackBtn">
+						<div style="display: flex;" id="feedbackLink">
+							<a class="nav-link text-light">Feedbacks</a>
+						</div>
+					</button>
+					<button class="btn p-0 ms-2" style="display: flex;" id="ticketsBtn">
+						<div style="display: flex;" id="ticketLink">
+							<a class="nav-link text-light">Tickets</a>
+						</div>
+					</button>
 				</div>
-				<div style="display: none;" id="loggedInDiv">
-					<a class="nav-link text-dark" href="/smc-webassist/account">Profile</a>
-				</div>
+				
+				<button class="btn p-0 ms-2" style="display: none;" id="profileBtn">
+					<div style="display: none;" id="navUserIcon">
+						<i class="text-light fa-solid fa-user d-flex align-items-center pt-0 m-0 ps-3"></i>
+					</div>
+					<div style="display: none;" id="navAdminIcon">
+						<i class="text-light fa-solid fa-user-tie d-flex align-items-center pt-0 m-0 ps-3"></i>
+					</div>
+					<div style="display: none;" id="loggedInDiv">
+						<a class="nav-link text-light">Profile</a>
+					</div>
+				</button>
 				
 				<div style="display: none;" id="loggedOutDiv">
 					<a class="nav-link text-dark" href="/smc-webassist/signin">Log in</a>
@@ -83,7 +101,7 @@
 					but it is not guaranteed that it will be implemented.
 				</div>
 			</div> -->
-			<div class="container">
+			<!-- <div class="container">
 				<div class="btn border-warning mt-2 mb-1" id="earlyAccessNotice">
 					<div class="card-body">
 						<h5 class="card-title">Notice!</h5>
@@ -94,12 +112,14 @@
 					</div>
 				</div>
 			</div>
-			<hr style="position: relative; z-index: -1;">
+			<hr style="position: relative; z-index: -1;"> -->
 			
 			
 			
 			<h3 class="text-center mt-5">Send a Feedback to SMC</h3>
-			<h4 class="text-center mb-5">Help us improve by describing your feedback below</h4>
+			<p class="text-center mb-5">
+				<i>Help us improve by describing your feedback below</i>
+			</p>
 			<form class="needs-validation" novalidate style="font-size: 16px;">
 
 				
@@ -127,7 +147,7 @@
 				</div>
 				<div class="row mt-3 text-center">
 					<div class="col pt-4">
-						<button class="btn btn-success ps-5 pe-5" id="feedbackBtn" type="submit">Submit Feedback</button>
+						<button class="btn btn-success ps-5 pe-5" id="submitBtn" type="submit">Submit Feedback</button>
 						<button class="btn btn-outline-danger text-center" type="reset" style="float: right;"><i class="fa-solid fa-trash"></i></button>
 					</div>
 				</div>

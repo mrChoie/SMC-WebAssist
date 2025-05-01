@@ -12,7 +12,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
 		<div class="container-fluid">
-		<a class="navbar-brand ps-3" href="/smc-webassist/home">SMC-Web Assist</a>
+		<a class="navbar-brand ps-3" href="/smc-webassist/home">SMC Web Assist</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -35,12 +35,30 @@
 				</li>
 			</ul>
 			<form class="d-flex">
-				<div style="display: none;" id="adminBtn">
-					<a class="nav-link text-dark" aria-current="page" href="/smc-webassist/admin/view-tickets">Review Tickets</a>
+				<div id="adminBtn" style="display: none;">
+					<button class="btn p-0" style="display: flex;" id="feedbackBtn">
+						<div style="display: flex;" id="feedbackLink">
+							<a class="nav-link text-light">Feedbacks</a>
+						</div>
+					</button>
+					<button class="btn p-0 ms-2" style="display: flex;" id="ticketsBtn">
+						<div style="display: flex;" id="ticketLink">
+							<a class="nav-link text-light">Tickets</a>
+						</div>
+					</button>
 				</div>
-				<div style="display: none;" id="loggedInDiv">
-					<a class="nav-link text-dark" href="/smc-webassist/account">Profile</a>
-				</div>
+				
+				<button class="btn p-0 ms-2" style="display: none;" id="profileBtn">
+					<div style="display: none;" id="navUserIcon">
+						<i class="text-light fa-solid fa-user d-flex align-items-center pt-0 m-0 ps-3"></i>
+					</div>
+					<div style="display: none;" id="navAdminIcon">
+						<i class="text-light fa-solid fa-user-tie d-flex align-items-center pt-0 m-0 ps-3"></i>
+					</div>
+					<div style="display: none;" id="loggedInDiv">
+						<a class="nav-link text-light">Profile</a>
+					</div>
+				</button>
 				
 				<div style="display: none;" id="loggedOutDiv">
 					<a class="nav-link text-dark" href="/smc-webassist/signin">Log in</a>
@@ -54,14 +72,76 @@
 	</nav>
 	
 	
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-sm-6 col-offset-6 mt-5 mb-5">
+				<h2 class="text-center">SMC Web Assist</h2>
+				<p>SMC Web Assist is an online consultation platform with the goal of providing
+					 a secure and safe place for the students of Southern Mindanao Colleges (SMC) 
+					 to submit and express their school related inquiries and concerns.</p>
+				<p>This web application is developed by the Seniors of the BSCPE Department of SMC. 
+					In compliance with their requirements and completion in Practical Research field subject.</p>
+			</div>
+		</div>
+		
+		  
+		  <h2 style="text-align:center">Our Team</h2>
+		  <div class="row">
+			<div class="col">
+				<div class="card">
+					<img src="/img/drazille.jpg" alt="toledo" style="width:100%">
+					<div class="container pt-3">
+						<h2>Drazille Toledo</h2>
+						<p class="title">Lead Developer</p>
+						<p>drazilletoledo@gmail.com</p>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card">
+				<img src="/img/ates.jpg" alt="ates" style="width:100%">
+					<div class="container pt-3">
+						<h2>Earl Jane Ates</h2>
+						<p class="title">Documentary</p>
+						<p>janearl.ates@gmail.com</p>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card">
+				<img src="/img/laveliah.jpg" alt="maglangit" style="width:100%">
+					<div class="container pt-3">
+						<h2>Laveliah Maglangit</h2>
+						<p class="title">Documentary</p>
+						<p>lavillafukushima@gmail.com</p>
+					</div>
+				</div>
+			</div>
+		  </div>
+		  <div class="row mt-4 mb-5 d-flex justify-content-center">
+			<div class="col-sm-4">
+				<div class="card">
+				<img src="/img/jade.jpg" alt="maribong" style="width:100%">
+					<div class="container pt-3">
+						<h2>Christian Maribong</h2>
+						<p class="title">Senior Developer</p>
+						<p>christianjademaribong@gmail.com</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="card">
+				<img src="/img/aish.jpg" alt="pagayao" style="width:100%">
+					<div class="container pt-3">
+						<h2>Aishah Pagayao</h2>
+						<p class="title">Senior Developer</p>
+						<p>aishahpagayao@gmail.com</p>
+					</div>
+				</div>
+			</div>
+		  </div>
+	</div>
 	
-	<div class="container-fluid pb-5" id="aboutBodyContent1">
-		Content 1
-	</div>
-
-	<div class="container-fluid pt-5" id="aboutBodyContent2">
-		Content 2
-	</div>
 	<div class="container">
 		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
 			<p class="col-md-4 mb-0 text-dark">&copy; 2025 BSCPE SENIORS INC.</p>

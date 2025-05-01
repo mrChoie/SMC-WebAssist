@@ -1,7 +1,7 @@
 const feedbackTitle = document.getElementById("feedbackTitle")
 const feedbackDesc = document.getElementById("feedbackDesc")
 const feedbackFile = document.getElementById("feedbackFile")
-const feedbackBtn = document.getElementById("feedbackBtn")
+const submitBtn = document.getElementById("submitBtn")
 const noticePar = document.getElementById("noticeParent")
 const succBtn = document.getElementById("successBtn")
 const blurDiv2 = document.getElementById("feedbackContent1")
@@ -9,6 +9,11 @@ const blurDiv2 = document.getElementById("feedbackContent1")
 function clearFields(){
     location.reload();
 }
+
+succBtn.addEventListener("click", function(event) {
+    event.preventDefault()
+    window.location.href = "/smc-webassist/home";
+})
 
 function submitFeedback() {
     const title = feedbackTitle.value;

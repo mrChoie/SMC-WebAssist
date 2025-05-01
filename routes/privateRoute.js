@@ -77,6 +77,17 @@ privateRoute.get("/admin/view-tickets", async (req, res) => {
     console.log("[Router-Logger]::",getTime(),">> admin tickets page loaded by client:",client)
     res.render('admintickets.ejs')
 })
+privateRoute.get("/admin/view-feedback", async (req, res) => {
+    // console.log("view feedback page")
+    const clientCookies = req.headers.cookie
+    const cookieObject = Object.fromEntries(
+        clientCookies.split('; ').map(cookie => cookie.split('='))
+    );
+
+    const client = cookieObject.user
+    console.log("[Router-Logger]::",getTime(),">> view feedback page loaded by client:",client)
+    res.render('adminfeedback.ejs')
+})
 privateRoute.get("/view-ticket/ticket", async (req, res) =>{
     const clientCookies = req.headers.cookie
     const cookieObject = Object.fromEntries(

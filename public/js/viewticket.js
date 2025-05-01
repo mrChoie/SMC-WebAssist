@@ -7,6 +7,7 @@ const resolvedNotice = document.getElementById("resolvedNotice")
 const archivedBtn = document.getElementById("archivedBtn")
 const resolvedBtn = document.getElementById("resolvedBtn")
 const submitLink = document.getElementById("submitLink")
+const tktOptionList = document.getElementById("tktOptionList")
 
 
 const ticketContainer = document.getElementById("viewTicketContainer")
@@ -61,11 +62,13 @@ window.onload; {
         return res.json(); // Parse JSON response
     })
     .then(data => {
-        // console.log(data)
+        console.log(data)
         // window.location.href = "/smc-webassist/view-ticket/ticket/"+data.ticket.tktID;
         // history.replaceState({}, '', "/smc-webassist/view-ticket/ticket/"+data.ticket.tktID);
         if (data.lvl == '1') {
             archivedBtn.setAttribute('disabled','1');
+        } else if (data.lvl == '4') {
+            appendAdminOptions();
         }
 
         if (data.ticket.tktStatus=='2') {     // ticket is archived
@@ -180,6 +183,26 @@ function updateTicket(tktStatus){
         console.log(err);
         // responseDiv.textContent = "Error fetching user.";
     });
+}
+
+function appendAdminOptions() {
+    var li = document.createElement("li");
+    var btn = document.createElement("button");
+    btn.classList.add("btn","w-100","text-end","rounded-0","openBtn");
+    btn.textContent = "Open Ticket";
+    tktOptionList.appendChild(li)
+    li.appendChild(btn);
+    // console.log("appended")
+    addEvent(btn)
+    
+}
+
+function addEvent(btn){
+    btn.addEventListener("click", function(event){
+        console.log("btn clicked");
+        updateTicket('1');
+    })
+    // console.log("added event")
 }
 
 function displayTicket(ticket) {

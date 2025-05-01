@@ -6,8 +6,8 @@ cd C:\Users\Ellizar\OneDrive\Documents\Drazille\SMC-WebAssist\SMC-WebAssist
 
 start "nodejs" npm start
 
-pktriot http 8080
+start notify.txt
 
-@REM start "ssh" ssh.bat
+pktriot http 8080
 
 pause

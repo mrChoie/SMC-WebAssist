@@ -1,5 +1,5 @@
 const nameInput = document.getElementById("userName")
-const idInput = document.getElementById("userStudId")
+// const idInput = document.getElementById("userStudId")
 const passInput = document.getElementById("userPass")
 const responseDiv = document.getElementById("responseUserIsExist")
 // const passConfirmInput = document.getElementById("passConfirm")
@@ -23,13 +23,13 @@ function openNotice(){
     noticePar.style.display="flex"
     createAccBtn.setAttribute('disabled','1');
     nameInput.setAttribute('disabled','1');
-    idInput.setAttribute('disabled','1');
+    // idInput.setAttribute('disabled','1');
     passInput.setAttribute('disabled','1');
 }
 
 function submitCreateAccReq(){
     const userName = nameInput.value
-    const userStudId = idInput.value
+    const userStudId = "xxxx-xxx-xxx" //idInput.value
     const userPass = passInput.value
     const userLevel = getSignUpLevel()
     fetch ("/smc-webassist/register", {
@@ -54,7 +54,7 @@ function submitCreateAccReq(){
             noticePar.style.display="flex"
             createAccBtn.setAttribute('disabled','1');
             nameInput.setAttribute('disabled','1');
-            idInput.setAttribute('disabled','1');
+            // idInput.setAttribute('disabled','1');
             passInput.setAttribute('disabled','1');
             // loadsignin()
             // window.location.href = "/smc-webassist/signin";
