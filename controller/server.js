@@ -10,7 +10,7 @@ import privateRoute from "../routes/privateRoute.js";
 import db from './ticketHandler.js';
 import msg from './messageHandler.js';
 
-// startUp(true);
+startUp(true);
 
 const app = express();
 // app.engine("html", ejs.renderFile);
@@ -53,75 +53,75 @@ app.use('/smc-webassist', feedb);
 
 
 
-// function startUp(status){
-//     if (status) {
-//         // console.log("GREEN")
-//         fetch ('https://discord.com/api/webhooks/1363893343205200063/pPzBcFSyv-rHfrma3p4y4mF8iWpPVeMh-e03x9Gi071aVSD2wm5CKDoSE97AugyGV2ih', {
-//             method: "POST",	
-//             credentials: "include",
-//             headers: {
-//             "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify({
-//                 "content": null,
-//                 "embeds": [
-//                     {
-//                     "title": "<:check:1363899014017187884> Website has started",
-//                     "description": "**Visit the site here: https://solitary-sunset-19088.pktriot.net/smc-webassist/home**",
-//                     "color": 65280
-//                     }
-//                 ],
-//                 "attachments": []
-//              })
-//         })
-//         .then(res => {
-//             if (!res.ok) {
-//                 throw new Error(`HTTP error! status: ${res.status}`);
-//             }
-//             return res.json(); // Parse JSON response
-//         })
-//         .then(data => {
-//             //
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             // responseDiv.textContent = "Error fetching user.";
-//         });
-//     } else {
-//         // console.log("RED")
-//         fetch ('https://discord.com/api/webhooks/1363893343205200063/pPzBcFSyv-rHfrma3p4y4mF8iWpPVeMh-e03x9Gi071aVSD2wm5CKDoSE97AugyGV2ih', {
-//             method: "POST",	
-//             credentials: "include",
-//             headers: {
-//             "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify({
-//                 "content": null,
-//                 "embeds": [
-//                     {
-//                     "title": "<:crossSmc:1363901997782139115> Website has stopped",
-//                     "description": "*untill further notice*",
-//                     "color": 16711680
-//                     }
-//                 ],
-//                 "attachments": []
-//              })
-//         })
-//         .then(res => {
-//             if (!res.ok) {
-//                 throw new Error(`HTTP error! status: ${res.status}`);
-//             }
-//             return res.json(); // Parse JSON response
-//         })
-//         .then(data => {
-//             //
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             // responseDiv.textContent = "Error fetching user.";
-//         });
-//     }
-// }
+function startUp(status){
+    if (status) {
+        // console.log("GREEN")
+        fetch ('https://discord.com/api/webhooks/1363893343205200063/pPzBcFSyv-rHfrma3p4y4mF8iWpPVeMh-e03x9Gi071aVSD2wm5CKDoSE97AugyGV2ih', {
+            method: "POST",	
+            credentials: "include",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "content": null,
+                "embeds": [
+                    {
+                    "title": "<:check:1363899014017187884> Website has started",
+                    "description": "**Visit the site here: https://solitary-sunset-19088.pktriot.net/smc-webassist/home**",
+                    "color": 65280
+                    }
+                ],
+                "attachments": []
+             })
+        })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json(); // Parse JSON response
+        })
+        .then(data => {
+            //
+        })
+        .catch(err => {
+            console.log(err);
+            // responseDiv.textContent = "Error fetching user.";
+        });
+    } else {
+        // console.log("RED")
+        fetch ('https://discord.com/api/webhooks/1363893343205200063/pPzBcFSyv-rHfrma3p4y4mF8iWpPVeMh-e03x9Gi071aVSD2wm5CKDoSE97AugyGV2ih', {
+            method: "POST",	
+            credentials: "include",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "content": null,
+                "embeds": [
+                    {
+                    "title": "<:crossSmc:1363901997782139115> Website has stopped",
+                    "description": "*untill further notice*",
+                    "color": 16711680
+                    }
+                ],
+                "attachments": []
+             })
+        })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json(); // Parse JSON response
+        })
+        .then(data => {
+            //
+        })
+        .catch(err => {
+            console.log(err);
+            // responseDiv.textContent = "Error fetching user.";
+        });
+    }
+}
 
 process.on('SIGINT', () => {
     console.log('SIGINT signal received: closing gracefully');
