@@ -15,6 +15,39 @@
 	background-color: #e76800;
 }
 
+.feedListItem {
+	border-top: 1px solid rgb(184, 184, 184);
+	
+}
+
+.feedPrevDesc, .feedDesc {
+	cursor: pointer;
+}
+
+
+
+.feedDate {
+	position: relative;
+	z-index: 3;
+}
+
+#feedColumn {
+	border-radius: 5px 5px 0px 0px;
+	background-color: rgb(99, 151, 40);
+	border-top: 2px solid rgb(76, 124, 22);
+	border-right: 2px solid rgb(76, 124, 22);
+	border-left: 2px solid rgb(76, 124, 22);
+}
+#feedColumnFoot {
+	background-color: rgb(99, 151, 40);
+	border-radius: 0px 0px 5px 5px;
+	border-bottom: 2px solid rgb(76, 124, 22);
+}
+
+#feedList {
+	border: 2px solid rgb(76, 124, 22);
+}
+
 .cardHome {
 	border-radius: 8px;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);

@@ -1,11 +1,22 @@
 import express from 'express'
-import { submitFeedback } from '../model/database.js'
+import { submitFeedback, getFeedbacks } from '../model/database.js'
 import { getTime } from '../utils/getTime.js'
 const feedb = express()
 feedb.use(express.json());
 feedb.use(express.urlencoded({ extended: false }));
 
-
+feedb.get('/', async (req, res) => {
+    // const clientCookies = req.headers.cookie
+    // const cookieObject = Object.fromEntries(
+    //     clientCookies.split('; ').map(cookie => cookie.split('='))
+    // )
+    // const uid = cookieObject.uid
+    const feedbacks = await getFeedbacks()
+    const numOfFeeds = feedbacks.length
+    res.json({feedbacks, numOfFeeds})
+    // console.log("[Server-Logger]::",getTime(),">> client with a username [",client,"] requested feedback")
+    // res.json({feedback, message: "Feedback has been retrieved!", statusCode:'31' });
+})
 
 feedb.post('/submit/feedback', async (req, res) => {
     // console.log("Route hit: /submit/feedback");

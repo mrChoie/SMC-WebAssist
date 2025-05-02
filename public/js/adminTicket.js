@@ -29,7 +29,7 @@ window.onload; {
     // toggleTickets('resolved', resolvedBtn.checked);
     // toggleTickets('archived', archivedBtn.checked);
     // const category = 0;
-
+    document.getElementById("ticketsBtn").style.display="none";
     fetch ('/getTickets', {
         method: "POST",	
         credentials: "include",

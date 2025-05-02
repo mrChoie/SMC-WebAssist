@@ -151,6 +151,11 @@ export async function submitFeedback(feedbackUID, feedbackTitle, feedbackDesc, f
     return
 }
 
+export async function getFeedbacks() {
+    const [rows] = await connection.query("SELECT *, DATE_FORMAT(dateCreated, '%M %e') AS formatted_time FROM feedbacks")
+    return rows
+}
+
 export async function sendMessage(ticketId, sender, content) {
     const [result] = await connection.query(`
         INSERT INTO messages (ticket_id, sender_id, content)

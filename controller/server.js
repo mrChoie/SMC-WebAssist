@@ -41,6 +41,7 @@ app.get('/checkCookie', async (req, res) => {
 app.use('/getTickets',auth, db);
 app.use('/getATicket',auth, db);
 app.use('/getInfo',auth, user);
+app.use('/getFeeds',auth, feedb);
 app.use('/msg', msg);
 app.use('/smc-webassist', publicRoute);
 // app.use(auth)
