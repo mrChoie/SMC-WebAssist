@@ -55,11 +55,15 @@
 					<div style="display: none;" id="navAdminIcon">
 						<i class="text-light fa-solid fa-user-tie d-flex align-items-center pt-0 m-0 ps-3"></i>
 					</div>
-					<div style="display: none;" id="loggedInDiv">
+					<div style="display: flex;">
 						<a class="nav-link text-light">Profile</a>
 					</div>
 				</button>
-				
+				<div style="display: flex;" id="loggedInDiv">
+					<button class="btn btn-danger ms-2" id="logoutBtn">
+						<i class="fa-solid fa-right-from-bracket ms-1 me-1"></i>
+					</button>
+				</div>
 				<div style="display: none;" id="loggedOutDiv">
 					<a class="nav-link text-dark" href="/smc-webassist/signin">Log in</a>
 				</div>

@@ -22,7 +22,7 @@ feedb.post('/submit/feedback', async (req, res) => {
     // console.log("Route hit: /submit/feedback");
     // console.log("Request body:", req.body);
     // console.log("Request cookies:", req.headers.cookie);
-    
+    // console.log(req.file)
     const {title, desc, file} = req.body
     const clientCookies = req.headers.cookie
     // console.log(clientCookies, title, desc, file)

@@ -6,6 +6,7 @@ const profileDdContent = document.getElementById("profileDdContent")
 const adminIcon = document.getElementById("navAdminIcon")
 const userIcon = document.getElementById("navUserIcon")
 const adminBtn = document.getElementById("adminBtn")
+const logoutBtn = document.getElementById("logoutBtn")
 // import responseDiv from "document.getElementById("response")"
 // import signBtn from "document.getElementById("signBtn")"
 // import ejs from 'ejs'
@@ -45,7 +46,7 @@ window.onload; {
             userIcon.style.display="flex";
             }
         } else {
-            
+            loggedInDiv.style.display = "none";
             signUpDiv.style.display = "flex";
             loggedOutDiv.style.display = "flex";
         }
@@ -79,6 +80,17 @@ feedbackBtn.addEventListener("click", function (event){
     event.preventDefault(); // Prevent form submission if needed
     // console.log("Admin button clicked")
     window.location.href = "/smc-webassist/admin/view-feedback"
+})
+
+logoutBtn.addEventListener("click", function(event) {
+    event.preventDefault()
+
+    if (confirm("Confirm logout?")) {
+        window.location.href = "/smc-webassist/logout";
+    } else {
+
+    }
+    // window.location.href = "/smc-webassist/logout";
 })
 // function testFunct(){
 //     document.getElementById("signBtn").addEventListener("click", function(){

@@ -8,8 +8,6 @@ const ticketId = document.getElementById("ticketId")
 const ticketContent = document.getElementById("ticketContent")
 const ticketDate = document.getElementById("ticketDateCreated")
 
-const logoutBtn = document.getElementById("logoutBtn")
-
 const testDiv = document.getElementById("testDiv")
 
 window.onload; {
@@ -44,11 +42,6 @@ window.onload; {
         // responseDiv.textContent = "Error fetching user.";
     });
 }
-
-logoutBtn.addEventListener("click", function(event) {
-    event.preventDefault()
-    window.location.href = "/smc-webassist/logout";
-})
 
 // const ticketDiv
 // const ticketTitle

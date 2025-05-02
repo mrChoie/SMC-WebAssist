@@ -124,26 +124,20 @@ app.use('/smc-webassist', feedb);
 // }
 
 process.on('SIGINT', () => {
-    startUp(false);
-    // Perform cleanup actions like closing database connections
-    process.exit(0); // Exit gracefully
+    console.log('SIGINT signal received: closing gracefully');
+    // Perform cleanup actions like closing database connections, etc.
+    process.exit(0);
   });
-
-process.on('exit', (code) => {
-    startUp(false);
-    // Log the exit event or perform final actions
+  
+  process.on('SIGTERM', () => {
+    console.log('SIGTERM signal received: closing gracefully');
+    // Perform cleanup actions
+    process.exit(0);
   });
-// app.post('/smc-webassist/auth/register', async (req, res) => {
-//     console.log("Registering user");
-//     const { userName, userStudId, userPass } = req.body;
-//     // const [user] = (userName, userStudId, userPass);
-//     console.log({
-//         userName,
-//         userStudId,
-//         userPass
-//     });
-//     res.status(201).send(req.body);
-// });
+  
+  process.on('exit', (code) => {
+    console.log(`About to exit with code: ${code}`);
+  });
 
 // Writing error handlers
 app.use((err, req, res, next) => {
