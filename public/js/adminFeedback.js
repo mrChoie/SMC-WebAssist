@@ -44,7 +44,7 @@ displayFeeds = (feeds) => {
         var pDesc = document.createElement("p");
         var pDate = document.createElement("p");
 
-        li.classList.add("bg-light","feedListItem")
+        li.classList.add("feedListItem")
         rowDiv.classList.add("row","p-1");
         pDivID.classList.add("col-sm-1","text-sm-center")
         pDivTitle.classList.add("col-sm-2")
@@ -54,7 +54,7 @@ displayFeeds = (feeds) => {
         pTitle.classList.add("m-0","fw-bold")
         pPrevDesc.classList.add("m-0","feedPrevDesc","d-flex","closed")
         pDesc.classList.add("m-0","feedDesc","d-none")
-        pDate.classList.add("m-0","feedDate","bg-light")
+        pDate.classList.add("m-0","feedDate")
         
         pID.textContent = feeds.feedbacks[x].feedID;
         pTitle.textContent = feeds.feedbacks[x].feedbackTitle;
