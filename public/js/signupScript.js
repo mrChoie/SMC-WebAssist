@@ -11,7 +11,7 @@ const proceedBtn = document.getElementById("proceedBtn")
 const createAccBtn = document.getElementById("createAccBtn")
 var showPassIndicator=false;
 
-nameInput.addEventListener("click", function (event) {
+nameInput.addEventListener("keydown", function (event) {
     nameInput.classList.remove("border-danger")
     responseDiv.textContent = "";
     
