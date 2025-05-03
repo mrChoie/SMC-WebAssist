@@ -2,6 +2,7 @@ const nameInput = document.getElementById("userName")
 // const idInput = document.getElementById("userStudId")
 const passInput = document.getElementById("userPass")
 const responseDiv = document.getElementById("responseUserIsExist")
+const responsePassDiv = document.getElementById("passResponse")
 // const passConfirmInput = document.getElementById("passConfirm")
 const eyeIcon = document.getElementById("showPassIcon")
 const showPassIconDiv = document.getElementById("showPassIconDiv")
@@ -10,9 +11,12 @@ const proceedBtn = document.getElementById("proceedBtn")
 const createAccBtn = document.getElementById("createAccBtn")
 var showPassIndicator=false;
 
-nameInput.addEventListener("keydown", function (event) {
+nameInput.addEventListener("click", function (event) {
     nameInput.classList.remove("border-danger")
     responseDiv.textContent = "";
+    
+
+    // nameInput.checkValidity()
 })
 
 proceedBtn.addEventListener("click", function (event) {
@@ -143,6 +147,14 @@ function showPassText() {
             if (!form.checkValidity()) {
             event.preventDefault()
             event.stopPropagation()
+            if (nameInput.validity.patternMismatch) {
+                nameInput.classList.add("border-danger")
+                responseDiv.textContent = "Please enter a valid username."
+            }
+            if (passInput.validity.patternMismatch) {
+                passInput.classList.add("border-danger")
+                responsePassDiv.textContent = "Special characters not allowed."
+            }
             // console.log("form object value: ",forms)
             } else {
                 event.preventDefault()
@@ -153,3 +165,5 @@ function showPassText() {
         })
     })
 ()
+
+// HA?
