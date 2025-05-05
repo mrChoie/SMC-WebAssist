@@ -105,33 +105,66 @@ export async function getUserByID(userID){
     return rows[0]
 }
 
-export async function checkDuplicateUser(userName, userStudId, userPass, userLevel){
-    // console.log(userName, userStudId, userPass, userLevel)
-    const [result] = await connection.query(`
-        SELECT EXISTS (
-            SELECT 1 
-            FROM users 
-            WHERE username = ?) AS is_exists;
-        `, [userName])
-    // console.log(result)
-    if (!result[0].is_exists) {
-        // console.log("user registered! \n")
-        // console.log("after IF: ",!result[0].is_exists)
-        return await createUser(userName, userStudId, userPass, userLevel);
-    } else {
-        // console.log("user already exist \n")
-        // console.log("after IF: ",!result[0].is_exists)
-    }
-    return result[0].is_exists;
+export async function getUserByEmail(email){
+    const [rows] = await connection.query(`
+        SELECT *
+        FROM users
+        WHERE email = ?
+        `, [email])
+    return rows[0]
 }
 
-export async function createUser(userName, userStudId, userPass, userLevel) {
+export async function verifyIDinDB(userName, userStudId, userEmail, userPass, userLevel, token){
+    var statusCode = '0'
     const [result] = await connection.query(`
-        INSERT INTO users (username, stud_id, password, user_level)
-        VALUES (?, ?, ?, ?)
-        `, [userName, userStudId, userPass, userLevel])
+        SELECT EXISTS (
+            SELECT * 
+            FROM enrolledids 
+            WHERE student_id = ?) AS is_exists;
+        `, [userStudId])
+    console.log(result)
+    if (result[0].is_exists) {
+        console.log("User is a student of SMC")
+        // console.log("after IF: ",!result[0].is_exists)
+        return await checkDuplicateUser(userName, userStudId, userEmail, userPass, userLevel, token);
+    } else {
+        console.log("User is not a student of SMC")
+        // console.log("after IF: ",!result[0].is_exists)
+        statusCode = '1'
+    }
+    return statusCode;
+}
+
+export async function checkDuplicateUser(userName, userStudId, userEmail, userPass, userLevel, token){
+    // console.log(userName, userStudId, userPass, userLevel)
+    var statusCode = '0'
+    const [result] = await connection.query(`
+        SELECT EXISTS (
+            SELECT * 
+            FROM users 
+            WHERE stud_id = ?) AS is_exists;
+        `, [userStudId])
+    // console.log(result)
+    if (!result[0].is_exists) {
+        console.log("User is not duplicated")
+        // console.log("after IF: ",!result[0].is_exists)
+        return await createUser(userName, userStudId, userEmail, userPass, userLevel, token);
+    } else {
+        console.log("User is duplicated")
+        // console.log("after IF: ",!result[0].is_exists)
+        statusCode = '2'
+    }
+    return statusCode;
+}
+
+export async function createUser(userName, userStudId, userEmail, userPass, userLevel, token) {
+    const [result] = await connection.query(`
+        INSERT INTO users (username, stud_id, email, password, user_level, token)
+        VALUES (?, ?, ?, ?, ?, ?)
+        `, [userName, userStudId, userEmail, userPass, userLevel, token])
     const id = result.insertId
-    return getUserByID(id)
+    // return getUserByID(id)
+    return '3'
 }
 
 export async function updateUser(userID, userName, userStudId, userPass) {

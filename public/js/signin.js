@@ -1,9 +1,17 @@
 const responseDivSuccess = document.getElementById("responseSuccess")
-const responseDivInvalidPass = document.getElementById("responseDivInvalidPass")
-const responseDivUserNotExist = document.getElementById("responseUserNotExist")
+const nameNotice = document.getElementById("nameLoginNotice")
+const passNotice = document.getElementById("passLoginNotice")
 const usernameInput = document.getElementById("userName")
 const passwordInput = document.getElementById("userPass")
 const signBtn = document.getElementById("signBtn")
+
+const forgotPassBtn = document.getElementById("forgotPassBtn")
+const forgotPassParentDiv = document.getElementById("forgotPassParentDiv")
+const forgotPassDiv = document.getElementById("forgotPassDiv")
+const closeForgotPassBtn = document.getElementById("closeForgotPassBtn")
+const reqBtn = document.getElementById("reqBtn")
+const forgotPassEmailInput = document.getElementById("forgotPassEmail")
+const forgotPassEmailNotice = document.getElementById("forgotPassEmailNotice")
 
 // signBtn.addEventListener("click", function (event) {
 //     event.stopPropagation();
@@ -12,17 +20,72 @@ const signBtn = document.getElementById("signBtn")
 //     const userPass = passwordInput.value;
 //     login(userName, userPass);
 // });
+forgotPassBtn.addEventListener("click", function (event) {
+    
+    forgotPassParentDiv.style.display = "flex"
+    
+    forgotPassDiv.classList.add("animate")
+    forgotPassDiv.style.display = "flex"
+})
+
+closeForgotPassBtn.addEventListener("click", function (event) {
+    forgotPassParentDiv.style.display = "none"
+    forgotPassEmailInput.value = ""
+    forgotPassEmailNotice.textContent = ""
+})
 
 passwordInput.addEventListener("keydown", function (event) {
     passwordInput.classList.remove("border-danger")
-    responseDivInvalidPass.textContent = "";
+    passNotice.textContent = "";
 })
 usernameInput.addEventListener("keydown", function (event) {
     usernameInput.classList.remove("border-danger")
     
-    responseDivUserNotExist.textContent = "";
-    responseDivInvalidPass.textContent = "";
+    nameNotice.textContent = "";
+    passNotice.textContent = "";
 })
+
+forgotPassEmailInput.addEventListener("keydown", function (event) {
+    forgotPassEmailNotice.style.display = "none"
+    forgotPassEmailNotice.textContent= ""
+})
+
+reqBtn.addEventListener("click", function (event) {
+    event.preventDefault()
+    var email = forgotPassEmailInput.value
+    if (email=="") {
+        forgotPassEmailNotice.style.display = "flex"
+        forgotPassEmailNotice.textContent= "Type your email"
+    } else {
+        sendMail(email)
+    }
+})
+
+function sendMail(email){
+    console.log("sending as requested by ",email)
+    fetch ("/reqResetPassword/email", {
+        method: "POST",	
+        credentials: "include",
+        headers: {
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email })
+    })
+    .then(res => {
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json(); // Parse JSON response
+    })
+    .then(data => {
+        console.log(data)
+    })
+    .catch(err => {
+        console.log(err);
+        // responseDiv.textContent = "Error fetching user.";
+    });
+}
+
 
 function login() {
     const userName = usernameInput.value;
@@ -57,15 +120,24 @@ function login() {
             form.classList.remove('was-validated')
             // form.classList.add('was-validated')
             usernameInput.classList.add("border-danger")
-            responseDivUserNotExist.textContent = data.message; // Display the result`
+            nameNotice.textContent = data.message; // Display the result`
             
-        } else {
+        } else if (data.statusCode == '02') {
             var form = document.querySelector('.needs-validation')
             
             form.classList.remove('was-validated')
             // form.classList.add('was-validated')
             passwordInput.classList.add("border-danger")
-            responseDivInvalidPass.textContent = data.message; // Display the result
+            passNotice.textContent = data.message; // Display the result
+        } else {
+            var form = document.querySelector('.needs-validation')
+            
+            form.classList.remove('was-validated')
+            // form.classList.add('was-validated')
+            usernameInput.classList.add("border-danger")
+            
+            nameNotice.textContent = data.message; // Display the result
+
         }
     })
     .catch(err => {

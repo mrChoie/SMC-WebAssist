@@ -18,9 +18,13 @@ publicRoute.get("/signup", async (req, res) => {
 })
 publicRoute.get("/signin", async (req, res) => {
     console.log("[Router-Logger]::",getTime(),">> sign-in page loaded to client")
-    res.render('signin.ejs', {
-        returnStatement : ""
-    })
+    res.render('signin.ejs')
+    //     returnStatement : ""
+    // })
+})
+publicRoute.get("/reset-password", async (req, res) =>{
+    console.log("[Router-Logger]::",getTime(),">> Reset password page loaded to client")
+    res.render('reset.ejs')
 })
 // router.get("/feedback", async (req, res) => {
 //     res.render('feedback.ejs')

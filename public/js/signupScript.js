@@ -1,8 +1,11 @@
 const nameInput = document.getElementById("userName")
-// const idInput = document.getElementById("userStudId")
+const idInput = document.getElementById("userStudId")
+const emailInput = document.getElementById("userEmail")
 const passInput = document.getElementById("userPass")
-const responseDiv = document.getElementById("responseUserIsExist")
-const responsePassDiv = document.getElementById("passResponse")
+const nameNotice = document.getElementById("nameNotice")
+const studIDNotice = document.getElementById("studIDNotice")
+const passNotice = document.getElementById("passNotice")
+const emailNotice = document.getElementById("emailNotice")
 // const passConfirmInput = document.getElementById("passConfirm")
 const eyeIcon = document.getElementById("showPassIcon")
 const showPassIconDiv = document.getElementById("showPassIconDiv")
@@ -13,10 +16,19 @@ var showPassIndicator=false;
 
 nameInput.addEventListener("keydown", function (event) {
     nameInput.classList.remove("border-danger")
-    responseDiv.textContent = "";
-    
-
-    // nameInput.checkValidity()
+    nameNotice.textContent = "";
+})
+idInput.addEventListener("keydown", function (event) {
+    idInput.classList.remove("border-danger")
+    studIDNotice.textContent = "";
+})
+emailInput.addEventListener("keydown", function (event) {
+    emailInput.classList.remove("border-danger")
+    emailNotice.textContent = "";
+})
+passInput.addEventListener("keydown", function (event) {
+    passInput.classList.remove("border-danger")
+    passNotice.textContent = "";
 })
 
 proceedBtn.addEventListener("click", function (event) {
@@ -27,13 +39,24 @@ function openNotice(){
     noticePar.style.display="flex"
     createAccBtn.setAttribute('disabled','1');
     nameInput.setAttribute('disabled','1');
-    // idInput.setAttribute('disabled','1');
+    idInput.setAttribute('disabled','1');
+    emailInput.setAttribute('disabled','1');
     passInput.setAttribute('disabled','1');
 }
 
 function submitCreateAccReq(){
+    nameInput.classList.remove("border-danger")
+    nameNotice.textContent = "";
+    idInput.classList.remove("border-danger")
+    studIDNotice.textContent = "";
+    emailInput.classList.remove("border-danger")
+    emailNotice.textContent = "";
+    passInput.classList.remove("border-danger")
+    passNotice.textContent = "";
+
     const userName = nameInput.value
-    const userStudId = "xxxx-xxx-xxx" //idInput.value
+    const userStudId = idInput.value
+    const userEmail = emailInput.value
     const userPass = passInput.value
     const userLevel = getSignUpLevel()
     fetch ("/smc-webassist/register", {
@@ -42,7 +65,7 @@ function submitCreateAccReq(){
         headers: {
         "Content-Type": "application/json"
         },
-        body: JSON.stringify({ userName, userStudId, userPass, userLevel})
+        body: JSON.stringify({ userName, userStudId, userEmail, userPass, userLevel})
     })
     .then(res => {
         if (!res.ok) {
@@ -53,17 +76,26 @@ function submitCreateAccReq(){
     .then(data => {
         // do function
         // console.log(data)
-        if (data.statusCode=='50') {
+        if (data.statusCode=='53') {
             // console.log(data)
-            noticePar.style.display="flex"
-            createAccBtn.setAttribute('disabled','1');
-            nameInput.setAttribute('disabled','1');
+            openNotice()
+            // noticePar.style.display="flex"
+            // createAccBtn.setAttribute('disabled','1');
+            // nameInput.setAttribute('disabled','1');
             // idInput.setAttribute('disabled','1');
-            passInput.setAttribute('disabled','1');
+            // passInput.setAttribute('disabled','1');
             // loadsignin()
             // window.location.href = "/smc-webassist/signin";
             // console.log(data.message, data.statusCode)
-            // responseDiv.textContent = data.message;
+            // nameNotice.textContent = data.message;
+        } else if (data.statusCode=='52') {
+            var form = document.querySelector('.needs-validation')
+            
+            form.classList.remove('was-validated')
+            // form.classList.add('was-validated')
+            nameInput.classList.add("border-danger")
+            nameNotice.textContent = data.message;
+            console.log(form)
         } else {
             // console.log(data)
             // nameInput.checkValidity
@@ -72,17 +104,17 @@ function submitCreateAccReq(){
             
             form.classList.remove('was-validated')
             // form.classList.add('was-validated')
-            nameInput.classList.add("border-danger")
-            responseDiv.textContent = data.message;
+            idInput.classList.add("border-danger")
+            studIDNotice.textContent = data.message;
             console.log(form)
         }
     })
     .catch(err => {
         console.log(err);
-        // responseDiv.textContent = "Error fetching user.";
+        // nameNotice.textContent = "Error fetching user.";
     });
     // .then(res => console.log(res))
-    // .then(data => (responseDiv.textContent = data))  
+    // .then(data => (nameNotice.textContent = data))  
 }
 
 function getSignUpLevel(){
@@ -147,14 +179,24 @@ function showPassText() {
             if (!form.checkValidity()) {
             event.preventDefault()
             event.stopPropagation()
+            form.classList.remove('was-validated')
             if (nameInput.validity.patternMismatch) {
                 nameInput.classList.add("border-danger")
-                responseDiv.textContent = "Please enter a valid username."
+                nameNotice.textContent = "Please enter a valid username."
+            }
+            if (idInput.validity.patternMismatch) {
+                idInput.classList.add("border-danger")
+                studIDNotice.textContent = "Please enter a valid student ID."
+            }
+            if (emailInput.validity.patternMismatch) {
+                idInput.classList.add("border-danger")
+                emailNotice.textContent = "Please enter a valid email."
             }
             if (passInput.validity.patternMismatch) {
                 passInput.classList.add("border-danger")
-                responsePassDiv.textContent = "Special characters not allowed."
+                passNotice.textContent = "Special characters not allowed."
             }
+
             // console.log("form object value: ",forms)
             } else {
                 event.preventDefault()

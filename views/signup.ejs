@@ -40,40 +40,79 @@
 		</div>
 	</div> -->
 	<div>
-		<div class="rounded shadow" id="modalLogin" style="height: 506px;">
+		<div class="rounded shadow" id="modalLogin" style="height: 621px;">
 			<div class="card text-center">
 				<div class="card-body">
 					<img class="pt-4" src="/img/smcLogo.png" style="height: 40%; width: 40%; margin: auto;"><br><br>
 					<h5> SMC WEB-Assistant</h5>
 					<form class="needs-validation" novalidate>
-						<div style="height: 20px; padding: 0px;">
+						<div>
 							<div class="col-sm-3 responseContainer">
-								<div class="text-danger start-50 translate-middle" id="responseUserIsExist">
+								<div class="text-danger" id="nameNotice">
 									
 								</div>
 							</div>
 						</div>
-						<div class="row mt-4">
+						<div>
+							<div class="col-sm-3 responseContainer">
+								<div class="text-danger" id="studIDNotice">
+									
+								</div>
+							</div>
+						</div>
+						<div>
+							<div class="col-sm-3 responseContainer">
+								<div class="text-danger" id="emailNotice">
+									
+								</div>
+							</div>
+						</div>
+						<div>
+							<div class="col-sm-3 responseContainer">
+								<div class="text-danger" id="passNotice">
+									
+								</div>
+							</div>
+						</div>
+						<div class="row">
 							<div class="col-2 ps-5">
 								<i class="fa-solid fa-user-circle pt-2" style="font-size: 1.2em;"></i>
 							</div>
 							<div class="col-9">
-								<input type="text" class="pb-0 form-control rounded-0 
-								border-2 border-start-0 border-top-0 border-end-0" 
-								id="userName" placeholder="Username" name="userName" 
-								required pattern="[a-zA-Z]+" minlength="4" maxlength="20" title="Username must be 4-20 characters long and contain only letters.">
+								<input type="text" class="pb-0 form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" 
+								id="userName" 
+								placeholder="Username" 
+								name="userName" 
+								required pattern="[a-zA-Z. ]+" minlength="4" maxlength="64" title="Name must be 4-64 characters long">
 							</div>
 						</div>
 						
-						<!-- <div class="row pt-4">
+						<div class="row pt-4">
 							<div class="col-2 ps-5 pt-2">
 								<i class="fa-solid fa-hashtag pt-1" style="font-size: 1.2em;"></i>
 							</div>
 							<div class="col-9">
-								<input type="text" class="pb-0 form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="userStudId" placeholder="Student ID" name="userStudId" required>
+								<input type="text" class="pb-0 form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" 
+								id="userStudId" 
+								placeholder="Student ID" 
+								name="userStudId" 
+								required pattern="[0-9]{4}-[0-9]{1,4}-?[0-9]{0,4}" title="Student ID Number">
 							</div>
-						</div> -->
+						</div>
 						
+						<div class="row pt-4">
+							<div class="col-2 ps-5 pt-2">
+								<i class="fa-solid fa-envelope pt-1" style="font-size: 1.1em;"></i>
+							</div>
+							<div class="col-9">
+								<input type="email" class="pb-0 form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" 
+								id="userEmail" 
+								placeholder="Email Address" 
+								name="userEmail" 
+								required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Email Address">
+							</div>
+						</div>
+
 						<div class="row pt-4">
 							
 							<div class="col-2 ps-5">
@@ -84,19 +123,14 @@
 								 id="userPass" 
 								 placeholder="Password" 
 								 onkeyup="showPassIcon()" 
-								 name="userPass" required pattern="[a-zA-Z0-9]+" maxlength="20" title="Password must contain only letters and numbers.">
+								 name="userPass" 
+								 required pattern="[a-zA-Z0-9]+" maxlength="20" title="Password">
 								<div id="showPassIconDiv">
 									<i class="fa-solid fa-eye-slash" id="showPassIcon" onclick="showHidePass()"></i>
 								</div>
 								
 							</div>
-							<div style="height: 20px; padding: 0px;">
-								<div class="col-sm-3 responseContainer">
-									<div class="text-danger" id="passResponse">
-										
-									</div>
-								</div>
-							</div>
+							
 						</div>
 						<!-- <div class="row mt-1">
 							<div class="col-2 ps-5">
@@ -108,7 +142,7 @@
 								<input type="password" class="pb-0 form-control rounded-0 border-2 border-start-0 border-top-0 border-end-0" id="passConfirm" placeholder="Confirm Password" onkeyup="showPassIcon()">
 							</div>
 						</div> -->
-						<div class="row text-center mt-4">
+						<div class="row text-center" style="margin-top: 3rem;">
 							<div class="col-md-6 offset-md-3">
 									<button class="btn btn-outline-success" type="submit" id="createAccBtn">Create Account</button>
 							</div>
