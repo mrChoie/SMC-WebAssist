@@ -28,10 +28,15 @@
 								placeholder="Email" 
 								name="forgotPassEmail" 
 								required>
-								<button class="btn rounded-0 btn-dark w-30" id="reqBtn">Request</button>
+								<button class="btn rounded-0 btn-dark w-30 d-flex" id="reqBtn">
+									<p class="m-0" id="reqBtnP" style="display: flex;">Request</p>
+									<div class="spinner-border spinner-border-sm p-2 ms-4 me-4" role="status" id="reqBtnLoading" style="display: none;">
+										<span class="visually-hidden">Loading...</span>
+									</div>
+								</button>
 							</form>
 						</div>
-						<i class="m-0 text-danger" id="forgotPassEmailNotice" style="display: none;">text</i>
+						<i class="m-0 text-danger ps-3" id="forgotPassEmailNotice" style="display: none;">text</i>
 						
 					</div>
 				</div>
@@ -46,7 +51,7 @@
 		<div class="rounded shadow" id="modalLogin" style=" height: 500px;">
 			<div class="card text-center">
 				<div class="card-body">
-					<img class="pt-4" src="/img/smcLogo.png" style="height: 40%; width: 40%; margin: auto;"><br><br>
+					<img class="pt-4 mb-4" src="/img/smcLogo.png" style="height: 40%; width: 40%; margin: auto;">
 					<h5> SMC WEB-Assistant</h5>
 					<!-- action="/smc-webassist/login" method="POST" class="needs-validation" novalidate-->
 					<form action="/smc-webassist/login" method="POST" class="needs-validation" novalidate>

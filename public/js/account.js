@@ -12,15 +12,15 @@ const testDiv = document.getElementById("testDiv")
 
 window.onload; {
 
-    const category = 0;
+    // const category = 0;
 
-    fetch ('/getInfo', {
-        method: "POST",	
+    fetch ('/getInfo/user', {
+        method: "GET",	
         credentials: "include",
         headers: {
         "Content-Type": "application/json"
         },
-        body: JSON.stringify({ category })
+        // body: JSON.stringify({ category })
     })
     .then(res => {
         if (!res.ok) {
@@ -32,7 +32,7 @@ window.onload; {
         // execute when fetching is successful
         // console.log(data)
         document.getElementById("profileBtn").style.display="none";
-        profileName.textContent=data.user.username
+        profileName.textContent=data.user.student_name
         profileStudId.textContent=data.user.stud_id
         profileDate.textContent="Joined since "+ data.user.formatted_time
         displayTickets(data)

@@ -10,18 +10,34 @@
 
 </head>
 <body>
+	<div class="position-absolute" style="height: 100%; width: 100%; z-index: 9999; display: none;" id="forgotPassParentDiv">
+		<div id="forgotPassDiv" class="container m-0 p-0 top-50 start-50 translate-middle" style="position: absolute; display: none; z-index: 9999;">
+			<div class="text-center border bg-light p-1 m-0 position-absolute top-50 start-50 translate-middle rounded shadow" style="width: 400px;">
+				<div class="container p-3">
+					
+					<div class="row mt-3">
+						<p> Password successfully updated!<br>
+							Redirecting to login page...</p>
+					</div>
+
+					
+				</div>
+			</div>
+		</div>
+	</div>
 	<nav class="navbar d-flex justify-content-center p-3" id="navBar">
 		<a class="text-dark navbar-brand ps-3 " href="/smc-webassist/home">SMC Web Assist</a>
 	</nav>
 	
 	<div class="position-relative p-0" id="modalForgot">
 		<div class="position-absolute top-50 start-50 translate-middle w-100 rounded shadow border">
-			<div class="d-flex flex-column text-center rounded bg-light p-2">
+			<div class="d-flex flex-column text-center rounded p-2">
 				<h5 class="mt-5"> Reset Password</h5>
 				<p> Reset password for <strong id="userNameText">User</strong>.</p>
-				<form action="/smc-webassist/reset-password/update" method="POST" class="needs-validation d-flex flex-column" novalidate>
+				<p id="fetchStatus" class="text-light m-0">Status</p>
+				<form method="POST" class="needs-validation d-flex flex-column" novalidate id="passForm">
 
-					<div class="mt-5 justify-content-center d-flex">
+					<div class="mt-1 justify-content-center d-flex">
 						
 							<i class="fa-solid fa-lock pt-2 me-2" style="font-size: 1.0em;"></i>
 						
@@ -29,7 +45,6 @@
 							style="width: 70%;" 
 							id="userPass" 
 							placeholder="New Password" 
-							onkeyup="showPassIcon()" 
 							name="userPass" 
 							required pattern="[a-zA-Z0-9]+" maxlength="20" title="Password">
 						
@@ -42,19 +57,21 @@
 							style="width: 70%;" 
 							id="userPassConfirm" 
 							placeholder="Confirm New Password" 
-							onkeyup="showPassIcon()" 
 							name="userPassConfirm" 
 							required pattern="[a-zA-Z0-9]+" maxlength="20" title="Confirm Password">
 						
+					</div>
+					<div class="flex-column" style="display: none; font-size: 14px;" id="passMismatchNotice">
+						<div class=" text-danger">
+							Password does not match
+						</div>
 					</div>
 					<div class="mt-3 mb-3 justify-content-center d-flex">
 						<input class="p-0 me-2" type="checkbox" onclick="showPass()">Show Password
 					</div>
 					
 					<div class="mt-4 mb-4 justify-content-center d-flex">
-						
-							<button class="btn btn-outline-success ps-5 pe-5" id="signBtn" type="submit">Reset</button>
-						
+						<button class="btn btn-outline-success ps-5 pe-5" id="resetBtn" type="submit">Reset</button>
 					</div>
 				</form>
 			</div>

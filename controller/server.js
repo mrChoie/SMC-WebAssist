@@ -43,6 +43,7 @@ app.use('/getATicket',auth, db);
 app.use('/getInfoByToken', user);
 app.use('/getInfo',auth, user);
 app.use('/getFeeds',auth, feedb);
+app.use('/updateUser', user);
 app.use('/msg', msg);
 app.use('/smc-webassist', publicRoute);
 // app.use(auth)

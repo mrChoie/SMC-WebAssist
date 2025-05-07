@@ -12,11 +12,10 @@ const succBtn = document.getElementById("successBtn")
 const blurDiv = document.getElementById("ticketBodyContent1")
 
 window.onload; {
-
     const urlParams = new URLSearchParams(window.location.search);
     const category = urlParams.get("category");
 
-    fetch ('/getInfo', {
+    fetch ('/getInfo/category', {
         method: "POST",	
         credentials: "include",
         headers: {
@@ -32,9 +31,9 @@ window.onload; {
     })
     .then(data => {
         // console.log(data)
-        tkOwner2.value = data.user.username;
+        tkOwner2.value = data.user.student_name;
         tkOwnerID2.value = data.user.stud_id;
-        tkOwner.value = data.user.username;
+        tkOwner.value = data.user.student_name;
         tkOwnerdbid.value = data.user.stud_id;
         categoryTitle.textContent = data.categoryTitle.categoryTitle 
         categoryID.value = data.categoryTitle.categoryId

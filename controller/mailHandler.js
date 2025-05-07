@@ -26,16 +26,18 @@ mailer.post('/email', async (req, res) => {
     const user = await getUserByEmail(email)
     console.log(user)
 
-    const token = jwt.sign({username: user.username}, process.env.USER_RESET_PASS, { expiresIn: '15m' })
+    
 
-    delete user.password
+    
     // console.log(user)
 
     if (!user) {
-        statusCode = '01'
+        statusCode = '00'
         res.json({message: "Email is not registered", statusCode})
     } else {
-        statusCode = '02'
+        const token = jwt.sign({username: user.username}, process.env.USER_RESET_PASS, { expiresIn: '15m' })
+        delete user.password
+        statusCode = '01'
         transporter.sendMail({
             from: '"SMC Web-Assist" <kyzerhinston@gmail.com>',
             to: email,
@@ -50,7 +52,8 @@ mailer.post('/email', async (req, res) => {
             If you did not request a reset, disregard this mail.
             `,
         }).then(()=>{
-            console.log("Email Sent!");
+            // console.log("Email Sent!");
+            res.json({message: "Request link sent!\n Check your email inbox!\nNote: Link will expire in 15 minutes.", statusCode})
         }).catch(()=>{
             console.error(err)
         })

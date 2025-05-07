@@ -87,6 +87,7 @@ export async function getUsers() {
 }
 
 export async function getUserbyName(name) {
+    console.log("Database: fetching from database the user: ",name)
     const [result] = await connection.query(`
         SELECT *
         FROM users
@@ -99,7 +100,8 @@ export async function getUserbyName(name) {
 export async function getUserByID(userID){
     const [rows] = await connection.query(`
         SELECT *, DATE_FORMAT(user_timestamp, '%M %e') AS formatted_time 
-        FROM users
+        FROM users u
+        JOIN enrolledids e ON u.stud_id = e.student_id
         WHERE uid = ?
         `, [userID])
     return rows[0]
@@ -167,13 +169,14 @@ export async function createUser(userName, userStudId, userEmail, userPass, user
     return '3'
 }
 
-export async function updateUser(userID, userName, userStudId, userPass) {
+export async function updateUserPass(newpass, uid) {
+    console.log("Updating password for: ",uid)
     const [result] = await connection.query(`
         UPDATE users
-        SET userName = ?, userStudId = ?, userPass = ?
-        WHERE userID = ?
-        `, [userName, userStudId, userPass, userID])
-    return getUserByID(userID)
+        SET password = ?
+        WHERE uid = ?
+        `, [newpass, uid])
+    return getUserByID(uid)
 }
 
 export async function submitFeedback(feedbackUID, feedbackTitle, feedbackDesc, feedbackFile ) {
@@ -223,6 +226,9 @@ export async function getMessages(ticketId) {
     // console.log("result: ",rows)
     return rows
 }
+
+// JOIN users ON sender_id = uid
+// JOIN table ON 5 = 5
 
 export async function getMessage(id) {
     const [rows] = await connection.query(`

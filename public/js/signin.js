@@ -5,6 +5,8 @@ const usernameInput = document.getElementById("userName")
 const passwordInput = document.getElementById("userPass")
 const signBtn = document.getElementById("signBtn")
 
+const reqBtnP = document.getElementById("reqBtnP")
+const reqBtnLoading = document.getElementById("reqBtnLoading")
 const forgotPassBtn = document.getElementById("forgotPassBtn")
 const forgotPassParentDiv = document.getElementById("forgotPassParentDiv")
 const forgotPassDiv = document.getElementById("forgotPassDiv")
@@ -32,6 +34,10 @@ closeForgotPassBtn.addEventListener("click", function (event) {
     forgotPassParentDiv.style.display = "none"
     forgotPassEmailInput.value = ""
     forgotPassEmailNotice.textContent = ""
+    forgotPassEmailNotice.classList.remove("text-success")
+    forgotPassEmailNotice.classList.add("text-danger")
+    forgotPassEmailInput.removeAttribute('disabled');
+    reqBtn.removeAttribute('disabled');
 })
 
 passwordInput.addEventListener("keydown", function (event) {
@@ -57,11 +63,15 @@ reqBtn.addEventListener("click", function (event) {
         forgotPassEmailNotice.style.display = "flex"
         forgotPassEmailNotice.textContent= "Type your email"
     } else {
+        reqBtnP.style.display = "none"
+        reqBtnLoading.style.display = "flex"
         sendMail(email)
     }
 })
 
 function sendMail(email){
+    forgotPassEmailInput.setAttribute('disabled','1');
+    reqBtn.setAttribute('disabled','1');
     console.log("sending as requested by ",email)
     fetch ("/reqResetPassword/email", {
         method: "POST",	
@@ -79,6 +89,19 @@ function sendMail(email){
     })
     .then(data => {
         console.log(data)
+        if (data.statusCode=='00'){
+            forgotPassEmailNotice.style.display = "flex";
+            forgotPassEmailNotice.textContent = data.message
+            forgotPassEmailInput.removeAttribute('disabled');
+            reqBtn.removeAttribute('disabled');
+        } else {
+            forgotPassEmailNotice.style.display = "flex";
+            forgotPassEmailNotice.classList.remove("text-danger")
+            forgotPassEmailNotice.classList.add("text-success")
+            forgotPassEmailNotice.textContent = data.message
+        }
+        reqBtnP.style.display = "flex"
+        reqBtnLoading.style.display = "none"
     })
     .catch(err => {
         console.log(err);

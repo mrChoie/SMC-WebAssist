@@ -2,7 +2,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import cookie from 'cookie-parser';
 import dotenv from 'dotenv';
-import { getMyTickets, getCategoryById, getUserByID, getTickets, getUserbyName, checkDuplicateUser, verifyIDinDB, createUser, updateUser, getTicket } from '../model/database.js';
+import { getMyTickets, getCategoryById, getUserByID, getTickets, getUserbyName, checkDuplicateUser, verifyIDinDB, createUser, updateUserPass, getTicket } from '../model/database.js';
 import { getTime } from '../utils/getTime.js';
 dotenv.config();
 const user = express();
@@ -10,7 +10,7 @@ user.use(express.json());
 user.use(express.urlencoded({ extended: false }));
 
 
-user.post('/', async (req, res) => {
+user.post('/category', async (req, res) => {
     const clientCookies = req.headers.cookie
     const cookieObject = Object.fromEntries(
         clientCookies.split('; ').map(cookie => cookie.split('='))
@@ -19,38 +19,94 @@ user.post('/', async (req, res) => {
     const category = req.body.category;
     const uid = cookieObject.uid
 
-    if (category!=0){
-        const categoryTitle = await getCategoryById(category)
-        const user = await getUserByID(uid)
-        delete user.password
-        res.json({user, categoryTitle})
-    } else {
-        // console.log("logged in")
-        const [tickets] = await getMyTickets(uid)
-        const user = await getUserByID(uid)
-        const numOfTkts = tickets.length
-        delete user.password
-        res.json({user, tickets, numOfTkts})
-    }
+    const categoryTitle = await getCategoryById(category)
+    const user = await getUserByID(uid)
+    delete user.password
+    res.json({user, categoryTitle})
+    
 })
+
+user.get('/user', async (req, res) => {
+    const clientCookies = req.headers.cookie
+    const cookieObject = Object.fromEntries(
+        clientCookies.split('; ').map(cookie => cookie.split('='))
+    );
+    
+    const uid = cookieObject.uid
+
+    const [tickets] = await getMyTickets(uid)
+    const user = await getUserByID(uid)
+    const numOfTkts = tickets.length
+    delete user.password
+    res.json({user, tickets, numOfTkts})
+})
+
+// async function verifyToken(){
+//     const decoded = jwt.verify(userToken, process.env.USER_RESET_PASS)
+//     console.log(decoded)
+//     const user = await getUserbyName(userName.username)
+//     statusCode = '01'
+//     res.json({user, message:"User fetched", statusCode})
+// }
+
+function verifyToken(token) {
+    try {
+        const decoded = jwt.verify(token, process.env.USER_RESET_PASS);
+        console.log('Token is valid:', decoded);
+        return { valid: true, expired: false, decoded };
+    } catch (err) {
+        if (err.name === 'TokenExpiredError') {
+            console.warn('Token has expired.');
+            return { valid: false, expired: true, decoded: null };
+        } else {
+            console.error('Token is invalid:', err.message);
+            return { valid: false, expired: false, decoded: null };
+        }
+    }
+}
 
 user.post('/Token', async (req, res) => {
     var statusCode = '0'
     const userToken = req.body.token
     console.log("fetching user using token: ",userToken)
+    
+    const verification = verifyToken(userToken)
 
-    try {
-        const decoded = jwt.verify(userToken, process.env.USER_RESET_PASS)
-        const user = await getUserbyName(userName.username)
+    if (verification.valid) {
+        console.log("verification success")
+        // console.log(verification)
+        const user = await getUserbyName(verification.decoded.username)
         statusCode = '01'
+        res.cookie('uid', user.uid, {
+            // httpOnly: true,  // Inaccessible to JavaScript
+            // secure: true,    // Only sent over HTTPS (recommended for production)
+            maxAge: 30 * 1000  // 1 hour in milliseconds (60 minutes * 60 seconds * 1000 ms)
+        });
         res.json({user, message:"User fetched", statusCode})
-    } catch (err) {
-        if (err.name === 'TokenExpiredError') {
-            statusCode = '00'
-            res.json({message:"Token expired", statusCode})
-        }
+    } else if (verification.expired) {
+        statusCode = '00'
+        res.json({message:"Token expired", statusCode})
+    } else {
+        statusCode = '03'
+        res.json({message:"Token invalid", statusCode})
     }
-    // console.log("JWT Verification: ", userName)
+})
+
+user.post('/update-password', async (req, res) =>{
+    // const [uid] = Object.fromEntries(req.headers.cookie.uid)
+    // console.log("cookie uid=",uid)
+    // console.log(req.headers)
+    
+    const clientCookies = req.headers.cookie
+    const cookieObject = Object.fromEntries(
+        clientCookies.split('; ').map(cookie => cookie.split('='))
+    );
+    const uid = cookieObject.uid
+    console.log(uid)
+    const newpass = req.body.userPass
+    const result = await updateUserPass(newpass, uid)
+    // res.clearCookie('uid',  { path: '/' })
+    res.send({message: "Password successfully updated"})
 })
 
 user.post('/login', async (req, res) => {

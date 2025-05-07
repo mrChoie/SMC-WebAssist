@@ -12,6 +12,10 @@ publicRoute.get("/about", async (req, res) => {
     console.log("[Router-Logger]::",getTime(),">> about page loaded to client")
     res.render('about.ejs')
 })
+publicRoute.get("/terms-of-service", async (req, res) => {
+    console.log("[Router-Logger]::",getTime(),">> eula page loaded to client")
+    res.render('tos.ejs')
+})
 publicRoute.get("/signup", async (req, res) => {
     console.log("[Router-Logger]::",getTime(),">> sign-up page loaded to client")
     res.render('signup.ejs')

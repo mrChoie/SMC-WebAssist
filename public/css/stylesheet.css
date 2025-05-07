@@ -193,6 +193,15 @@ nav {
 	/* background-color: rgb(139, 195, 74); */
 }
 
+.tos li {
+	margin-left: 16px;
+}
+.tos ol {
+	padding: 0;
+	margin-top: 16px;
+	margin-bottom: 0;
+}
+
 /* #feedbackBodyContent1 {
 	position: relative;
 	z-index: 10;
@@ -480,3 +489,19 @@ nav {
 	/* color: red; */
 	font-size: 0.9em;
 }
+
+#closeBtn1, #closeBtn2, #closeBtn3, #closeBtn4:hover {
+	cursor: pointer;
+}
+/* #closeBtn1:hover {
+	cursor: pointer;
+}
+#closeBtn2:hover {
+	cursor: pointer;
+}
+#closeBtn3:hover {
+	cursor: pointer;
+}
+#closeBtn4:hover {
+	cursor: pointer;
+} */
