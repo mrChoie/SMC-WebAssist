@@ -63,8 +63,8 @@ db.post("/ticket/submit", async (req, res) => {
     console.log("[Server-Logger]::",getTime(),">> client with a username [",client,"] submitted a ticket")
     // console.log(req.body,'\n\n\n', uid)
 
-    const { categoryId, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile} = req.body;
-    const ticket = await createTicket( uid, categoryId, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile);
+    const { inqCat, buildCat, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile} = req.body;
+    const ticket = await createTicket( uid, inqCat, buildCat, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile);
     res.status(201).json({ticket, message: "Ticket has been submitted", statusCode:'40'})
 });
 

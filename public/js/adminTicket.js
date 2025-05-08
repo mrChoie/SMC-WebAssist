@@ -6,7 +6,7 @@ const pendingBtn = document.getElementById('pending-toggle');
 const resolvedBtn = document.getElementById('resolved-toggle');
 const archivedBtn = document.getElementById('archived-toggle');
 
-
+const ticketsBtnv2 = document.getElementById("ticketsBtnv2")
 
 const cat1 = document.getElementById("ticketCategory1")
 const cat2 = document.getElementById("ticketCategory2")
@@ -24,12 +24,19 @@ const ticketDate = document.getElementById("ticketDateCreated")
 
 const testDiv = document.getElementById("testDiv")
 
+ticketsBtnv2.addEventListener("click", function (event){
+    // event.stopPropagation();
+    event.preventDefault(); // Prevent form submission if needed
+    // console.log("Admin button clicked")
+    window.location.href = "/smc-webassist/admin/view-tickets-v2"
+})
+
 window.onload; {
     // toggleTickets('pending', pendingBtn.checked);
     // toggleTickets('resolved', resolvedBtn.checked);
     // toggleTickets('archived', archivedBtn.checked);
     // const category = 0;
-    document.getElementById("ticketsBtn").style.display="none";
+    // document.getElementById("ticketsBtn").style.display="none";
     fetch ('/getTickets', {
         method: "POST",	
         credentials: "include",
@@ -46,7 +53,7 @@ window.onload; {
     })
     .then(data => {
         // execute when fetching is successful
-        // console.log(data)
+        console.log(data)
         displayTickets(data)
         // pendingBtn.addEventListener('click')
         // resolvedBtn.addEventListener('click')
@@ -105,7 +112,7 @@ async function displayTickets(tickets) {
             owner.classList.add("pdate")
             
 
-            if (tickets.tickets[y].tktCategoryID==x){
+            if (tickets.tickets[y].tktInqCat==x){
                 owner.textContent = tickets.tickets[y].tktOwner;
                 title.textContent = tickets.tickets[y].tktSubj;
                 id.textContent = "Ticket ID: "+ tickets.tickets[y].tktID;

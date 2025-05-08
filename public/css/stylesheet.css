@@ -484,6 +484,9 @@ nav {
 #forgotPassParentDiv {
 	background-color: rgba(0, 0, 0, 0.123);
 }
+#msgNoticeParentDiv {
+	background-color: rgba(0, 0, 0, 0.123);
+}
 
 #forgotPassEmailNotice {
 	/* color: red; */
@@ -493,15 +496,14 @@ nav {
 #closeBtn1, #closeBtn2, #closeBtn3, #closeBtn4:hover {
 	cursor: pointer;
 }
-/* #closeBtn1:hover {
-	cursor: pointer;
-}
-#closeBtn2:hover {
-	cursor: pointer;
-}
-#closeBtn3:hover {
-	cursor: pointer;
-}
-#closeBtn4:hover {
-	cursor: pointer;
+
+/* #buildingImage {
+	filter: sepia(100%);
+	filter: hue-rotate(284deg);
+
 } */
+
+.inquiry {
+	/* background-color: #e76800; */
+	height: 130px;
+}

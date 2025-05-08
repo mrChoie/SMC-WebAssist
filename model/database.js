@@ -30,24 +30,34 @@ export async function getMyTickets(uid){
 }
 
 export async function getTickets() {
-    const [rows] = await connection.query("SELECT *, DATE_FORMAT(tktTimestamp, '%M %e, %l:%i %p') AS formatted_time FROM tickets")
+    const [rows] = await connection.query(`
+        SELECT *, DATE_FORMAT(tktTimestamp, '%M %e, %l:%i %p') AS formatted_time 
+        FROM tickets t
+        JOIN categories c ON c.categoryId = t.tktInqCat
+        `)
     return [rows]
 }
 
 export async function getTicket(tktID){
     const [rows] = await connection.query(`
         SELECT *, DATE_FORMAT(tktTimestamp, '%M %e, %l:%i %p') AS formatted_time
-        FROM tickets
+        FROM tickets t
+        JOIN categories c ON c.categoryId = t.tktInqCat
+        JOIN users u ON u.uid = t.tktUID
         WHERE tktID = ?
         `, [tktID])
     return rows[0]
 }
+//         SELECT *, DATE_FORMAT(user_timestamp, '%M %e') AS formatted_time 
+//         FROM users u
+//         JOIN enrolledids e ON u.stud_id = e.student_id
+//         WHERE uid = ?
 
-export async function createTicket(tktUID, categoryID, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile) {
+export async function createTicket(tktUID, inqCat, buildCat, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile) {
     const [result] = await connection.query(`
-            INSERT INTO tickets ( tktUID, tktCategoryID, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-            `, [tktUID, categoryID, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile])
+            INSERT INTO tickets ( tktUID, tktInqCat, tktBuildCat, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            `, [tktUID, inqCat, buildCat, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile])
     const id = result.insertId
     return getTicket(id)
 }

@@ -2,7 +2,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import nodemailer from 'nodemailer';
-import { getUserByEmail } from '../model/database.js';
+import { getUserByEmail, getUserByID, getTicket } from '../model/database.js';
 dotenv.config()
 const mailer = express()
 
@@ -16,19 +16,35 @@ const transporter = nodemailer.createTransport({
     },
 });
 
+export async function sendReplyNotif(email, tktOwner, stud_id, tktSubj){
+    // const user = await getUserByID(tktID)
+    // const data = await getTicket(tktID)
+    // console.log(data)
+    console.log("sending notification to: ",email)
+    transporter.sendMail({
+        from: '"SMC Web-Assist" <kyzerhinston@gmail.com>',
+        to: email,
+        subject: 'Ticket Reply',
+        text: `
+        Student Information:
+        Name: ${tktOwner}
+        ID Number: ${stud_id}
+        An administrator has sent a reply to your "${tktSubj}" ticket.
+        `,
+    }).then(()=>{
+        console.log("Email Sent!");
+        return ({message: "Author has been notified via email"})
+    }).catch(()=>{
+        console.error(err)
+    })
+}
+
 mailer.post('/email', async (req, res) => {
     console.log("processing mail...")
-
     
-
     var statusCode
     const email = req.body.email
     const user = await getUserByEmail(email)
-    console.log(user)
-
-    
-
-    
     // console.log(user)
 
     if (!user) {
@@ -52,7 +68,7 @@ mailer.post('/email', async (req, res) => {
             If you did not request a reset, disregard this mail.
             `,
         }).then(()=>{
-            // console.log("Email Sent!");
+            console.log("Email Sent!");
             res.json({message: "Request link sent!\n Check your email inbox!\nNote: Link will expire in 15 minutes.", statusCode})
         }).catch(()=>{
             console.error(err)

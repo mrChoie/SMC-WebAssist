@@ -6,21 +6,39 @@ const archivedNotice = document.getElementById("archivedNotice")
 const resolvedNotice = document.getElementById("resolvedNotice")
 const archivedBtn = document.getElementById("archivedBtn")
 const resolvedBtn = document.getElementById("resolvedBtn")
-const submitLink = document.getElementById("submitLink")
+const submitLinkRes = document.getElementById("submitLinkRes")
+const submitLinkArc = document.getElementById("submitLinkArc")
 const tktOptionList = document.getElementById("tktOptionList")
-
+const authorEmail = document.getElementById("authorEmail")
 
 const ticketContainer = document.getElementById("viewTicketContainer")
 const messageContainer = document.getElementById("messagesContainer")
-
+const msgNoticeParentDiv = document.getElementById("msgNoticeParentDiv")
 
 sendReplyBtn.addEventListener("click", function (event) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tktID = urlParams.get("id");
     event.stopPropagation();
     event.preventDefault(); // Prevent form submission if needed
     const reply = msgBox.value;
-    sendMessage(reply);
-    location.reload();
+    if (reply!=""){
+        sendMessage(reply);
+        msgNoticeParentDiv.style.display="flex"
+        setTimeout(()=>{
+            getMessages(tktID);
+            msgNoticeParentDiv.style.display="none"
+            // console.log("2sec...")
+            messageContainer.innerHTML = ''
+        },2000);
+        msgBox.value= ""
+    } else {
+        msgBox.classList.add("border-danger")
+    }
 });
+
+msgBox.addEventListener("keydown", function(event) {
+    msgBox.classList.remove("border-danger")
+})
 
 archivedBtn.addEventListener("click", function (event) {
     updateTicket('2')
@@ -32,8 +50,11 @@ resolvedBtn.addEventListener("click", function (event) {
     // console.log("ticket status updated to: 3")
     location.reload();
 })
-submitLink.addEventListener("click", function (event) {
-    window.location.href = "/smc-webassist/ticket/submit";
+submitLinkRes.addEventListener("click", function (event) {
+    window.location.href = "/smc-webassist/category";
+})
+submitLinkArc.addEventListener("click", function (event) {
+    window.location.href = "/smc-webassist/category";
 })
 // optionBtn.addEventListener("click", function (event){
 //     // optionDiv.style.width= "210px";
@@ -62,9 +83,10 @@ window.onload; {
         return res.json(); // Parse JSON response
     })
     .then(data => {
-        console.log(data)
+        // console.log(data)
         // window.location.href = "/smc-webassist/view-ticket/ticket/"+data.ticket.tktID;
         // history.replaceState({}, '', "/smc-webassist/view-ticket/ticket/"+data.ticket.tktID);
+        authorEmail.value = data.ticket.email
         if (data.lvl == '1') {
             archivedBtn.setAttribute('disabled','1');
         } else if (data.lvl == '4') {
@@ -102,6 +124,7 @@ window.onload; {
 
 function getMessages(tktID) {
     // console.log("getiing data")
+    
     fetch ('/msg/get-messages', {
         method: "GET",	
         credentials: "include",
@@ -131,6 +154,7 @@ function sendMessage(reply) {
     const urlParams = new URLSearchParams(window.location.search);
     const tktID = urlParams.get("id");
     const content = reply;
+    const email = authorEmail.value
 
     fetch ('/msg/send-message', {
         method: "POST",	
@@ -138,7 +162,7 @@ function sendMessage(reply) {
         headers: {
         "Content-Type": "application/json"
         },
-        body: JSON.stringify({ tktID, content })
+        body: JSON.stringify({ tktID, content, email })
     })
     .then(res => {
         if (!res.ok) {
@@ -201,6 +225,7 @@ function addEvent(btn){
     btn.addEventListener("click", function(event){
         console.log("btn clicked");
         updateTicket('1');
+        location.reload();
     })
     // console.log("added event")
 }
@@ -215,7 +240,7 @@ function displayTicket(ticket) {
     var author = document.createElement("p");
 
     rowDiv.classList.add("row","mt-2");
-    ticketDiv.classList.add("viewTicketContent","border","rounded");
+    ticketDiv.classList.add("viewTicketContent","rounded","border-bottom");
     title.classList.add("ptitle")
     // id.classList.add("pid")
     content.classList.add("pcontent")
@@ -246,7 +271,7 @@ function displayMessages(data) {
         var date=document.createElement("p");
         var userIcon=document.createElement("i");
 
-        rowDiv.classList.add("row","mt-2","mb-2","bg-light");
+        rowDiv.classList.add("row","mt-2","mb-2","border-bottom");
         sender.classList.add("pSender")
         content.classList.add("pMessage")
         date.classList.add("pid","text-end")

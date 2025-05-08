@@ -20,6 +20,7 @@ user.post('/category', async (req, res) => {
     const uid = cookieObject.uid
 
     const categoryTitle = await getCategoryById(category)
+    console.log(categoryTitle)
     const user = await getUserByID(uid)
     delete user.password
     res.json({user, categoryTitle})

@@ -1,5 +1,6 @@
 import express from 'express';
-import { getMessages, sendMessage, getUserByID } from '../model/database.js';
+import { getMessages, sendMessage, getUserByID, getTicket } from '../model/database.js';
+import { sendReplyNotif } from './mailHandler.js';
 
 const msg = express();
 
@@ -32,10 +33,19 @@ msg.post("/send-message", async (req, res) => {
         clientCookies.split('; ').map(cookie => cookie.split('='))
     );
     const sender = cookieObject.uid
-    const { tktID, content } = req.body;
-    // console.log("Ticket id: ",tktID)
+    const { tktID, content ,email} = req.body;
+    // console.log("Ticket id: ",tktID
     const result = await sendMessage(tktID, sender, content);
-    res.send(result);
+    const ticket = await getTicket(result.ticket_id)
+    // console.log("---------------------------------\n",ticket)
+    if (sender==ticket.uid) {
+        console.log("Reply sent by author")
+        res.send({result});
+    } else {
+        console.log("Reply sent by admin, sending notif to author")
+        const notif = await sendReplyNotif(email, ticket.tktOwner, ticket.stud_id, ticket.tktSubj)
+        res.send({result, notif});
+    }
 })
 
 export default msg;

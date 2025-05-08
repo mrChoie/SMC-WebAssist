@@ -6,7 +6,8 @@ const tkSubj = document.getElementById("ticketSubj")            //ticketSubj
 const tkDesc = document.getElementById("ticketDesc")            //ticketDesc
 const categoryTitle = document.getElementById("categoryTitle")
 const ticketFile = document.getElementById("ticketFile")        //ticketFile
-const categoryID = document.getElementById("categoryID")
+const buildCat = document.getElementById("buildCat")
+const inqCat = document.getElementById("inqCat")
 const noticePar = document.getElementById("noticeParent")
 const succBtn = document.getElementById("successBtn")
 const blurDiv = document.getElementById("ticketBodyContent1")
@@ -14,6 +15,7 @@ const blurDiv = document.getElementById("ticketBodyContent1")
 window.onload; {
     const urlParams = new URLSearchParams(window.location.search);
     const category = urlParams.get("category");
+    const building = urlParams.get("building");
 
     fetch ('/getInfo/category', {
         method: "POST",	
@@ -36,7 +38,8 @@ window.onload; {
         tkOwner.value = data.user.student_name;
         tkOwnerdbid.value = data.user.stud_id;
         categoryTitle.textContent = data.categoryTitle.categoryTitle 
-        categoryID.value = data.categoryTitle.categoryId
+        inqCat.value = category
+        buildCat.value = building
     })
     .catch(err => {
         console.log(err);
@@ -45,7 +48,7 @@ window.onload; {
 }
 
 function clearFields(){
-    window.location.href = "/smc-webassist/category";
+    window.location.href = "/smc-webassist/account";
 }
 
 function submitTicket() {
@@ -55,7 +58,8 @@ function submitTicket() {
     const tktSubj = tkSubj.value;
     const tktDesc = tkDesc.value;
     const tktFile = ticketFile.file;
-    const categoryId = categoryID.value;
+    const inqCat = document.getElementById("inqCat").value;
+    const buildCat = document.getElementById("buildCat").value;
 
     fetch ("/smc-webassist/ticket/submit", {
         method: "POST",	
@@ -63,7 +67,7 @@ function submitTicket() {
         headers: {
         "Content-Type": "application/json"
         },
-        body: JSON.stringify({categoryId, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile})
+        body: JSON.stringify({inqCat, buildCat, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile})
     })
     .then(res => {
         if (!res.ok) {
