@@ -53,7 +53,7 @@ app.use('/smc-webassist', user, auth, privateRoute)
 app.use('/smc-webassist', db)
 app.use('/smc-webassist', feedb);
 
-startUp()
+// startUp()
 
 function startUp(){
     fetch ('https://discord.com/api/webhooks/1363893343205200063/pPzBcFSyv-rHfrma3p4y4mF8iWpPVeMh-e03x9Gi071aVSD2wm5CKDoSE97AugyGV2ih', {

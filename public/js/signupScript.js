@@ -58,14 +58,14 @@ function submitCreateAccReq(){
     const userStudId = idInput.value
     const userEmail = emailInput.value
     const userPass = passInput.value
-    const userLevel = getSignUpLevel()
+    // const userLevel = getSignUpLevel()
     fetch ("/smc-webassist/register", {
         method: "POST",	
         credentials: "include",
         headers: {
         "Content-Type": "application/json"
         },
-        body: JSON.stringify({ userName, userStudId, userEmail, userPass, userLevel})
+        body: JSON.stringify({ userName, userStudId, userEmail, userPass})
     })
     .then(res => {
         if (!res.ok) {

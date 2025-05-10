@@ -236,20 +236,31 @@ function displayTicket(ticket) {
     var title = document.createElement("p");
     // var id = document.createElement("p");
     var content = document.createElement("p");
+    var building = document.createElement("p");
     var date = document.createElement("p");
     var author = document.createElement("p");
 
-    rowDiv.classList.add("row","mt-2");
-    ticketDiv.classList.add("viewTicketContent","rounded","border-bottom");
-    title.classList.add("ptitle")
+    rowDiv.classList.add("row","mt-2")
+    ticketDiv.classList.add("viewTicketContent","border-bottom")
+    title.classList.add("ptitle","fw-bold")
     // id.classList.add("pid")
     content.classList.add("pcontent")
-    date.classList.add("pdate")
-    author.classList.add("pAuthor")
+    building.classList.add("pbuilding","m-0")
+    date.classList.add("pdate","m-0")
+    author.classList.add("pAuthor","m-0")
 
     title.textContent = ticket.tktSubj;
     // id.textContent = "Ticket ID: "+ ticket.tktID;
     content.textContent = ticket.tktDesc;
+    if (ticket.tktBuildCat=='b1') {
+        building.textContent = "For: Engineering"
+    } else if (ticket.tktBuildCat=='b2') {
+        building.textContent = "For: College"
+    } else if (ticket.tktBuildCat=='b3') {
+        building.textContent = "For: SMC Main"
+    } else if (ticket.tktBuildCat=='b4') {
+        building.textContent = "For: HS Annex"
+    }
     date.textContent = ticket.formatted_time;
     author.textContent = "Author: "+ ticket.tktOwner;
     
@@ -259,6 +270,7 @@ function displayTicket(ticket) {
     // ticketDiv.appendChild(id)
     ticketDiv.appendChild(content)
     ticketDiv.appendChild(author)
+    ticketDiv.appendChild(building)
     ticketDiv.appendChild(date)
 }
 

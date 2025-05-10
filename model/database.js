@@ -169,6 +169,28 @@ export async function checkDuplicateUser(userName, userStudId, userEmail, userPa
     return statusCode;
 }
 
+export async function checkDuplicateAdmin(userName, userStudId, userEmail, userPass, userLevel, token){
+    // console.log(userName, userStudId, userPass, userLevel)
+    var statusCode = '0'
+    const [result] = await connection.query(`
+        SELECT EXISTS (
+            SELECT * 
+            FROM users 
+            WHERE username = ?) AS is_exists;
+        `, [userName])
+    // console.log(result)
+    if (!result[0].is_exists) {
+        console.log("User is not duplicated")
+        // console.log("after IF: ",!result[0].is_exists)
+        return await createUser(userName, userStudId, userEmail, userPass, userLevel, token);
+    } else {
+        console.log("User is duplicated")
+        // console.log("after IF: ",!result[0].is_exists)
+        statusCode = '2'
+    }
+    return statusCode;
+}
+
 export async function createUser(userName, userStudId, userEmail, userPass, userLevel, token) {
     const [result] = await connection.query(`
         INSERT INTO users (username, stud_id, email, password, user_level, token)

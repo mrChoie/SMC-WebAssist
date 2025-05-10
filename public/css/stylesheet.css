@@ -341,12 +341,16 @@ nav {
 	margin-top: 0px;
 	margin-bottom: 10px;
 }
+
 .pcontent {
 	font-size: 18px;
 }
+.pbuilding {
+	font-size: 16px;
+}
 .pAuthor {
 	font-size: 16px;
-	color: rgb(86, 86, 86);
+	/* color: rgb(86, 86, 86); */
 }
 .pdate {
 	font-size: 12px;

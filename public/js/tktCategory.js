@@ -11,6 +11,8 @@ const inqCat = document.getElementById("inqCat")
 const noticePar = document.getElementById("noticeParent")
 const succBtn = document.getElementById("successBtn")
 const blurDiv = document.getElementById("ticketBodyContent1")
+const submitBtn = document.getElementById("submitBtn")
+const tosCheckBox = document.getElementById("tosCheckBox")
 
 window.onload; {
     const urlParams = new URLSearchParams(window.location.search);
@@ -50,6 +52,14 @@ window.onload; {
 function clearFields(){
     window.location.href = "/smc-webassist/account";
 }
+
+tosCheckBox.addEventListener("click", function(e) {
+    if (e.target.checked) {
+        submitBtn.classList.remove("disabled")
+    } else {
+        submitBtn.classList.add("disabled")
+    }
+})
 
 function submitTicket() {
     

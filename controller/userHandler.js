@@ -2,7 +2,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import cookie from 'cookie-parser';
 import dotenv from 'dotenv';
-import { getMyTickets, getCategoryById, getUserByID, getTickets, getUserbyName, checkDuplicateUser, verifyIDinDB, createUser, updateUserPass, getTicket } from '../model/database.js';
+import { getMyTickets, getCategoryById, getUserByID, getTickets, getUserbyName, checkDuplicateUser, checkDuplicateAdmin, verifyIDinDB, createUser, updateUserPass, getTicket } from '../model/database.js';
 import { getTime } from '../utils/getTime.js';
 dotenv.config();
 const user = express();
@@ -179,33 +179,18 @@ user.post('/login', async (req, res) => {
 
 user.post('/register', async (req, res) => {
     var statusCode
-    const {userName, userStudId, userEmail, userPass, userLevel} = req.body;
+    const {userName, userStudId, userEmail, userPass} = req.body;
+    // var userLevel
     const token = jwt.sign(userName, process.env.USER_TOKEN_SECRET);
-    if (userLevel==4){
-        // const result = await checkDuplicateUser(userName, userStudId, userEmail, userPass, userLevel, token);
-        // if (user!=1) {
-        //     statusCode='50'
-        //     res.json({user, message: "Account successfully created", statusCode });
-        // } else {
-        //     statusCode='51'
-        //     res.json({user, message: "Account already exist", statusCode});
-        // }
-        if (userStudId=="0000-0-000"){
-            const result = await verifyIDinDB(userName, userStudId, userEmail, userPass, userLevel, token);
-            console.log("result: ",result)
-            if (result=='1') {
-                statusCode='51'
-                res.json({message: "ID is not a student of SMC", statusCode });
-            } else if (result=='2') {
-                statusCode='52'
-                res.json({message: "Account already registered", statusCode });
-            } else {
-                statusCode='53'
-                res.json({message: "Account successfully created", statusCode });
-            }
+    if (userStudId=="0000-0-000"){
+        const result = await checkDuplicateAdmin(userName, userStudId, userEmail, userPass, '4', token);
+        console.log("result: ",result)
+        if (result=='2') {
+            statusCode='52'
+            res.json({message: "Account already registered", statusCode });
         } else {
-            statusCode='51'
-            res.json({message: "Invalid ID", statusCode });
+            statusCode='53'
+            res.json({message: "Account successfully created", statusCode });
         }
     } else {
         // userLevel=1
