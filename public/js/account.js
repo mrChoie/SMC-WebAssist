@@ -1,6 +1,7 @@
 const profileName = document.getElementById("userProfileName")
 const profileStudId = document.getElementById("userProfileStudId")
 const profileDate = document.getElementById("userProfileDateCreated")
+const profileCourse = document.getElementById("userProfileCourse")
 
 const ticketDiv = document.getElementById("ticketContainer")
 const ticketTitle = document.getElementById("ticketTitle")
@@ -30,10 +31,11 @@ window.onload; {
     })
     .then(data => {
         // execute when fetching is successful
-        // console.log(data)
+        console.log(data)
         document.getElementById("profileBtn").style.display="none";
         profileName.textContent=data.user.student_name
         profileStudId.textContent=data.user.stud_id
+        profileCourse.textContent=data.user.student_course
         profileDate.textContent="Joined since "+ data.user.formatted_time
         displayTickets(data)
     })

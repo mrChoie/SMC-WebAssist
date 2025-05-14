@@ -8,9 +8,10 @@ const admin = async (req, res, next) => {
     const cookies = Object.fromEntries(req.headers.cookie?.split('; ').map(c => c.split('=')) || []);
     const token = cookies;
     const lvl = cookies.lvl;
-    // console.log(lvl)
+    // console.log("Admin Auth: ", lvl)
     try {
-        if (lvl != 4) return res.status(401).redirect('/smc-webassist/signin')
+        if (lvl < 4 || lvl > 8) return res.status(401).redirect('/smc-webassist/signin')
+            // console.log("User is authorized")
             next()
     } catch (err) {
         console.log(err)

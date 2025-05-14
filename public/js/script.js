@@ -33,7 +33,7 @@ window.onload; {
         // console.log(data.lvl," : ", data.message," : ", data.statusCode," : ", data.cookies)
         if (data.statusCode == 21) { // logged in
             // document.cookie = `accessToken=${data.user.username}; path=/; expires=${new Date(Date.now() + 1000*60*60*2).toUTCString()}`
-            if (data.lvl==4){
+            if (data.lvl==4||data.lvl==5||data.lvl==6||data.lvl==7||data.lvl==8){
                 adminBtn.style.display="flex";
                 profileBtn.style.display="flex";
                 loggedInDiv.style.display = "flex";

@@ -176,8 +176,8 @@ export async function checkDuplicateAdmin(userName, userStudId, userEmail, userP
         SELECT EXISTS (
             SELECT * 
             FROM users 
-            WHERE username = ?) AS is_exists;
-        `, [userName])
+            WHERE stud_id = ? || username = ?) AS is_exists;
+        `, [userStudId, userName])
     // console.log(result)
     if (!result[0].is_exists) {
         console.log("User is not duplicated")
@@ -197,6 +197,16 @@ export async function createUser(userName, userStudId, userEmail, userPass, user
         VALUES (?, ?, ?, ?, ?, ?)
         `, [userName, userStudId, userEmail, userPass, userLevel, token])
     const id = result.insertId
+    // return getUserByID(id)
+    return '3'
+}                   // createAdmin('SMC Main Admin', userStudId, 'Admin')
+export async function createAdmin(userName, userStudId, role) {
+    const [result] = await connection.query(`
+        INSERT INTO enrolledids (student_id, student_name, student_course)
+        VALUES (?, ?, ?)
+        `, [userStudId, userName, role])
+    // const id = result.insertId
+    // console.log(result[id])
     // return getUserByID(id)
     return '3'
 }

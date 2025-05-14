@@ -2,7 +2,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import cookie from 'cookie-parser';
 import dotenv from 'dotenv';
-import { getMyTickets, getCategoryById, getUserByID, getTickets, getUserbyName, checkDuplicateUser, checkDuplicateAdmin, verifyIDinDB, createUser, updateUserPass, getTicket } from '../model/database.js';
+import { getMyTickets, getCategoryById, getUserByID, getTickets, getUserbyName, checkDuplicateUser, checkDuplicateAdmin, verifyIDinDB, createUser, createAdmin, updateUserPass, getTicket } from '../model/database.js';
 import { getTime } from '../utils/getTime.js';
 dotenv.config();
 const user = express();
@@ -177,23 +177,78 @@ user.post('/login', async (req, res) => {
     
 });
 
+function sendResponse(result, statusCode) {
+    if (result=='2') {
+        statusCode='52'
+        return ({message: "Account already registered", statusCode });
+    } else {
+        statusCode='53'
+        return ({message: "Account successfully created", statusCode });
+    }
+}
+
 user.post('/register', async (req, res) => {
     var statusCode
     const {userName, userStudId, userEmail, userPass} = req.body;
     // var userLevel
     const token = jwt.sign(userName, process.env.USER_TOKEN_SECRET);
-    if (userStudId=="0000-0-000"){
+    // const pattern = /^E-[0-1]{1,4}$/;
+
+    // 1 = Student
+    // 4 = Engineering
+    // 5 = College
+    // 6 = Main
+    // 7 = Annex
+    // 8 = Head Admin
+
+    if (userStudId.startsWith("E-")){
+        console.log("ID is an Engineering faculty")
         const result = await checkDuplicateAdmin(userName, userStudId, userEmail, userPass, '4', token);
-        console.log("result: ",result)
         if (result=='2') {
-            statusCode='52'
-            res.json({message: "Account already registered", statusCode });
+            res.json(sendResponse(result, statusCode));
         } else {
-            statusCode='53'
-            res.json({message: "Account successfully created", statusCode });
+            const admin = await createAdmin('Engineering Admin', userStudId, 'Admin')
+            res.json(sendResponse(result, statusCode))
+        }
+    } else if (userStudId.startsWith("C-")) {
+        console.log("ID is a College faculty")
+        const result = await checkDuplicateAdmin(userName, userStudId, userEmail, userPass, '5', token);
+        if (result=='2') {
+            res.json(sendResponse(result, statusCode));
+        } else {
+            const admin = await createAdmin('College Admin', userStudId, 'Admin')
+            res.json(sendResponse(result, statusCode))
+        }
+    } else if (userStudId.startsWith("M-")) {
+        console.log("ID is a Main faculty")
+        const result = await checkDuplicateAdmin(userName, userStudId, userEmail, userPass, '6', token);
+        if (result=='2') {
+            res.json(sendResponse(result, statusCode));
+        } else {
+            const admin = await createAdmin('SMC Main Admin', userStudId, 'Admin')
+            res.json(sendResponse(result, statusCode))
+        }
+    } else if (userStudId.startsWith("A-")) {
+        console.log("ID is an Annex faculty")
+        const result = await checkDuplicateAdmin(userName, userStudId, userEmail, userPass, '7', token);
+        if (result=='2') {
+            res.json(sendResponse(result, statusCode));
+        } else {
+            const admin = await createAdmin('HS Annex Admin', userStudId, 'Admin')
+            res.json(sendResponse(result, statusCode))
+        }
+    } else if (userStudId.startsWith("SMC-")) {
+        console.log("ID is an Annex faculty")
+        const result = await checkDuplicateAdmin(userName, userStudId, userEmail, userPass, '8', token);
+        if (result=='2') {
+            res.json(sendResponse(result, statusCode));
+        } else {
+            const admin = await createAdmin('SMC Head Admin', userStudId, 'Head Admin')
+            res.json(sendResponse(result, statusCode))
+
         }
     } else {
-        // userLevel=1
+        console.log("ID is a student")
         const result = await verifyIDinDB(userName, userStudId, userEmail, userPass, '1', token);
         console.log("result: ",result)
         if (result=='1') {
@@ -206,22 +261,8 @@ user.post('/register', async (req, res) => {
             statusCode='53'
             res.json({message: "Account successfully created", statusCode });
         }
-        //     statusCode='50'
-        //     res.json({message: "Account successfully created", statusCode});
-        // } else {
-        //     statusCode='51'
-        //     // console.log(user,"-------------------------")
-        //     res.json({message: "Account already exist", statusCode});
-        // }
         console.log("statusCode: ",statusCode)
     }
-    // if (statusCode=='51'){
-    //     console.log("[Server-Logger]::",getTime(),">> client tried to register a non-smc ID:",statusCode)
-    // } else if (statusCode=='52'){
-    //     console.log("[Server-Logger]::",getTime(),">> client tried to register an account with an existing ID:",statusCode)
-    // } else {
-    //     console.log("[Server-Logger]::",getTime(),">> client successfully registered an account:",statusCode)
-    // }
 });
 
 user.get('/logout', async (req, res) =>{

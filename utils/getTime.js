@@ -7,3 +7,12 @@ export function getTime(){
     var time = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + d.getFullYear() + "-[TIME]" + hours + ":" + ("0" + d.getMinutes()).slice(-2) +" "+ meridiem;
     return time
 }
+
+export function getClient(cookies){
+    const cookieObject = Object.fromEntries(
+        cookies.split('; ').map(cookie => cookie.split('='))
+    );
+
+    const client = cookieObject.user
+    return client
+}

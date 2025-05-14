@@ -6,7 +6,12 @@ const engiContainer = document.getElementById("engiContainer")
 const collContainer = document.getElementById("collContainer")
 const smcmainContainer = document.getElementById("smcmainContainer")
 const annexContainer = document.getElementById("annexContainer")
+const engTable = document.getElementById("engTable")
+const collTable = document.getElementById("collTable")
+const smcmainTable = document.getElementById("smcmainTable")
+const annexTable = document.getElementById("annexTable")
 
+    //                  0           1               2                  3
 const containerArr = [engiContainer, collContainer, smcmainContainer, annexContainer]
 const ulArr = [engUL, collUL, mainUL, annexUL]
 
@@ -28,8 +33,9 @@ window.onload = function() {
     })
     .then(data => {
         // execute when fetching is successful
-        // console.log(data)
+        console.log(data)
         displayTickets(data)
+        removeInnerHTML(data.lvl)
     })
     .catch(err => {
         console.log(err);
@@ -125,5 +131,51 @@ displayTickets = (tickets) => {
         pDivStatus.appendChild(pStatus);
         pDivAuthor.appendChild(pAuthor);
         pDivDate.appendChild(pDate);
+    }
+}
+
+    //                  0           1               2                  3
+    // containerArr = [engiContainer, collContainer, smcmainContainer, annexContainer]
+
+    // 4 = Engineering
+    // 5 = College
+    // 6 = Main
+    // 7 = Annex
+    // 8 = Head Admin
+
+    // engTable
+    // collTable
+    // smcmainTable
+    // annexTable
+
+function removeInnerHTML(lvl) {
+    if (lvl == 4) {     // engineering
+        containerArr[1].remove()
+        containerArr[2].remove()
+        containerArr[3].remove()
+        collTable.remove()
+        smcmainTable.remove()
+        annexTable.remove()    
+    } else if (lvl == 5) {  // college
+        containerArr[0].remove()
+        containerArr[2].remove()
+        containerArr[3].remove()
+        engTable.remove()
+        smcmainTable.remove()
+        annexTable.remove() 
+    } else if (lvl == 6) {  // smc main
+        containerArr[0].remove()
+        containerArr[1].remove()
+        containerArr[3].remove()
+        engTable.remove()
+        collTable.remove()
+        annexTable.remove() 
+    } else if (lvl == 7) {  // hs annex
+        containerArr[0].remove()
+        containerArr[1].remove()
+        containerArr[2].remove()
+        engTable.remove()
+        collTable.remove()
+        smcmainTable.remove()
     }
 }

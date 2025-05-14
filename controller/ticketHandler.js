@@ -5,15 +5,18 @@ import { getTime } from '../utils/getTime.js';
 const db = express();
 
 db.post('/', async (req, res) => {
+    const cookies = Object.fromEntries(req.headers.cookie?.split('; ').map(c => c.split('=')) || []);
+    // const token = cookies;
+    const lvl = cookies.lvl;
     const [tickets] = await getTickets();
     const numOfTkts = tickets.length
     // console.log("number of tickets: ",numOfTkts)
-    res.json({tickets, numOfTkts})
+    res.json({tickets, numOfTkts,lvl})
 })
 
 db.get("/tickets", async (req, res) => {
     const cookies = Object.fromEntries(req.headers.cookie?.split('; ').map(c => c.split('=')) || []);
-    const token = cookies;
+    // const token = cookies;
     const lvl = cookies.lvl;
     // console.log(lvl)
     try {
@@ -24,7 +27,7 @@ db.get("/tickets", async (req, res) => {
         res.status(500).send("Internal Server Error")
     }
     const [tickets] = await getTickets();
-    res.send(tickets);
+    res.send(tickets,lvl);
 });
 
 db.get("/view-ticket/ticket/:id", async (req, res) => {
