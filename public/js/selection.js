@@ -30,6 +30,7 @@ engiBtn.addEventListener("click", function(event){
     engiCategory.classList.add("d-flex")
    
 })
+
 collBtn.addEventListener("click", function(event){
     addBuildParam('b2')
     buildingCategory.classList.remove("d-flex")
@@ -42,6 +43,7 @@ collBtn.addEventListener("click", function(event){
     collCategory.classList.add("d-flex")
    
 })
+
 mainBtn.addEventListener("click", function(event){
     addBuildParam('b3')
     buildingCategory.classList.remove("d-flex")
@@ -52,8 +54,8 @@ mainBtn.addEventListener("click", function(event){
     chevron_down.classList.add("d-block")
     mainCategory.classList.remove("d-none")
     mainCategory.classList.add("d-flex")
-   
 })
+
 annexBtn.addEventListener("click", function(event){
     addBuildParam('b4')
     buildingCategory.classList.remove("d-flex")
@@ -64,7 +66,6 @@ annexBtn.addEventListener("click", function(event){
     chevron_down.classList.add("d-block")
     annexCategory.classList.remove("d-none")
     annexCategory.classList.add("d-flex")
-   
 })
 
 document.getElementById("closeBtn1").addEventListener("click", function(e){
@@ -114,49 +115,43 @@ function addBuildParam(build) {
     window.history.pushState({}, '', url); // Updates URL without reload
 }
 
-// function addInquiryParam(Inquiry) {
-//     const url = new URL(window.location);
-//     url.searchParams.set('category', `${inquiry}`);
-//     window.history.pushState({}, '', url); // Updates URL without reload
-// }
-
 selectBtn1.addEventListener("click", function(event){
     const params = new URLSearchParams(window.location.search);
-    const build = params.get('building'); // "john"
+    const build = params.get('building');
     window.location.href = "/smc-webassist/ticket-form?"+"building="+build+"&category=1";
 })
 selectBtn2.addEventListener("click", function(event){
     const params = new URLSearchParams(window.location.search);
-    const build = params.get('building'); // "john"
+    const build = params.get('building');
     window.location.href = "/smc-webassist/ticket-form?"+"building="+build+"&category=2";
 })
 selectBtn3.addEventListener("click", function(event){
     const params = new URLSearchParams(window.location.search);
-    const build = params.get('building'); // "john"
+    const build = params.get('building');
     window.location.href = "/smc-webassist/ticket-form?"+"building="+build+"&category=3";
 })
 selectBtn4.addEventListener("click", function(event){
     const params = new URLSearchParams(window.location.search);
-    const build = params.get('building'); // "john"
+    const build = params.get('building');
     window.location.href = "/smc-webassist/ticket-form?"+"building="+build+"&category=4";
 })
 selectBtn5.addEventListener("click", function(event){
     const params = new URLSearchParams(window.location.search);
-    const build = params.get('building'); // "john"
+    const build = params.get('building');
     window.location.href = "/smc-webassist/ticket-form?"+"building="+build+"&category=5";
 })
 selectBtn6.addEventListener("click", function(event){
     const params = new URLSearchParams(window.location.search);
-    const build = params.get('building'); // "john"
+    const build = params.get('building');
     window.location.href = "/smc-webassist/ticket-form?"+"building="+build+"&category=6";
 })
 selectBtn7.addEventListener("click", function(event){
     const params = new URLSearchParams(window.location.search);
-    const build = params.get('building'); // "john"
+    const build = params.get('building');
     window.location.href = "/smc-webassist/ticket-form?"+"building="+build+"&category=7";
 })
 selectBtn8.addEventListener("click", function(event){
     const params = new URLSearchParams(window.location.search);
-    const build = params.get('building'); // "john"
+    const build = params.get('building');
     window.location.href = "/smc-webassist/ticket-form?"+"building="+build+"&category=8";
 })

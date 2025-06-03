@@ -25,18 +25,11 @@ const ticketDate = document.getElementById("ticketDateCreated")
 const testDiv = document.getElementById("testDiv")
 
 ticketsBtnv2.addEventListener("click", function (event){
-    // event.stopPropagation();
-    event.preventDefault(); // Prevent form submission if needed
-    // console.log("Admin button clicked")
+    event.preventDefault();
     window.location.href = "/smc-webassist/admin/view-tickets-v2"
 })
 
 window.onload; {
-    // toggleTickets('pending', pendingBtn.checked);
-    // toggleTickets('resolved', resolvedBtn.checked);
-    // toggleTickets('archived', archivedBtn.checked);
-    // const category = 0;
-    // document.getElementById("ticketsBtn").style.display="none";
     fetch ('/getTickets', {
         method: "POST",	
         credentials: "include",
@@ -49,47 +42,27 @@ window.onload; {
         if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
-        return res.json(); // Parse JSON response
+        return res.json();
     })
     .then(data => {
         // execute when fetching is successful
         console.log(data)
         displayTickets(data)
-        // pendingBtn.addEventListener('click')
-        // resolvedBtn.addEventListener('click')
-        // archivedBtn.addEventListener('click')
         pendingBtn.click()
         resolvedBtn.click()
         archivedBtn.click()
     })
     .catch(err => {
         console.log(err);
-        // responseDiv.textContent = "Error fetching user.";
     });
 }
-
-// const ticketDiv
-// const ticketTitle
-// const ticketId
-// const ticketContent
-// const ticketDate
 
 const catDivArr = [null,cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8]
 
 async function displayTickets(tickets) {
-    // console.log("all tickets: ",tickets)
-    // console.log("number of tickets: ",tickets.numOfTkts)
     const len = tickets.tickets.length
-
-    // console.log("length: ",len)
-
     for (x = 0; x<9; x++) {
-        // console.log("x: ",x)
-
         for (y=0; y<len;y++) {
-            // console.log("y: ",y)
-            // console.log("length: ",len)
-
             var div= document.createElement("div");
             var title=document.createElement("p");
             var id=document.createElement("p");
@@ -111,7 +84,6 @@ async function displayTickets(tickets) {
             date.classList.add("pdate")
             owner.classList.add("pdate")
             
-
             if (tickets.tickets[y].tktInqCat==x){
                 owner.textContent = tickets.tickets[y].tktOwner;
                 title.textContent = tickets.tickets[y].tktSubj;
@@ -134,26 +106,6 @@ async function displayTickets(tickets) {
     }
 }
 
-/* <div class="text-end">
-					<button 
-                    class="btn" 
-                    data-bs-toggle="collapse" 
-                    data-bs-target="#optionDiv" 
-                    aria-expanded="false" 
-                    aria-controls="optionDiv">
-                    id="optionBtn" 
-					</button>
-				</div>
-				<div class="position-relative">
-					<div 
-                    class="rounded collapse" 
-                    id="optionDiv">
-						
-					</div>
-				</div> */
-// Get Btnes
-
-
 // Function to toggle visibility
 function toggleTickets(category, bool) {
     const color = "rgb(139, 195, 74)"
@@ -165,34 +117,13 @@ function toggleTickets(category, bool) {
 
 // Add event listeners
 pendingBtn.addEventListener('click', (e) => {
-    // console.log("toggle pending tickets")
   toggleTickets('pendingBtn', e.target.style.backgroundColor);
-//   console.log(e.target.style.backgroundColor)
 });
 
 resolvedBtn.addEventListener('click', (e) => {
-    // console.log("toggle resolved tickets")
   toggleTickets('resolvedBtn', e.target.style.backgroundColor);
 });
 
 archivedBtn.addEventListener('click', (e) => {
-    // console.log("toggle archived tickets")
   toggleTickets('archivedBtn', e.target.style.backgroundColor);
 });
-// var div= document.createElement("div");
-// var title=document.createElement("p");
-// var id=document.createElement("p");
-// var content=document.createElement("p");
-// var date=document.createElement("p");
-
-// div.classList.add("container","border","rounded");
-// title.textContent = tickets.tickets[x].tktSubj;
-// id.textContent = tickets.tickets[x].tktID;
-// content.textContent = tickets.tickets[x].tktDesc;
-// date.textContent = tickets.tickets[x].tktTimestamp;
-
-// testDiv.appendChild(div)
-// testDiv.appendChild(title)
-// testDiv.appendChild(id)
-// testDiv.appendChild(content)
-// testDiv.appendChild(date)

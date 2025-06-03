@@ -15,13 +15,6 @@ const reqBtn = document.getElementById("reqBtn")
 const forgotPassEmailInput = document.getElementById("forgotPassEmail")
 const forgotPassEmailNotice = document.getElementById("forgotPassEmailNotice")
 
-// signBtn.addEventListener("click", function (event) {
-//     event.stopPropagation();
-//     event.preventDefault(); // Prevent form submission if needed
-//     const userName = usernameInput.value;
-//     const userPass = passwordInput.value;
-//     login(userName, userPass);
-// });
 forgotPassBtn.addEventListener("click", function (event) {
     
     forgotPassParentDiv.style.display = "flex"
@@ -109,7 +102,6 @@ function sendMail(email){
     });
 }
 
-
 function login() {
     const userName = usernameInput.value;
     const userPass = passwordInput.value;
@@ -129,46 +121,28 @@ function login() {
         return res.json(); // Parse JSON response
     })
     .then(data => {
-        // console.log(data);
         if (data.statusCode == '11') {
-            // document.cookie = `accessToken=${data.user.username}; path=/; expires=${new Date(Date.now() + 1000*60*60*2).toUTCString()}`
-            // document.cookie("user", data.user.username)
-            // console.log("user", data.user.username)
-            // console.log(data)
-            // localStorage.setItem("user", JSON.stringify(data.user.username));
             window.location.href = "/smc-webassist/home";
         } else if (data.statusCode == '01') {
             var form = document.querySelector('.needs-validation')
-            
             form.classList.remove('was-validated')
-            // form.classList.add('was-validated')
             usernameInput.classList.add("border-danger")
-            nameNotice.textContent = data.message; // Display the result`
-            
+            nameNotice.textContent = data.message; // Display the result
         } else if (data.statusCode == '02') {
             var form = document.querySelector('.needs-validation')
-            
             form.classList.remove('was-validated')
-            // form.classList.add('was-validated')
             passwordInput.classList.add("border-danger")
             passNotice.textContent = data.message; // Display the result
         } else {
             var form = document.querySelector('.needs-validation')
-            
             form.classList.remove('was-validated')
-            // form.classList.add('was-validated')
             usernameInput.classList.add("border-danger")
-            
             nameNotice.textContent = data.message; // Display the result
-
         }
     })
     .catch(err => {
         console.log(err);
-        // responseDiv.textContent = "Error fetching user.";
     });
-    // .then(res => console.log(res))
-    // .then(data => (responseDiv.textContent = data))  
 }
 
 var showPassIndicator=false;
@@ -193,14 +167,12 @@ function showHidePass(){
         eyeIcon.classList.add("fa-eye-slash");
         eyeIcon.classList.remove("fa-eye");
         opacityIcon.style.opacity = "0.3";
-        // console.log("pass hide");
     } else {
         showPassText();
         showPassIndicator=true;
         eyeIcon.classList.add("fa-eye");
         eyeIcon.classList.remove("fa-eye-slash");
         opacityIcon.style.opacity = "0.6";
-        // console.log("pass show");
     }
 }
 
@@ -217,10 +189,7 @@ function showPassText() {
 
 (function () {
     'use strict'
-
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.querySelectorAll('.needs-validation')
-    // Loop over them and prevent submission
     Array.prototype.slice.call(forms)
 
         .forEach(function (form) {
@@ -228,7 +197,6 @@ function showPassText() {
             if (!form.checkValidity()) {
             event.preventDefault()
             event.stopPropagation()
-            // console.log("form object value: ",forms)
             } else {
                 event.preventDefault()
                 login()

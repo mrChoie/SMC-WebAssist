@@ -9,22 +9,18 @@ const user = express();
 user.use(express.json());
 user.use(express.urlencoded({ extended: false }));
 
-
 user.post('/category', async (req, res) => {
     const clientCookies = req.headers.cookie
     const cookieObject = Object.fromEntries(
         clientCookies.split('; ').map(cookie => cookie.split('='))
     );
-    
     const category = req.body.category;
     const uid = cookieObject.uid
-
     const categoryTitle = await getCategoryById(category)
     console.log(categoryTitle)
     const user = await getUserByID(uid)
     delete user.password
     res.json({user, categoryTitle})
-    
 })
 
 user.get('/user', async (req, res) => {
@@ -32,23 +28,13 @@ user.get('/user', async (req, res) => {
     const cookieObject = Object.fromEntries(
         clientCookies.split('; ').map(cookie => cookie.split('='))
     );
-    
     const uid = cookieObject.uid
-
     const [tickets] = await getMyTickets(uid)
     const user = await getUserByID(uid)
     const numOfTkts = tickets.length
     delete user.password
     res.json({user, tickets, numOfTkts})
 })
-
-// async function verifyToken(){
-//     const decoded = jwt.verify(userToken, process.env.USER_RESET_PASS)
-//     console.log(decoded)
-//     const user = await getUserbyName(userName.username)
-//     statusCode = '01'
-//     res.json({user, message:"User fetched", statusCode})
-// }
 
 function verifyToken(token) {
     try {
@@ -75,7 +61,6 @@ user.post('/Token', async (req, res) => {
 
     if (verification.valid) {
         console.log("verification success")
-        // console.log(verification)
         const user = await getUserbyName(verification.decoded.username)
         statusCode = '01'
         res.cookie('uid', user.uid, {
@@ -94,10 +79,6 @@ user.post('/Token', async (req, res) => {
 })
 
 user.post('/update-password', async (req, res) =>{
-    // const [uid] = Object.fromEntries(req.headers.cookie.uid)
-    // console.log("cookie uid=",uid)
-    // console.log(req.headers)
-    
     const clientCookies = req.headers.cookie
     const cookieObject = Object.fromEntries(
         clientCookies.split('; ').map(cookie => cookie.split('='))
@@ -106,7 +87,6 @@ user.post('/update-password', async (req, res) =>{
     console.log(uid)
     const newpass = req.body.userPass
     const result = await updateUserPass(newpass, uid)
-    // res.clearCookie('uid',  { path: '/' })
     res.send({message: "Password successfully updated"})
 })
 
@@ -120,61 +100,29 @@ user.post('/login', async (req, res) => {
     } else if (userName == user.username) {
 
         if (userPass == user.password){
-            // console.log("Matching :", userName, userPass)
-            // console.log("to:", user.username, user.password)
             const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
             delete user.password
-            // console.log(user)
             res.cookie('token', token, {
-                // httpOnly: true,  // Inaccessible to JavaScript
-                // secure: true,    // Only sent over HTTPS (recommended for production)
-                maxAge: 60 * 60 * 1000  // 1 hour in milliseconds (60 minutes * 60 seconds * 1000 ms)
+                maxAge: 60 * 60 * 1000
             });
             res.cookie('user', user.username, {
-                // httpOnly: true,  // Inaccessible to JavaScript
-                // secure: true,    // Only sent over HTTPS (recommended for production)
-                maxAge: 60 * 60 * 1000  // 1 hour in milliseconds (60 minutes * 60 seconds * 1000 ms)
+                maxAge: 60 * 60 * 1000
             });
             res.cookie('uid', user.uid, {
-                // httpOnly: true,  // Inaccessible to JavaScript
-                // secure: true,    // Only sent over HTTPS (recommended for production)
-                maxAge: 60 * 60 * 1000  // 1 hour in milliseconds (60 minutes * 60 seconds * 1000 ms)
+                maxAge: 60 * 60 * 1000
             });
             res.cookie('lvl', user.user_level, {
-                // httpOnly: true,  // Inaccessible to JavaScript
-                // secure: true,    // Only sent over HTTPS (recommended for production)
-                maxAge: 60 * 60 * 1000  // 1 hour in milliseconds (60 minutes * 60 seconds * 1000 ms)
+                maxAge: 60 * 60 * 1000
             });
             console.log("[Server-Logger]::",getTime(),">> client with a username [",user.username,"] successfully logged in.")
             res.json({user, message: "Login Successful", statusCode:'11'})
-            
-            // res.json({ user: user, message: "Login Successful", statusCode:'11'});
         } else {
-            // console.log("Account did not obtain a cookie")
             console.log("[Server-Logger]::",getTime(),">> client tried to log-in [",user.username,"] with invalid credentials.")
             res.json({ message: "Invalid Password", statusCode:'02' });
-            // res.render('signin.ejs', {
-            //     returnStatement: "Invalid Password"
-            // })
-            
         }
     } else {
         res.json({ message: "Invalid username", statusCode:'03' });
     }
-
-    // statusCode= '01' = Account does not exist
-    // statusCode= '02' = Invalid password
-    // statusCode= '03' = Invalid username
-    // statusCode= '11' = Login Successful
-
-    // console.log("Login form input:", userName, userPass)
-    // next();
-    // res.render('home.ejs',{
-    //     loginStatus : 1,
-    //     profile : "Profile",
-    //     sign_in : "Sign in"
-    // })
-    
 });
 
 function sendResponse(result, statusCode) {
@@ -190,8 +138,8 @@ function sendResponse(result, statusCode) {
 user.post('/register', async (req, res) => {
     var statusCode
     const {userName, userStudId, userEmail, userPass} = req.body;
-    // var userLevel
     const token = jwt.sign(userName, process.env.USER_TOKEN_SECRET);
+
     // const pattern = /^E-[0-1]{1,4}$/;
 
     // 1 = Student
@@ -278,7 +226,5 @@ user.get('/logout', async (req, res) =>{
     res.clearCookie('uid',  { path: '/' })
     res.clearCookie('user',  { path: '/' }).redirect('/smc-webassist/home')
 })
-
-
 
 export default user;

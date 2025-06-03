@@ -1,13 +1,8 @@
 import express from 'express';
 import { getTime, getClient } from '../utils/getTime.js'
-// import tktCategory from "../middleware/ticketCategorySelect.js"
 const privateRoute = express();
 
-// privateRoute.get("/login", async (req, res) => {
-    
-// })
 privateRoute.get("/feedback", async (req, res) => {
-    // const time = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + d.getFullYear() + "-[TIME]" + ("0" + d.getHours()).slice(-2) + "_" + ("0" + d.getMinutes()).slice(-2);
     const cookies = req.headers.cookie
     console.log('[Router-Logger]::',getTime(),'>> feedback page loaded by client:',getClient(cookies))
     res.render('feedback.ejs')

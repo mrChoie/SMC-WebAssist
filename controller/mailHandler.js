@@ -17,9 +17,6 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function sendReplyNotif(email, tktOwner, stud_id, tktSubj){
-    // const user = await getUserByID(tktID)
-    // const data = await getTicket(tktID)
-    // console.log(data)
     console.log("sending notification to: ",email)
     transporter.sendMail({
         from: '"SMC Web-Assist" <kyzerhinston@gmail.com>',
@@ -41,12 +38,9 @@ export async function sendReplyNotif(email, tktOwner, stud_id, tktSubj){
 
 mailer.post('/email', async (req, res) => {
     console.log("processing mail...")
-    
     var statusCode
     const email = req.body.email
     const user = await getUserByEmail(email)
-    // console.log(user)
-
     if (!user) {
         statusCode = '00'
         res.json({message: "Email is not registered", statusCode})
@@ -75,7 +69,5 @@ mailer.post('/email', async (req, res) => {
         })
     }
 })
-
-
 
 export default mailer

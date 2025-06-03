@@ -27,8 +27,6 @@ window.onload = function() {
     });
 }
 
-
-
 displayFeeds = (feeds) => {
     console.log(feeds)
     for (x = 0; x<feeds.numOfFeeds; x++) {
@@ -61,10 +59,6 @@ displayFeeds = (feeds) => {
         pPrevDesc.textContent = feeds.feedbacks[x].feedbackDesc.substring(0, 60);
         pDesc.textContent = feeds.feedbacks[x].feedbackDesc;
         pDate.textContent = feeds.feedbacks[x].formatted_time;
-        // pID.textContent = "idddd";
-        // pTitle.textContent = "titleeee";
-        // pDesc.textContent = "descccccc";
-        // pDate.textContent = "DATEEEE";
 
         ul.appendChild(li);
         li.appendChild(rowDiv);
@@ -92,7 +86,6 @@ displayFeeds = (feeds) => {
                 event.target.classList.remove("d-flex")
                 event.target.classList.add("d-none")
             }
-            
         })
     }
 }

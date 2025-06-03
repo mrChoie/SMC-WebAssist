@@ -24,10 +24,8 @@ msg.post("/send-message", async (req, res) => {
     );
     const sender = cookieObject.uid
     const { tktID, content ,email} = req.body;
-    // console.log("Ticket id: ",tktID
     const result = await sendMessage(tktID, sender, content);
     const ticket = await getTicket(result.ticket_id)
-    // console.log("---------------------------------\n",ticket)
     if (sender==ticket.uid) {
         console.log("Reply sent by author")
         res.send({result});

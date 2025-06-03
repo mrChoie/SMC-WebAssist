@@ -11,12 +11,10 @@ const collTable = document.getElementById("collTable")
 const smcmainTable = document.getElementById("smcmainTable")
 const annexTable = document.getElementById("annexTable")
 
-    //                  0           1               2                  3
 const containerArr = [engiContainer, collContainer, smcmainContainer, annexContainer]
 const ulArr = [engUL, collUL, mainUL, annexUL]
 
 window.onload = function() {
-    // document.getElementById("ticketBtn").style.display="none";
 
     fetch ('/getTickets', {
         method: "POST",	
@@ -46,9 +44,7 @@ window.onload = function() {
 
 
 displayTickets = (tickets) => {
-    // console.log(tickets)
     for (x = 0; x<tickets.numOfTkts; x++) {
-        
         var li = document.createElement("li");
         var rowDiv= document.createElement("div");
         var pDivID= document.createElement("div");
@@ -79,7 +75,6 @@ displayTickets = (tickets) => {
         pID.classList.add("m-0")
         pTitle.classList.add("m-0")
         pPrevDesc.classList.add("m-0","ticketPrevDesc")
-        // pDesc.classList.add("m-0","ticketDesc","d-none")
         pCat.classList.add("m-0","ticketCategory")
         pStatus.classList.add("m-0","ticketStatus")
         pAuthor.classList.add("m-0","ticketAuthor")
@@ -89,7 +84,6 @@ displayTickets = (tickets) => {
         pID.textContent = tickets.tickets[x].tktID;
         pTitle.textContent = tickets.tickets[x].tktSubj;
         pPrevDesc.textContent = tickets.tickets[x].tktDesc.substring(0, 50)+"... (read more)";
-        // pDesc.textContent = tickets.tickets[x].tktDesc;
         pCat.textContent = tickets.tickets[x].categoryTitle
         if (tickets.tickets[x].tktStatus=='1'){
             pStatus.textContent = "Pending";
@@ -126,27 +120,12 @@ displayTickets = (tickets) => {
         pDivTitle.appendChild(pTitle);
         pDivDesc.appendChild(link)
         link.appendChild(pPrevDesc);
-        // pDivDesc.appendChild(pDesc);
         pDivCat.appendChild(pCat);
         pDivStatus.appendChild(pStatus);
         pDivAuthor.appendChild(pAuthor);
         pDivDate.appendChild(pDate);
     }
 }
-
-    //                  0           1               2                  3
-    // containerArr = [engiContainer, collContainer, smcmainContainer, annexContainer]
-
-    // 4 = Engineering
-    // 5 = College
-    // 6 = Main
-    // 7 = Annex
-    // 8 = Head Admin
-
-    // engTable
-    // collTable
-    // smcmainTable
-    // annexTable
 
 function removeInnerHTML(lvl) {
     if (lvl == 4) {     // engineering

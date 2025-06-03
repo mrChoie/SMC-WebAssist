@@ -1,6 +1,4 @@
 import express from 'express';
-// import connection from '../model/database.js';
-// import checkCookie from '../middleware/checkCookieOnLoad.js';
 import publicRoute from '../routes/publicRoute.js';
 import user from './userHandler.js';
 import auth from '../middleware/authenticator.js';
@@ -12,20 +10,13 @@ import db from './ticketHandler.js';
 import msg from './messageHandler.js';
 
 const app = express();
-// app.engine("html", ejs.renderFile);
-// app.set('view engine', 'html');
-
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
-    // console.log("[Router-Logger]::",getTime(),">> homepage page loaded to client")
     res.render('index.ejs')
 })
-// app.use('/',(req, res) => {
-//     res.render('home.ejs')
-// })
 app.get('/checkCookie', async (req, res) => {
     const cookies = Object.fromEntries(req.headers.cookie?.split('; ').map(c => c.split('=')) || []);
     const token = cookies;
@@ -46,8 +37,6 @@ app.use('/getFeeds',auth, feedb);
 app.use('/updateUser', user);
 app.use('/msg', msg);
 app.use('/smc-webassist', publicRoute);
-// app.use(auth)
-// app.use('/smc-webassist', auth);
 app.use('/smc-webassist/admin', admin);
 app.use('/smc-webassist', user, auth, privateRoute)
 app.use('/smc-webassist', db)
@@ -78,21 +67,18 @@ function startUp(){
         if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
-        return res.json(); // Parse JSON response
+        return res.json();
     })
     .then(data => {
         //
     })
     .catch(err => {
         console.log(err);
-        // responseDiv.textContent = "Error fetching user.";
     });
 }
 
 process.on('SIGINT', () => {
     console.log('SIGINT signal received: closing gracefully');
-    // Perform cleanup actions like closing database connections, etc.
-    
     process.exit(0);
   });
   

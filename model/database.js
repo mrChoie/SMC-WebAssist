@@ -10,16 +10,6 @@ const connection = mysql.createConnection({
     database: process.env.MYSQL_DATABASE
 }).promise()
 
-
-// export async function verifyToken(token, callback) {
-//     const [result] = await getUserbyName(token)
-//     if (result) {
-//         callback(null)
-//     } else {
-//         callback("Invalid token")
-//     }
-//     return result
-// }
 export async function getMyTickets(uid){
     const [result] = await connection.query(`
         SELECT *, DATE_FORMAT(tktTimestamp, '%M %e, %l:%i %p') AS formatted_time
@@ -48,10 +38,6 @@ export async function getTicket(tktID){
         `, [tktID])
     return rows[0]
 }
-//         SELECT *, DATE_FORMAT(user_timestamp, '%M %e') AS formatted_time 
-//         FROM users u
-//         JOIN enrolledids e ON u.stud_id = e.student_id
-//         WHERE uid = ?
 
 export async function createTicket(tktUID, inqCat, buildCat, tktOwner, tktOwnerDBid, tktSubj, tktDesc, tktFile) {
     const [result] = await connection.query(`
@@ -61,23 +47,13 @@ export async function createTicket(tktUID, inqCat, buildCat, tktOwner, tktOwnerD
     const id = result.insertId
     return getTicket(id)
 }
-// export async function createTicket(categoryID, tktPublisher) {
-//     const [result] = await connection.query(`
-//         INSERT INTO tickets (categoryID, tktPublisher)
-//         VALUES (?, ?)
-//         `, [categoryID, tktPublisher])
-//     const id = result.insertId
-//     return getTicket(id)
-// }
 
 export async function updateTicket(tktID, tktStatus) {
-    // console.log("updating ticket")
     const [result] = await connection.query(`
         UPDATE tickets
         SET tktStatus = ?
         WHERE tktID = ?
         `, [tktStatus, tktID])
-        // console.log(result)
     return 0
 }
 
@@ -87,7 +63,6 @@ export async function getCategoryById(cId) {
         FROM categories
         WHERE categoryId = ?
         `, [cId])
-        // console.log(result)
         return result[0]
 }
 
@@ -103,7 +78,6 @@ export async function getUserbyName(name) {
         FROM users
         WHERE username = ?
         `, [name])
-        // console.log(result)
         return result[0]
 }
 
@@ -137,18 +111,15 @@ export async function verifyIDinDB(userName, userStudId, userEmail, userPass, us
     console.log(result)
     if (result[0].is_exists) {
         console.log("User is a student of SMC")
-        // console.log("after IF: ",!result[0].is_exists)
         return await checkDuplicateUser(userName, userStudId, userEmail, userPass, userLevel, token);
     } else {
         console.log("User is not a student of SMC")
-        // console.log("after IF: ",!result[0].is_exists)
         statusCode = '1'
     }
     return statusCode;
 }
 
 export async function checkDuplicateUser(userName, userStudId, userEmail, userPass, userLevel, token){
-    // console.log(userName, userStudId, userPass, userLevel)
     var statusCode = '0'
     const [result] = await connection.query(`
         SELECT EXISTS (
@@ -156,21 +127,17 @@ export async function checkDuplicateUser(userName, userStudId, userEmail, userPa
             FROM users 
             WHERE stud_id = ?) AS is_exists;
         `, [userStudId])
-    // console.log(result)
     if (!result[0].is_exists) {
         console.log("User is not duplicated")
-        // console.log("after IF: ",!result[0].is_exists)
         return await createUser(userName, userStudId, userEmail, userPass, userLevel, token);
     } else {
         console.log("User is duplicated")
-        // console.log("after IF: ",!result[0].is_exists)
         statusCode = '2'
     }
     return statusCode;
 }
 
 export async function checkDuplicateAdmin(userName, userStudId, userEmail, userPass, userLevel, token){
-    // console.log(userName, userStudId, userPass, userLevel)
     var statusCode = '0'
     const [result] = await connection.query(`
         SELECT EXISTS (
@@ -181,11 +148,9 @@ export async function checkDuplicateAdmin(userName, userStudId, userEmail, userP
     // console.log(result)
     if (!result[0].is_exists) {
         console.log("User is not duplicated")
-        // console.log("after IF: ",!result[0].is_exists)
         return await createUser(userName, userStudId, userEmail, userPass, userLevel, token);
     } else {
         console.log("User is duplicated")
-        // console.log("after IF: ",!result[0].is_exists)
         statusCode = '2'
     }
     return statusCode;
@@ -197,17 +162,14 @@ export async function createUser(userName, userStudId, userEmail, userPass, user
         VALUES (?, ?, ?, ?, ?, ?)
         `, [userName, userStudId, userEmail, userPass, userLevel, token])
     const id = result.insertId
-    // return getUserByID(id)
     return '3'
-}                   // createAdmin('SMC Main Admin', userStudId, 'Admin')
+}
+
 export async function createAdmin(userName, userStudId, role) {
     const [result] = await connection.query(`
         INSERT INTO enrolledids (student_id, student_name, student_course)
         VALUES (?, ?, ?)
         `, [userStudId, userName, role])
-    // const id = result.insertId
-    // console.log(result[id])
-    // return getUserByID(id)
     return '3'
 }
 
@@ -244,12 +206,6 @@ export async function sendMessage(ticketId, sender, content) {
 }
 
 export async function getMessages(ticketId) {
-    // console.log("getting messages")
-    // const [rows] = await connection.query(`
-    // SELECT * 
-    //     FROM messages
-    //     WHERE ticket_id = ?
-    //     `, [ticketId])
     const [rows] = await connection.query(`
         SELECT 
             m.id,
@@ -265,12 +221,8 @@ export async function getMessages(ticketId) {
         WHERE m.ticket_id = ?
         ORDER BY m.sent_at ASC;
         `,[ticketId])
-    // console.log("result: ",rows)
     return rows
 }
-
-// JOIN users ON sender_id = uid
-// JOIN table ON 5 = 5
 
 export async function getMessage(id) {
     const [rows] = await connection.query(`

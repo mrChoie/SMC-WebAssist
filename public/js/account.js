@@ -12,9 +12,6 @@ const ticketDate = document.getElementById("ticketDateCreated")
 const testDiv = document.getElementById("testDiv")
 
 window.onload; {
-
-    // const category = 0;
-
     fetch ('/getInfo/user', {
         method: "GET",	
         credentials: "include",
@@ -45,14 +42,7 @@ window.onload; {
     });
 }
 
-// const ticketDiv
-// const ticketTitle
-// const ticketId
-// const ticketContent
-// const ticketDate
-
 function displayTickets(tickets) {
-    // console.log(tickets)
     for (x = 0; x<tickets.numOfTkts; x++) {
 
         var rowDiv= document.createElement("div");
@@ -67,16 +57,10 @@ function displayTickets(tickets) {
         var btn=document.createElement("i");
 
         if (tickets.tickets[x].tktStatus==1) {
-            // rowDiv.classList.add("row","bg-light","animate","AccTktpending");
-            // colDivContent.classList.add("col-10","ticketContent","AccTktpending");
             colDivLink.classList.add("col-2","ticketLink","text-center","AccTktpending");
         } else if (tickets.tickets[x].tktStatus==2){
-            // rowDiv.classList.add("row","bg-light","animate","AccTktarchived");
-            // colDivContent.classList.add("col-10","ticketContent","AccTktarchived");
             colDivLink.classList.add("col-2","ticketLink","text-center","AccTktarchived");
         } else if (tickets.tickets[x].tktStatus==3) {
-            // rowDiv.classList.add("row","bg-light","animate","AccTktresolved");
-            // colDivContent.classList.add("col-10","ticketContent","AccTktresolved");
             colDivLink.classList.add("col-2","ticketLink","text-center","AccTktresolved");
         }
         rowDiv.classList.add("row","bg-light","animate");
@@ -94,7 +78,6 @@ function displayTickets(tickets) {
         id.textContent = "Ticket ID: "+ tickets.tickets[x].tktID;
         content.textContent = tickets.tickets[x].tktDesc.substring(0, 170) + ". . .";
         date.textContent = tickets.tickets[x].formatted_time;
-        // btn.textContent = "Open";
 
         ticketDiv.appendChild(rowDiv)
 
@@ -109,21 +92,3 @@ function displayTickets(tickets) {
         link.appendChild(btn)
     }
 }
-
-// var div= document.createElement("div");
-// var title=document.createElement("p");
-// var id=document.createElement("p");
-// var content=document.createElement("p");
-// var date=document.createElement("p");
-
-// div.classList.add("container","border","border-dark","rounded");
-// title.textContent = tickets.tickets[x].tktSubj;
-// id.textContent = tickets.tickets[x].tktID;
-// content.textContent = tickets.tickets[x].tktDesc;
-// date.textContent = tickets.tickets[x].tktTimestamp;
-
-// testDiv.appendChild(div)
-// testDiv.appendChild(title)
-// testDiv.appendChild(id)
-// testDiv.appendChild(content)
-// testDiv.appendChild(date)

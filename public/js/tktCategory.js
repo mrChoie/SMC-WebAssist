@@ -2,10 +2,10 @@ const tkOwner2 = document.getElementById("ticketStudName2")
 const tkOwnerID2 = document.getElementById("ticketIdNum2")
 const tkOwner = document.getElementById("ticketStudName")
 const tkOwnerdbid = document.getElementById("ticketIdNum")
-const tkSubj = document.getElementById("ticketSubj")            //ticketSubj
-const tkDesc = document.getElementById("ticketDesc")            //ticketDesc
+const tkSubj = document.getElementById("ticketSubj")
+const tkDesc = document.getElementById("ticketDesc")
 const categoryTitle = document.getElementById("categoryTitle")
-const ticketFile = document.getElementById("ticketFile")        //ticketFile
+const ticketFile = document.getElementById("ticketFile")
 const buildCat = document.getElementById("buildCat")
 const inqCat = document.getElementById("inqCat")
 const noticePar = document.getElementById("noticeParent")
@@ -34,7 +34,6 @@ window.onload; {
         return res.json(); // Parse JSON response
     })
     .then(data => {
-        // console.log(data)
         tkOwner2.value = data.user.student_name;
         tkOwnerID2.value = data.user.stud_id;
         tkOwner.value = data.user.student_name;
@@ -45,7 +44,6 @@ window.onload; {
     })
     .catch(err => {
         console.log(err);
-        // responseDiv.textContent = "Error fetching user.";
     });
 }
 
@@ -86,17 +84,12 @@ function submitTicket() {
         return res.json();
     })
     .then(data => {
-        // console.log(data)
         if (data.statusCode == '40') {
-            // do function
-            // console.log(data.message)
             tkSubj.setAttribute('disabled','1');
             tkDesc.setAttribute('disabled','1');
             ticketFile.setAttribute('disabled','1');
             noticePar.style.display="flex"
             blurDiv.style.zIndex= '-1'
-            // blurDiv.style.filter ="blur(1px)"
-            
         }
     })
     .catch(err => {
@@ -106,10 +99,7 @@ function submitTicket() {
 
 (function () {
     'use strict'
-
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.querySelectorAll('.needs-validation')
-    // Loop over them and prevent submission
     Array.prototype.slice.call(forms)
     
     .forEach(function (form) {
@@ -118,7 +108,6 @@ function submitTicket() {
             event.preventDefault()
             event.stopPropagation()
         } else {
-            // Call function if all fields are valid
             event.preventDefault()
             submitTicket()
         }
