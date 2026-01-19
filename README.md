@@ -1,23 +1,12 @@
 # SMC Web-Assist
 #### This project is for Thesis compliance. Feel free to comment any suggestion or recommendations for it!
+EDIT - Thesis was successfully deffended and approved on the 15th of May, 2025. This repo will be use for public viewing and to be filed into mrChoi's Porfolio for future endeavors.
 
-### Required resource/s:
-- Bootstrap v5.0.2
-    - Download bootstrap source files [here](https://getbootstrap.com/docs/5.0/getting-started/download/)
+### Required Application for Database Functionality:
+- XAMPP - To host sql
+- MySQL/SQLyog - To manage database
 
 ### Dependencies:
-- Node.js
-    - install node.js [here](https://nodejs.org/en/download/)
-- DotENV
-    - install via terminal ``npm i dotenv``
-- EJS (Embedded JavaScript)
-    - install via terminal ``npm i ejs``
-- Express 5
-    - install via terminal ``npm i "express@^5.0.1"``
-- MySQL 2
-    - install via terminal ``npm i mysql2``
-- JWT
-    - install via terminal ``npm i jsonwebtoken``
 ```json
     "bcrypt": "^5.1.1",
     "cookie": "^1.0.2",
@@ -26,12 +15,7 @@
     "ejs": "^3.1.10",
     "express": "^5.0.1",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.13.0"
+    "logger": "^0.0.1",
+    "mysql2": "^3.13.0",
+    "nodemailer": "^7.0.2"
 ```
-
-### To initialize node.js package:
-- Note: npm must be installed before initializing
-- type in terminal:
-    ``npm init -y``
-
-Dont mess with branching!
