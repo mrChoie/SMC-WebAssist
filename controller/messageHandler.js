@@ -31,7 +31,8 @@ msg.post("/send-message", async (req, res) => {
         res.send({result});
     } else {
         console.log("Reply sent by admin, sending notif to author")
-        const notif = await sendReplyNotif(email, ticket.tktOwner, ticket.stud_id, ticket.tktSubj)
+        //const notif = await sendReplyNotif(email, ticket.tktOwner, ticket.stud_id, ticket.tktSubj)
+        const notif = "Author has been notified (mock)"
         res.send({result, notif});
     }
 })

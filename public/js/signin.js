@@ -31,6 +31,8 @@ closeForgotPassBtn.addEventListener("click", function (event) {
     forgotPassEmailNotice.classList.add("text-danger")
     forgotPassEmailInput.removeAttribute('disabled');
     reqBtn.removeAttribute('disabled');
+    reqBtnP.style.display = "flex"
+    reqBtnLoading.style.display = "none"
 })
 
 passwordInput.addEventListener("keydown", function (event) {
@@ -58,7 +60,7 @@ reqBtn.addEventListener("click", function (event) {
     } else {
         reqBtnP.style.display = "none"
         reqBtnLoading.style.display = "flex"
-        sendMail(email)
+        //sendMail(email)
     }
 })
 

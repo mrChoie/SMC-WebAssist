@@ -10,3 +10,5 @@ logger.js
 ./logs
 TEST.HTML
 test.js
+ssh.bat
+server.bat
