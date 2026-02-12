@@ -12,3 +12,4 @@ TEST.HTML
 test.js
 ssh.bat
 server.bat
+.env

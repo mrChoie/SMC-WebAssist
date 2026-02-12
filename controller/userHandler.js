@@ -10,6 +10,7 @@ user.use(express.json());
 user.use(express.urlencoded({ extended: false }));
 
 user.post('/category', async (req, res) => {
+    console.log("[userHandler.js]:: Fetching category title...")
     const clientCookies = req.headers.cookie
     const cookieObject = Object.fromEntries(
         clientCookies.split('; ').map(cookie => cookie.split('='))

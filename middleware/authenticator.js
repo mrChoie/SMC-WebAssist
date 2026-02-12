@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const auth = async (req, res, next) => {
+    console.log("[authenticator.js]:: Verifying user authentication...")
     const clientCookies = req.headers.cookie
     if (clientCookies == null) return res.status(401).redirect('/smc-webassist/signin')
     const cookieObject = Object.fromEntries(
@@ -12,7 +13,9 @@ const auth = async (req, res, next) => {
     const token = cookieObject.token
     const userToken = cookieObject.user
     try {
+        console.log("[authenticator.js]:: Extracted token from cookies:", token)
         if (token == null) return res.status(401).redirect('/smc-webassist/signin')
+            console.log("[authenticator.js]:: Verifying token...")
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err) => {
             if (err) return res.status(403).redirect('/smc-webassist/signin')
             next()

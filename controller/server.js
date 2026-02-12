@@ -23,8 +23,10 @@ app.get('/checkCookie', async (req, res) => {
     const lvl = cookies.lvl;
     
     if (cookies.token==null){
+        console.log("[server.js:26] No token found in cookies.")
         res.json({token, message: "User is not logged in", statusCode:20 });
     } else {
+        console.log("[server.js:29] Token found in cookies:", token);
         res.json({cookies, lvl, message: "User is logged in", statusCode:21 });
     }
 });

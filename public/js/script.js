@@ -36,10 +36,12 @@ window.onload; {
             loggedInDiv.style.display = "flex";
             userIcon.style.display="flex";
             }
+            console.log("[script.js:39] User is logged in. Cookies:", data.cookies);
         } else {
             loggedInDiv.style.display = "none";
             signUpDiv.style.display = "flex";
             loggedOutDiv.style.display = "flex";
+            console.log("[script.js:44] User is not logged in.");
         }
     })
     .catch(err => {

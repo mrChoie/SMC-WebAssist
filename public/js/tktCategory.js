@@ -41,6 +41,8 @@ window.onload; {
         categoryTitle.textContent = data.categoryTitle.categoryTitle 
         inqCat.value = category
         buildCat.value = building
+
+        console.log("Category info fetched successfully:", data);
     })
     .catch(err => {
         console.log(err);
