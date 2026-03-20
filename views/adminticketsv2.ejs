@@ -1,275 +1,358 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SMC Web-Assist | Tickets</title>
-	<link rel="icon" type="image/x-icon" href="/img/smcLogo.ico">
-	<link href="/bootstrap/bootstrap-5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="/css/adminStyleSheetv2.css">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SMC Web-Assist | Tickets</title>
+    <link rel="icon" type="image/x-icon" href="/img/smcLogo.ico" />
+    <link
+      href="/bootstrap/bootstrap-5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/adminStyleSheetv2.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
+      <div class="container-fluid">
+        <a class="navbar-brand ps-3" href="/smc-webassist/home"
+          >SMC Web Assist</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item ps-3">
+              <hr />
+            </li>
+            <li class="nav-item ps-3">
+              <!-- Submit Button -->
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="/smc-webassist/category"
+                >Submit Ticket</a
+              >
+            </li>
+            <li class="nav-item ps-3">
+              <!-- Feedback Button -->
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="/smc-webassist/feedback"
+                >Feedback</a
+              >
+            </li>
+            <li class="nav-item ps-3">
+              <!-- About Button -->
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="/smc-webassist/about"
+                >About</a
+              >
+            </li>
+          </ul>
+          <form class="d-flex">
+            <div id="adminBtn" style="display: none">
+              <button class="btn p-0" style="display: flex" id="feedbackBtn">
+                <div style="display: flex" id="feedbackLink">
+                  <a class="nav-link text-light">Feedbacks</a>
+                </div>
+              </button>
+              <button
+                class="btn p-0 ms-2"
+                style="display: flex"
+                id="ticketsBtn"
+              >
+                <div style="display: flex" id="ticketLink">
+                  <a class="nav-link text-light">Tickets</a>
+                </div>
+              </button>
+            </div>
 
-</head>
-<body>
-	<nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
-		<div class="container-fluid">
-		<a class="navbar-brand ps-3" href="/smc-webassist/home">SMC Web Assist</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item ps-3">
-					<hr>
-				</li>
-				<li class="nav-item ps-3">
-				<!-- Submit Button -->
-				<a class="nav-link" aria-current="page" href="/smc-webassist/category">Submit Ticket</a>
-				</li>
-				<li class="nav-item ps-3">
-				<!-- Feedback Button -->
-				<a class="nav-link" aria-current="page" href="/smc-webassist/feedback">Feedback</a>
-				</li>
-				<li class="nav-item ps-3">
-				<!-- About Button -->
-				<a class="nav-link" aria-current="page" href="/smc-webassist/about">About</a>
-				</li>
-			</ul>
-			<form class="d-flex">
-				<div id="adminBtn" style="display: none;">
-					<button class="btn p-0" style="display: flex;" id="feedbackBtn">
-						<div style="display: flex;" id="feedbackLink">
-							<a class="nav-link text-light">Feedbacks</a>
-						</div>
-					</button>
-					<button class="btn p-0 ms-2" style="display: flex;" id="ticketsBtn">
-						<div style="display: flex;" id="ticketLink">
-							<a class="nav-link text-light">Tickets</a>
-						</div>
-					</button>
-				</div>
-				
-				<button class="btn p-0 ms-2" style="display: none;" id="profileBtn">
-					<div style="display: none;" id="navUserIcon">
-						<i class="text-light fa-solid fa-user d-flex align-items-center pt-0 m-0 ps-3"></i>
-					</div>
-					<div style="display: none;" id="navAdminIcon">
-						<i class="text-light fa-solid fa-user-tie d-flex align-items-center pt-0 m-0 ps-3"></i>
-					</div>
-					<div style="display: flex;">
-						<a class="nav-link text-light">Profile</a>
-					</div>
-				</button>
-				<div style="display: flex;" id="loggedInDiv">
-					<button class="btn btn-danger ms-2" id="logoutBtn">
-						<i class="fa-solid fa-right-from-bracket ms-1 me-1"></i>
-					</button>
-				</div>
-				<div style="display: none;" id="loggedOutDiv">
-					<a class="nav-link text-dark" href="/smc-webassist/signin">Log in</a>
-				</div>
-				<div style="display: none;" id="signUpDiv">
-					<a class="nav-link text-dark" href="/smc-webassist/signup">Sign up</a>
-				</div>
-			</form>
-		</div>
-		</div>
-	</nav>
-	
-	<div class="d-flex m-0 p-0" id="parentContainer">
-		
-		<div id="sideCol">
-			<div class="d-flex flex-column justify-content-end sideBtnContainer">
-				 <a href="#engTable">
-					<button class="sideBtn btn text-light sideBtnEng w-100">Engineering</button>
-				</a>
-				 <a href="#collTable">
-					<button class="sideBtn btn text-light rounded-0 w-100">College</button>
-				</a>
-				 <a href="#smcmainTable">
-					<button class="sideBtn btn text-light rounded-0 w-100">SMC Main</button>
-				</a>
-				 <a href="#annexTable">
-					<button class="sideBtn btn text-light sideBtnAnnex w-100">HS Annex</button>
-				</a>
-			</div>
-			<div class="d-flex flex-column justify-content-end bg-light mt-4 sideBtnContainer ps-2">
-				<strong>Notice:</strong>
-				<p> Some text</p>
-				<p> Some text</p>
-				<p> Some text</p>
-			</div>
-		</div>
-		<div class="flex-start" id="mainCol">
-			<div class="p-2 d-flex align-items-center justify-content-between border-end border-3" id="engTable">
-				<h4 class="m-2">Engineering</h4>				
-			</div>
-			<div class="p-1 border-end border-3" id="engiContainer">
-				<div class="text-light ticketColumn">
-					<div class="row p-1">
-						<div class="col-sm-1 text-sm-center">
-							<p class="m-0">ID</p>
-						</div>
-						<div class="col-sm-2">
-							<p class="m-0">Subject</p>
-						</div>
-						<div class="col-sm-4">
-							<p class="m-0">Ticket Description</p>
-						</div>
-						<div class="col-sm-1">
-							<p class="m-0">Category</p>
-						</div>
-						<div class="col-sm-1 text-sm-center">
-							<p class="m-0">Status</p>
-						</div>
-						<div class="col-sm-2">
-							<p class="m-0">Author</p>
-						</div>
-						<div class="col-sm-1">
-							<p class="m-0">Date</p>
-						</div>
-					</div>
-				</div>
-				<ul class="ps-0 m-0 ticketList" style="list-style-type: none;" id="engiTicketList">
-				</ul>
-				<div class="text-light ticketColumnFoot">
-					<div class="row p-1">
-						
-					</div>
-				</div>
-			</div>
-			<div class="p-2 d-flex align-items-center justify-content-between border-end border-top border-3" id="collTable">
-				<h4 class="m-2">College</h4>				
-			</div>
-			<div class="p-1 border-end border-3" id="collContainer">
-				<div class="text-light ticketColumn">
-					<div class="row p-1">
-						<div class="col-sm-1 text-sm-center">
-							<p class="m-0">ID</p>
-						</div>
-						<div class="col-sm-2">
-							<p class="m-0">Subject</p>
-						</div>
-						<div class="col-sm-4">
-							<p class="m-0">Ticket Description</p>
-						</div>
-						<div class="col-sm-1">
-							<p class="m-0">Category</p>
-						</div>
-						<div class="col-sm-1 text-sm-center">
-							<p class="m-0">Status</p>
-						</div>
-						<div class="col-sm-2">
-							<p class="m-0">Author</p>
-						</div>
-						<div class="col-sm-1">
-							<p class="m-0">Date</p>
-						</div>
-					</div>
-				</div>
-				<ul class="ps-0 m-0 ticketList" style="list-style-type: none;" id="collTicketList">
-					
-				</ul>
-				<div class="text-light ticketColumnFoot">
-					<div class="row p-1">
-						
-					</div>
-				</div>
-			</div>
-			<div class="p-2 d-flex align-items-center justify-content-between border-end border-top border-3" id="smcmainTable">
-				<h4 class="m-2">SMC Main</h4>				
-			</div>
-			<div class="p-1 border-end border-3" id="smcmainContainer">
-				<div class="text-light ticketColumn">
-					<div class="row p-1">
-						<div class="col-sm-1 text-sm-center">
-							<p class="m-0">ID</p>
-						</div>
-						<div class="col-sm-2">
-							<p class="m-0">Subject</p>
-						</div>
-						<div class="col-sm-4">
-							<p class="m-0">Ticket Description</p>
-						</div>
-						<div class="col-sm-1">
-							<p class="m-0">Category</p>
-						</div>
-						<div class="col-sm-1 text-sm-center">
-							<p class="m-0">Status</p>
-						</div>
-						<div class="col-sm-2">
-							<p class="m-0">Author</p>
-						</div>
-						<div class="col-sm-1">
-							<p class="m-0">Date</p>
-						</div>
-					</div>
-				</div>
-				<ul class="ps-0 m-0 ticketList" style="list-style-type: none;" id="mainTicketList">
-					
-				</ul>
-				<div class="text-light ticketColumnFoot">
-					<div class="row p-1">
-						
-					</div>
-				</div>
-			</div>
-			<div class="p-2 d-flex align-items-center justify-content-between border-end border-top border-3" id="annexTable">
-				<h4 class="m-2">HS Annex</h4>				
-			</div>
-			<div class="p-1 border-end border-3 border-bottom" id="annexContainer">
-				<div class="text-light ticketColumn">
-					<div class="row p-1">
-						<div class="col-sm-1 text-sm-center">
-							<p class="m-0">ID</p>
-						</div>
-						<div class="col-sm-2">
-							<p class="m-0">Subject</p>
-						</div>
-						<div class="col-sm-4">
-							<p class="m-0">Ticket Description</p>
-						</div>
-						<div class="col-sm-1">
-							<p class="m-0">Category</p>
-						</div>
-						<div class="col-sm-1 text-sm-center">
-							<p class="m-0">Status</p>
-						</div>
-						<div class="col-sm-2">
-							<p class="m-0">Author</p>
-						</div>
-						<div class="col-sm-1">
-							<p class="m-0">Date</p>
-						</div>
-					</div>
-				</div>
-				<ul class="ps-0 m-0 ticketList" style="list-style-type: none;" id="annexTicketList">
-					
-				</ul>
-				<div class="text-light ticketColumnFoot">
-					<div class="row p-1">
-						
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="align-items-stretch flex-fill">
-		</div>
-	</div>
+            <button class="btn p-0 ms-2" style="display: none" id="profileBtn">
+              <div style="display: none" id="navUserIcon">
+                <i
+                  class="text-light fa-solid fa-user d-flex align-self-center pt-0 m-0 ps-3"
+                ></i>
+              </div>
+              <div style="display: none" id="navAdminIcon">
+                <i
+                  class="text-light fa-solid fa-user-tie d-flex align-self-center pt-0 m-0 ps-3"
+                ></i>
+              </div>
+              <div style="display: flex">
+                <a class="nav-link text-light">Profile</a>
+              </div>
+            </button>
+            <div style="display: flex" id="loggedInDiv">
+              <button class="btn btn-danger ms-2" id="logoutBtn">
+                <i class="fa-solid fa-right-from-bracket ms-1 me-1"></i>
+              </button>
+            </div>
+            <div style="display: none" id="loggedOutDiv">
+              <a class="nav-link text-dark" href="/smc-webassist/signin"
+                >Log in</a
+              >
+            </div>
+            <div style="display: none" id="signUpDiv">
+              <a class="nav-link text-dark" href="/smc-webassist/signup"
+                >Sign up</a
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
 
-	<div class="container-fluid">
-		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-			<p class="col-md-4 mb-0 text-dark">&copy; 2025 BSCPE SENIORS INC.</p>
-				<ul class="nav col-md-4 justify-content-end">
-				<li class="nav-item"><a href="/smc-webassist/terms-of-service" class="nav-link px-2 text-dark">Terms of Service</a></li>
-				<li class="nav-item"><a href="/smc-webassist/home" class="nav-link px-2 text-dark">Home</a></li>
-				<li class="nav-item"><a href="/smc-webassist/about#" class="nav-link px-2 text-dark">About</a></li>
-			</ul>
-		</footer>
-	</div>
-	<br>
-	<script src="https://kit.fontawesome.com/67f996be23.js" crossorigin="anonymous"></script>
-	<script src="/js/adminTicketv2.js"></script>
-	<script src="/js/script.js"></script>
-	<script src="/bootstrap/bootstrap-5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-</body>
+    <div class="d-flex m-0 p-0" id="parentContainer">
+      <div id="sideCol">
+        <div class="d-flex flex-column justify-content-end sideBtnContainer">
+          <a href="#engTable">
+            <button class="sideBtn btn text-light sideBtnEng w-100">
+              Engineering
+            </button>
+          </a>
+          <a href="#collTable">
+            <button class="sideBtn btn text-light rounded-0 w-100">
+              College
+            </button>
+          </a>
+          <a href="#smcmainTable">
+            <button class="sideBtn btn text-light rounded-0 w-100">
+              SMC Main
+            </button>
+          </a>
+          <a href="#annexTable">
+            <button class="sideBtn btn text-light sideBtnAnnex w-100">
+              HS Annex
+            </button>
+          </a>
+        </div>
+        <div
+          class="d-flex flex-column justify-content-end bg-light mt-4 sideBtnContainer ps-2"
+        >
+          <strong>Notice:</strong>
+          <p>Some text</p>
+          <p>Some text</p>
+          <p>Some text</p>
+        </div>
+      </div>
+      <div class="flex-start" id="mainCol">
+        <div
+          class="p-2 d-flex align-items-center justify-content-between border-end border-3"
+          id="engTable"
+        >
+          <h4 class="m-2">Engineering</h4>
+        </div>
+        <div class="p-1 border-end border-3" id="engiContainer">
+          <div class="text-light ticketColumn">
+            <div class="row p-1">
+              <div class="col-sm-1 text-sm-center">
+                <p class="m-0">ID</p>
+              </div>
+              <div class="col-sm-2">
+                <p class="m-0">Subject</p>
+              </div>
+              <div class="col-sm-4">
+                <p class="m-0">Ticket Description</p>
+              </div>
+              <div class="col-sm-1">
+                <p class="m-0">Category</p>
+              </div>
+              <div class="col-sm-1 text-sm-center">
+                <p class="m-0">Status</p>
+              </div>
+              <div class="col-sm-2">
+                <p class="m-0">Author</p>
+              </div>
+              <div class="col-sm-1">
+                <p class="m-0">Date</p>
+              </div>
+            </div>
+          </div>
+          <ul
+            class="ps-0 m-0 ticketList"
+            style="list-style-type: none"
+            id="engiTicketList"
+          ></ul>
+          <div class="text-light ticketColumnFoot">
+            <div class="row p-1"></div>
+          </div>
+        </div>
+        <div
+          class="p-2 d-flex align-items-center justify-content-between border-end border-top border-3"
+          id="collTable"
+        >
+          <h4 class="m-2">College</h4>
+        </div>
+        <div class="p-1 border-end border-3" id="collContainer">
+          <div class="text-light ticketColumn">
+            <div class="row p-1">
+              <div class="col-sm-1 text-sm-center">
+                <p class="m-0">ID</p>
+              </div>
+              <div class="col-sm-2">
+                <p class="m-0">Subject</p>
+              </div>
+              <div class="col-sm-4">
+                <p class="m-0">Ticket Description</p>
+              </div>
+              <div class="col-sm-1">
+                <p class="m-0">Category</p>
+              </div>
+              <div class="col-sm-1 text-sm-center">
+                <p class="m-0">Status</p>
+              </div>
+              <div class="col-sm-2">
+                <p class="m-0">Author</p>
+              </div>
+              <div class="col-sm-1">
+                <p class="m-0">Date</p>
+              </div>
+            </div>
+          </div>
+          <ul
+            class="ps-0 m-0 ticketList"
+            style="list-style-type: none"
+            id="collTicketList"
+          ></ul>
+          <div class="text-light ticketColumnFoot">
+            <div class="row p-1"></div>
+          </div>
+        </div>
+        <div
+          class="p-2 d-flex align-items-center justify-content-between border-end border-top border-3"
+          id="smcmainTable"
+        >
+          <h4 class="m-2">SMC Main</h4>
+        </div>
+        <div class="p-1 border-end border-3" id="smcmainContainer">
+          <div class="text-light ticketColumn">
+            <div class="row p-1">
+              <div class="col-sm-1 text-sm-center">
+                <p class="m-0">ID</p>
+              </div>
+              <div class="col-sm-2">
+                <p class="m-0">Subject</p>
+              </div>
+              <div class="col-sm-4">
+                <p class="m-0">Ticket Description</p>
+              </div>
+              <div class="col-sm-1">
+                <p class="m-0">Category</p>
+              </div>
+              <div class="col-sm-1 text-sm-center">
+                <p class="m-0">Status</p>
+              </div>
+              <div class="col-sm-2">
+                <p class="m-0">Author</p>
+              </div>
+              <div class="col-sm-1">
+                <p class="m-0">Date</p>
+              </div>
+            </div>
+          </div>
+          <ul
+            class="ps-0 m-0 ticketList"
+            style="list-style-type: none"
+            id="mainTicketList"
+          ></ul>
+          <div class="text-light ticketColumnFoot">
+            <div class="row p-1"></div>
+          </div>
+        </div>
+        <div
+          class="p-2 d-flex align-items-center justify-content-between border-end border-top border-3"
+          id="annexTable"
+        >
+          <h4 class="m-2">HS Annex</h4>
+        </div>
+        <div class="p-1 border-end border-3 border-bottom" id="annexContainer">
+          <div class="text-light ticketColumn">
+            <div class="row p-1">
+              <div class="col-sm-1 text-sm-center">
+                <p class="m-0">ID</p>
+              </div>
+              <div class="col-sm-2">
+                <p class="m-0">Subject</p>
+              </div>
+              <div class="col-sm-4">
+                <p class="m-0">Ticket Description</p>
+              </div>
+              <div class="col-sm-1">
+                <p class="m-0">Category</p>
+              </div>
+              <div class="col-sm-1 text-sm-center">
+                <p class="m-0">Status</p>
+              </div>
+              <div class="col-sm-2">
+                <p class="m-0">Author</p>
+              </div>
+              <div class="col-sm-1">
+                <p class="m-0">Date</p>
+              </div>
+            </div>
+          </div>
+          <ul
+            class="ps-0 m-0 ticketList"
+            style="list-style-type: none"
+            id="annexTicketList"
+          ></ul>
+          <div class="text-light ticketColumnFoot">
+            <div class="row p-1"></div>
+          </div>
+        </div>
+      </div>
+      <div class="align-items-stretch flex-fill"></div>
+    </div>
+
+    <div class="container-fluid">
+      <footer
+        class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+      >
+        <p class="col-md-4 mb-0 text-dark">&copy; 2025 BSCPE SENIORS INC.</p>
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item">
+            <a
+              href="/smc-webassist/terms-of-service"
+              class="nav-link px-2 text-dark"
+              >Terms of Service</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="/smc-webassist/home" class="nav-link px-2 text-dark"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="/smc-webassist/about#" class="nav-link px-2 text-dark"
+              >About</a
+            >
+          </li>
+        </ul>
+      </footer>
+    </div>
+    <br />
+    <script
+      src="https://kit.fontawesome.com/67f996be23.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/adminTicketv2.js"></script>
+    <script src="/js/script.js"></script>
+    <script
+      src="/bootstrap/bootstrap-5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

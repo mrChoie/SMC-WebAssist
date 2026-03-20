@@ -1,108 +1,175 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SMC Web-Assist | Profile</title>
-	<link rel="icon" type="image/x-icon" href="/img/smcLogo.ico">
-	<link href="/bootstrap/bootstrap-5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SMC Web-Assist | Profile</title>
+    <link rel="icon" type="image/x-icon" href="/img/smcLogo.ico" />
+    <link
+      href="/bootstrap/bootstrap-5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
+      <div class="container-fluid">
+        <a class="navbar-brand ps-3" href="/smc-webassist/home"
+          >SMC Web Assist</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item ps-3">
+              <hr />
+            </li>
+            <li class="nav-item ps-3">
+              <!-- Submit Button -->
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="/smc-webassist/category"
+                >Submit Ticket</a
+              >
+            </li>
+            <li class="nav-item ps-3">
+              <!-- Feedback Button -->
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="/smc-webassist/feedback"
+                >Feedback</a
+              >
+            </li>
+            <li class="nav-item ps-3">
+              <!-- About Button -->
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="/smc-webassist/about"
+                >About</a
+              >
+            </li>
+          </ul>
+          <form class="d-flex">
+            <div id="adminBtn" style="display: none">
+              <button class="btn p-0" style="display: flex" id="feedbackBtn">
+                <div style="display: flex" id="feedbackLink">
+                  <a class="nav-link text-light">Feedbacks</a>
+                </div>
+              </button>
+              <button
+                class="btn p-0 ms-2"
+                style="display: flex"
+                id="ticketsBtn"
+              >
+                <div style="display: flex" id="ticketLink">
+                  <a class="nav-link text-light">Tickets</a>
+                </div>
+              </button>
+            </div>
+            <button class="btn p-0 ms-2" style="display: none" id="profileBtn">
+              <div style="display: none" id="navUserIcon">
+                <i
+                  class="text-light fa-solid fa-user d-flex align-self-center pt-0 m-0 ps-3"
+                ></i>
+              </div>
+              <div style="display: none" id="navAdminIcon">
+                <i
+                  class="text-light fa-solid fa-user-tie d-flex align-self-center pt-0 m-0 ps-3"
+                ></i>
+              </div>
+              <div style="display: flex">
+                <a class="nav-link text-light">Profile</a>
+              </div>
+            </button>
+            <div style="display: flex" id="loggedInDiv">
+              <button class="btn btn-danger ms-2" id="logoutBtn">
+                <i class="fa-solid fa-right-from-bracket ms-1 me-1"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
 
-</head>
-<body>
-	<nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
-		<div class="container-fluid">
-		<a class="navbar-brand ps-3" href="/smc-webassist/home">SMC Web Assist</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item ps-3">
-					<hr>
-				</li>
-				<li class="nav-item ps-3">
-				<!-- Submit Button -->
-				<a class="nav-link" aria-current="page" href="/smc-webassist/category">Submit Ticket</a>
-				</li>
-				<li class="nav-item ps-3">
-				<!-- Feedback Button -->
-				<a class="nav-link" aria-current="page" href="/smc-webassist/feedback">Feedback</a>
-				</li>
-				<li class="nav-item ps-3">
-				<!-- About Button -->
-				<a class="nav-link" aria-current="page" href="/smc-webassist/about">About</a>
-				</li>
-			</ul>
-			<form class="d-flex">
-				<div id="adminBtn" style="display: none;">
-					<button class="btn p-0" style="display: flex;" id="feedbackBtn">
-						<div style="display: flex;" id="feedbackLink">
-							<a class="nav-link text-light">Feedbacks</a>
-						</div>
-					</button>
-					<button class="btn p-0 ms-2" style="display: flex;" id="ticketsBtn">
-						<div style="display: flex;" id="ticketLink">
-							<a class="nav-link text-light">Tickets</a>
-						</div>
-					</button>
-				</div>
-				<button class="btn p-0 ms-2" style="display: none;" id="profileBtn">
-					<div style="display: none;" id="navUserIcon">
-						<i class="text-light fa-solid fa-user d-flex align-items-center pt-0 m-0 ps-3"></i>
-					</div>
-					<div style="display: none;" id="navAdminIcon">
-						<i class="text-light fa-solid fa-user-tie d-flex align-items-center pt-0 m-0 ps-3"></i>
-					</div>
-					<div style="display: flex;">
-						<a class="nav-link text-light">Profile</a>
-					</div>
-				</button>
-				<div style="display: flex;" id="loggedInDiv">
-					<button class="btn btn-danger ms-2" id="logoutBtn">
-						<i class="fa-solid fa-right-from-bracket ms-1 me-1"></i>
-					</button>
-				</div>
-			</form>
-		</div>
-		</div>
-	</nav>
-	
-	
-	<div class="container" id="accountBodyContent1">
-		<div class="row mt-5">
-			<div class="col-sm-3 text-center pt-3 bg-light accInforContainer">
-				<i class="fa-solid fa-user-circle mb-4 mt-3" style="font-size: 9em; color: rgb(98, 158, 30);"></i>
-				<p class="m-0 p-0 fw-bold" id="userProfileName">name</p>
-				<p class="m-0 p-0" id="userProfileStudId">id</p>
-				<p class="m-0 p-0" id="userProfileCourse">course</p>
-				<p class="m-0 p-0 mb-4 fw-light" id="userProfileDateCreated">date created</p>
-				
-			</div>
-			<div id="ticketContainer" class="col-sm-9 p-4">
-				<div class="col bg-light rounded p-2">
-					<p class="display-6"> Dashboard </p>
-					<p class="pb-2 mb-4"> Open a ticket by clicking the icon <i class="fa-solid fa-circle-chevron-right" style="color: rgb(98, 158, 30);"></i></p>	
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-			<p class="col-md-4 mb-0 text-dark">&copy; 2025 BSCPE SENIORS INC.</p>
-				<ul class="nav col-md-4 justify-content-end">
-					<li class="nav-item"><a href="/smc-webassist/terms-of-service" class="nav-link px-2 text-dark">Terms of Service</a></li>
-				<li class="nav-item"><a href="/smc-webassist/home" class="nav-link px-2 text-dark">Home</a></li>
-				<!-- <li class="nav-item"><a href="/smc-webassist/#" class="nav-link px-2 text-dark">FAQs</a></li> -->
-				<li class="nav-item"><a href="/smc-webassist/about" class="nav-link px-2 text-dark">About</a></li>
-			</ul>
-		</footer>
-	</div>
-	<br>
-	<script src="https://kit.fontawesome.com/67f996be23.js" crossorigin="anonymous"></script>
-	<script src="/js/account.js"></script>
-	<script src="/js/script.js"></script>
-	<script  src="/js/logout.js"></script>
-	<script src="/bootstrap/bootstrap-5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-</body>
+    <div class="container" id="accountBodyContent1">
+      <div class="row mt-5">
+        <div class="col-sm-3 text-center pt-3 bg-light accInforContainer">
+          <i
+            class="fa-solid fa-user-circle mb-4 mt-3"
+            style="font-size: 9em; color: rgb(98, 158, 30)"
+          ></i>
+          <p class="m-0 p-0 fw-bold" id="userProfileName">name</p>
+          <p class="m-0 p-0" id="userProfileStudId">id</p>
+          <p class="m-0 p-0" id="userProfileCourse">course</p>
+          <p class="m-0 p-0 mb-4 fw-light" id="userProfileDateCreated">
+            date created
+          </p>
+        </div>
+        <div id="ticketContainer" class="col-sm-9 p-4">
+          <div class="col bg-light rounded p-2">
+            <p class="display-6">Dashboard</p>
+            <p class="pb-2 mb-4">
+              Open a ticket by clicking the icon
+              <i
+                class="fa-solid fa-circle-chevron-right"
+                style="color: rgb(98, 158, 30)"
+              ></i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <footer
+        class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+      >
+        <p class="col-md-4 mb-0 text-dark">&copy; 2025 BSCPE SENIORS INC.</p>
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item">
+            <a
+              href="/smc-webassist/terms-of-service"
+              class="nav-link px-2 text-dark"
+              >Terms of Service</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="/smc-webassist/home" class="nav-link px-2 text-dark"
+              >Home</a
+            >
+          </li>
+          <!-- <li class="nav-item"><a href="/smc-webassist/#" class="nav-link px-2 text-dark">FAQs</a></li> -->
+          <li class="nav-item">
+            <a href="/smc-webassist/about" class="nav-link px-2 text-dark"
+              >About</a
+            >
+          </li>
+        </ul>
+      </footer>
+    </div>
+    <br />
+    <script
+      src="https://kit.fontawesome.com/67f996be23.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/account.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/logout.js"></script>
+    <script
+      src="/bootstrap/bootstrap-5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

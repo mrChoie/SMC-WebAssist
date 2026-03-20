@@ -1,165 +1,231 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SMC Web-Assist | About</title>
-	<link rel="icon" type="image/x-icon" href="/img/smcLogo.ico">
-	<link href="/bootstrap/bootstrap-5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SMC Web-Assist | About</title>
+    <link rel="icon" type="image/x-icon" href="/img/smcLogo.ico" />
+    <link
+      href="/bootstrap/bootstrap-5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
+      <div class="container-fluid">
+        <a class="navbar-brand ps-3" href="/smc-webassist/home"
+          >SMC Web Assist</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item ps-3">
+              <hr />
+            </li>
+            <li class="nav-item ps-3">
+              <!-- Submit Button -->
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="/smc-webassist/category"
+                >Submit Ticket</a
+              >
+            </li>
+            <li class="nav-item ps-3">
+              <!-- Feedback Button -->
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="/smc-webassist/feedback"
+                >Feedback</a
+              >
+            </li>
+            <li class="nav-item ps-3">
+              <!-- About Button -->
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="/smc-webassist/about"
+                >About</a
+              >
+            </li>
+          </ul>
+          <form class="d-flex">
+            <div id="adminBtn" style="display: none">
+              <button class="btn p-0" style="display: flex" id="feedbackBtn">
+                <div style="display: flex" id="feedbackLink">
+                  <a class="nav-link text-light">Feedbacks</a>
+                </div>
+              </button>
+              <button
+                class="btn p-0 ms-2"
+                style="display: flex"
+                id="ticketsBtn"
+              >
+                <div style="display: flex" id="ticketLink">
+                  <a class="nav-link text-light">Tickets</a>
+                </div>
+              </button>
+            </div>
 
-</head>
-<body>
-	<nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
-		<div class="container-fluid">
-		<a class="navbar-brand ps-3" href="/smc-webassist/home">SMC Web Assist</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item ps-3">
-					<hr>
-				</li>
-				<li class="nav-item ps-3">
-				<!-- Submit Button -->
-				<a class="nav-link" aria-current="page" href="/smc-webassist/category">Submit Ticket</a>
-				</li>
-				<li class="nav-item ps-3">
-				<!-- Feedback Button -->
-				<a class="nav-link" aria-current="page" href="/smc-webassist/feedback">Feedback</a>
-				</li>
-				<li class="nav-item ps-3">
-				<!-- About Button -->
-				<a class="nav-link active" aria-current="page" href="/smc-webassist/about">About</a>
-				</li>
-			</ul>
-			<form class="d-flex">
-				<div id="adminBtn" style="display: none;">
-					<button class="btn p-0" style="display: flex;" id="feedbackBtn">
-						<div style="display: flex;" id="feedbackLink">
-							<a class="nav-link text-light">Feedbacks</a>
-						</div>
-					</button>
-					<button class="btn p-0 ms-2" style="display: flex;" id="ticketsBtn">
-						<div style="display: flex;" id="ticketLink">
-							<a class="nav-link text-light">Tickets</a>
-						</div>
-					</button>
-				</div>
-				
-				<button class="btn p-0 ms-2" style="display: none;" id="profileBtn">
-					<div style="display: none;" id="navUserIcon">
-						<i class="text-light fa-solid fa-user d-flex align-items-center pt-0 m-0 ps-3"></i>
-					</div>
-					<div style="display: none;" id="navAdminIcon">
-						<i class="text-light fa-solid fa-user-tie d-flex align-items-center pt-0 m-0 ps-3"></i>
-					</div>
-					<div style="display: flex;">
-						<a class="nav-link text-light">Profile</a>
-					</div>
-				</button>
-				<div style="display: flex;" id="loggedInDiv">
-					<button class="btn btn-danger ms-2" id="logoutBtn">
-						<i class="fa-solid fa-right-from-bracket ms-1 me-1"></i>
-					</button>
-				</div>
-				<div style="display: none;" id="loggedOutDiv">
-					<a class="nav-link text-dark" href="/smc-webassist/signin">Log in</a>
-				</div>
-				<div style="display: none;" id="signUpDiv">
-					<a class="nav-link text-dark" href="/smc-webassist/signup">Sign up</a>
-				</div>
-			</form>
-		</div>
-		</div>
-	</nav>
-	
-	
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-sm-6 col-offset-6 mt-5 mb-5">
-				<h2 class="text-center">SMC Web Assist</h2>
-				<p>SMC Web Assist is an online consultation platform with the goal of providing
-					 a secure and safe place for the students of Southern Mindanao Colleges (SMC) 
-					 to submit and express their school related inquiries and concerns.</p>
-				<p>This web application is developed by the Seniors of the BSCPE Department of SMC. 
-					In compliance with their requirements and completion in Practical Research field subject.</p>
-			</div>
-		</div>
-		
-		  
-		  <h2 style="text-align:center">Our Team</h2>
-		  <div class="row">
-			<div class="col">
-				<div class="card">
-					<img src="/img/drazille.jpg" alt="toledo" style="width:100%">
-					<div class="container pt-3">
-						<h2>Drazille Toledo</h2>
-						<p class="title">Lead Developer</p>
-						<p>drazilletoledo@gmail.com</p>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card">
-				<img src="/img/ates.jpg" alt="ates" style="width:100%">
-					<div class="container pt-3">
-						<h2>Earl Jane Ates</h2>
-						<p class="title">Documentary</p>
-						<p>janearl.ates@gmail.com</p>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card">
-				<img src="/img/laveliah.jpg" alt="maglangit" style="width:100%">
-					<div class="container pt-3">
-						<h2>Laveliah Maglangit</h2>
-						<p class="title">Documentary</p>
-						<p>lavillafukushima@gmail.com</p>
-					</div>
-				</div>
-			</div>
-		  </div>
-		  <div class="row mt-4 mb-5 d-flex justify-content-center">
-			<div class="col-sm-4">
-				<div class="card">
-				<img src="/img/jade.jpg" alt="maribong" style="width:100%">
-					<div class="container pt-3">
-						<h2>Christian Maribong</h2>
-						<p class="title">Senior Developer</p>
-						<p>christianjademaribong@gmail.com</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="card">
-				<img src="/img/aish.jpg" alt="pagayao" style="width:100%">
-					<div class="container pt-3">
-						<h2>Aishah Pagayao</h2>
-						<p class="title">Senior Developer</p>
-						<p>aishahpagayao@gmail.com</p>
-					</div>
-				</div>
-			</div>
-		  </div>
-	</div>
-	
-	<div class="container">
-		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-			<p class="col-md-4 mb-0 text-dark">&copy; 2025 BSCPE SENIORS INC.</p>
-			<ul class="nav col-md-4 justify-content-end">
-				<li class="nav-item"><a href="/smc-webassist/terms-of-service" class="nav-link px-2 text-dark">Terms of Service</a></li>
-				<li class="nav-item"><a href="/smc-webassist/home" class="nav-link px-2 text-dark">Home</a></li>
-				<!-- <li class="nav-item"><a href="/smc-webassist/#" class="nav-link px-2 text-dark">FAQs</a></li> -->
-				<li class="nav-item"><a href="/smc-webassist/about#" class="nav-link px-2 text-dark">About</a></li>
-			</ul>
-		</footer>
-	</div>
-	<br>
-	<script src="https://kit.fontawesome.com/67f996be23.js" crossorigin="anonymous"></script>
-	<script src="/js/script.js"></script>
-	<script src="/bootstrap/bootstrap-5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-</body>
+            <button class="btn p-0 ms-2" style="display: none" id="profileBtn">
+              <div style="display: none" id="navUserIcon">
+                <i
+                  class="text-light fa-solid fa-user d-flex align-self-center pt-0 m-0 ps-3"
+                ></i>
+              </div>
+              <div style="display: none" id="navAdminIcon">
+                <i
+                  class="text-light fa-solid fa-user-tie d-flex align-self-center pt-0 m-0 ps-3"
+                ></i>
+              </div>
+              <div style="display: flex">
+                <a class="nav-link text-light">Profile</a>
+              </div>
+            </button>
+            <div style="display: flex" id="loggedInDiv">
+              <button class="btn btn-danger ms-2" id="logoutBtn">
+                <i class="fa-solid fa-right-from-bracket ms-1 me-1"></i>
+              </button>
+            </div>
+            <div style="display: none" id="loggedOutDiv">
+              <a class="nav-link text-dark" href="/smc-webassist/signin"
+                >Log in</a
+              >
+            </div>
+            <div style="display: none" id="signUpDiv">
+              <a class="nav-link text-dark" href="/smc-webassist/signup"
+                >Sign up</a
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-6 col-offset-6 mt-5 mb-5">
+          <h2 class="text-center">SMC Web Assist</h2>
+          <p>
+            SMC Web Assist is an online consultation platform with the goal of
+            providing a secure and safe place for the students of Southern
+            Mindanao Colleges (SMC) to submit and express their school related
+            inquiries and concerns.
+          </p>
+          <p>
+            This web application is developed by the Seniors of the BSCPE
+            Department of SMC. In compliance with their requirements and
+            completion in Practical Research field subject.
+          </p>
+        </div>
+      </div>
+
+      <h2 style="text-align: center">Our Team</h2>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <img src="/img/drazille.jpg" alt="toledo" style="width: 100%" />
+            <div class="container pt-3">
+              <h2>Drazille Toledo</h2>
+              <p class="title">Lead Developer</p>
+              <p>drazilletoledo@gmail.com</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="/img/ates.jpg" alt="ates" style="width: 100%" />
+            <div class="container pt-3">
+              <h2>Earl Jane Ates</h2>
+              <p class="title">Documentary</p>
+              <p>janearl.ates@gmail.com</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="/img/laveliah.jpg" alt="maglangit" style="width: 100%" />
+            <div class="container pt-3">
+              <h2>Laveliah Maglangit</h2>
+              <p class="title">Documentary</p>
+              <p>lavillafukushima@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4 mb-5 d-flex justify-content-center">
+        <div class="col-sm-4">
+          <div class="card">
+            <img src="/img/jade.jpg" alt="maribong" style="width: 100%" />
+            <div class="container pt-3">
+              <h2>Christian Maribong</h2>
+              <p class="title">Senior Developer</p>
+              <p>christianjademaribong@gmail.com</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <img src="/img/aish.jpg" alt="pagayao" style="width: 100%" />
+            <div class="container pt-3">
+              <h2>Aishah Pagayao</h2>
+              <p class="title">Senior Developer</p>
+              <p>aishahpagayao@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <footer
+        class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+      >
+        <p class="col-md-4 mb-0 text-dark">&copy; 2025 BSCPE SENIORS INC.</p>
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item">
+            <a
+              href="/smc-webassist/terms-of-service"
+              class="nav-link px-2 text-dark"
+              >Terms of Service</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="/smc-webassist/home" class="nav-link px-2 text-dark"
+              >Home</a
+            >
+          </li>
+          <!-- <li class="nav-item"><a href="/smc-webassist/#" class="nav-link px-2 text-dark">FAQs</a></li> -->
+          <li class="nav-item">
+            <a href="/smc-webassist/about#" class="nav-link px-2 text-dark"
+              >About</a
+            >
+          </li>
+        </ul>
+      </footer>
+    </div>
+    <br />
+    <script
+      src="https://kit.fontawesome.com/67f996be23.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/script.js"></script>
+    <script
+      src="/bootstrap/bootstrap-5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

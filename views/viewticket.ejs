@@ -1,171 +1,273 @@
 <!DOCTYPE html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SMC Web-Assist | Settings</title>
-	<link rel="icon" type="image/x-icon" href="/img/smcLogo.ico">
-	<link href="/bootstrap/bootstrap-5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SMC Web-Assist | Settings</title>
+  <link rel="icon" type="image/x-icon" href="/img/smcLogo.ico" />
+  <link
+    href="/bootstrap/bootstrap-5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" type="text/css" href="/css/stylesheet.css" />
 </head>
 <body>
-	<div class="position-fixed" style="height: 100%; width: 100%; z-index: 9999; display: none;" id="msgNoticeParentDiv">
-		<div id="msgNoticeDiv" class="container m-0 p-0 top-50 start-50 translate-middle" style="position: absolute; display: flex; z-index: 9999;">
-			<div class="text-center border bg-light p-1 m-0 position-absolute top-50 start-50 translate-middle rounded shadow" style="width: 400px;">
-				<div class="container p-3">
-					
-					<div class="row pt-3 pb-3 d-flex flex-column align-items-center">
-						<p>Sending reply, please wait...</p>
-						<div class="spinner-border spinner-border-sm p-2 ms-4 me-4" role="status">
-							<span class="visually-hidden">Loading...</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
-		<div class="container-fluid">
-		<a class="navbar-brand ps-3" href="/smc-webassist/home">SMC Web Assist</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item ps-3">
-					<hr>
-				</li>
-				<li class="nav-item ps-3">
-				<!-- Submit Button -->
-				<a class="nav-link active" aria-current="page" href="/smc-webassist/category">Submit Ticket</a>
-				</li>
-				<li class="nav-item ps-3">
-				<!-- Feedback Button -->
-				<a class="nav-link" aria-current="page" href="/smc-webassist/feedback">Feedback</a>
-				</li>
-				<li class="nav-item ps-3">
-				<!-- About Button -->
-				<a class="nav-link" aria-current="page" href="/smc-webassist/about">About</a>
-				</li>
-			</ul>
-			<form class="d-flex">
-				
-				<div id="adminBtn" style="display: none;">
-					<button class="btn p-0" style="display: flex;" id="feedbackBtn">
-						<div style="display: flex;" id="feedbackLink">
-							<a class="nav-link text-light">Feedbacks</a>
-						</div>
-					</button>
-					<button class="btn p-0 ms-2" style="display: flex;" id="ticketsBtn">
-						<div style="display: flex;" id="ticketLink">
-							<a class="nav-link text-light">Tickets</a>
-						</div>
-					</button>
-				</div>
-				
-				<button class="btn p-0 ms-2" style="display: none;" id="profileBtn">
-					<div style="display: none;" id="navUserIcon">
-						<i class="text-light fa-solid fa-user d-flex align-items-center pt-0 m-0 ps-3"></i>
-					</div>
-					<div style="display: none;" id="navAdminIcon">
-						<i class="text-light fa-solid fa-user-tie d-flex align-items-center pt-0 m-0 ps-3"></i>
-					</div>
-					<div style="display: flex;">
-						<a class="nav-link text-light">Profile</a>
-					</div>
-				</button>
-				<div style="display: flex;" id="loggedInDiv">
-					<button class="btn btn-danger ms-2" id="logoutBtn">
-						<i class="fa-solid fa-right-from-bracket ms-1 me-1"></i>
-					</button>
-				</div>
-				<div style="display: none;" id="loggedOutDiv">
-					<a class="nav-link text-dark" href="/smc-webassist/signin">Log in</a>
-				</div>
-				<div style="display: none;" id="signUpDiv">
-					<a class="nav-link text-dark" href="/smc-webassist/signup">Sign up</a>
-				</div>
-			</form>
-		</div>
-		</div>
-	</nav>
-	
-	<div class="container">
-		<div class="row mt-3 d-flex justify-content-end">
-			<div class="col-sm-9 text-center p-3 text-center d-flex flex-column" id="archivedNotice">
-				<p class="m-1">
-					This ticket has been Archived, no further actions needed. Submit a new ticket!  </p>
-					<p class="m-0 p-0 d-flex justify-content-center">
-						<button class="btn btn-outline-warning d-flex justify-content-center" id="submitLinkRes">New Ticket</button>
-					</p>
-				</div>
-			<div class="col-sm-9 text-center p-3 d-flex flex-column" id="resolvedNotice">
-				<p class="m-1">
-					This ticket has been Resolved, no further actions needed. Submit a new ticket!  </p>
-					<p class="m-0 p-0 d-flex justify-content-center">
-						<button class="btn btn-outline-success d-flex justify-content-center" id="submitLinkArc">New Ticket</button>
-					</p>
-				</div>
-			<div class="col-sm-3 d-flex justify-content-end align-items-center">
-				<i class="mt-0 pt-0">Ticket Option</i>
-				<div class="text-end">
-					
-					<button class="btn" data-bs-toggle="collapse" id="optionBtn" data-bs-target="#optionDiv" aria-expanded="false" aria-controls="optionDiv">
-						<i class="fa-solid fa-gear text-success"></i>
-					</button>
-				</div>
-				
-			</div>
-		</div>
-		<div class="position-relative">
-			<div class="rounded collapse bg-success text-light" id="optionDiv">
-				<ul class="p-0 m-0" id="tktOptionList">
-					<li>
-						<button class="btn w-100 text-end rounded-0" id="archivedBtn">Archive Ticket</button>
-					  </li>
-					  <li>
-						<button class="btn w-100 text-end rounded-0" id="resolvedBtn">Mark as Resolved</button>
-					  </li>
-				</ul>
-			</div>
-		</div>
-		<div class="row">
-			<div id="viewTicketContainer" class="container">
-			</div>
-			<div class="container" id="messagesContainer">
-			</div>
-		</div>
-	</div>
-	
-	
-	<input type="hidden" class="form-control"id="authorEmail" name="email">
-	<div id="ticketMsgBox" class="container">
-		<hr>
-		<form>
-			<div class="row mt-2">
-				<div class="col-sm-9">
-					<textarea class="form-control rounded-0 rounded-bottom" id="msgBox" name="msgBox" rows="4" placeholder="Send reply. . ." required></textarea>
-				</div>
-				<div class="col text-center align-self-center">
-					<button class="btn btn-success ps-5 pe-5 mt-2" id="sendReplyBtn" type="submit">Send</button>
-				</div>
-			</div>
-		</form>
-	</div>
+  <div
+    class="position-fixed"
+    style="height: 100%; width: 100%; z-index: 9999; display: none"
+    id="msgNoticeParentDiv"
+  >
+    <div
+      id="msgNoticeDiv"
+      class="container m-0 p-0 top-50 start-50 translate-middle"
+      style="position: absolute; display: flex; z-index: 9999"
+    >
+      <div
+        class="text-center border bg-light p-1 m-0 position-absolute top-50 start-50 translate-middle rounded shadow"
+        style="width: 400px"
+      >
+        <div class="container p-3">
+          <div class="row pt-3 pb-3 d-flex flex-column align-items-center">
+            <p>Sending reply, please wait...</p>
+            <div
+              class="spinner-border spinner-border-sm p-2 ms-4 me-4"
+              role="status"
+            >
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light p-3" id="navBar">
+    <div class="container-fluid">
+      <a class="navbar-brand ps-3" href="/smc-webassist/home">SMC Web Assist</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item ps-3">
+            <hr />
+          </li>
+          <li class="nav-item ps-3">
+            <!-- Submit Button -->
+            <a
+              class="nav-link active"
+              aria-current="page"
+              href="/smc-webassist/category"
+              >Submit Ticket</a
+            >
+          </li>
+          <li class="nav-item ps-3">
+            <!-- Feedback Button -->
+            <a
+              class="nav-link"
+              aria-current="page"
+              href="/smc-webassist/feedback"
+              >Feedback</a
+            >
+          </li>
+          <li class="nav-item ps-3">
+            <!-- About Button -->
+            <a class="nav-link" aria-current="page" href="/smc-webassist/about"
+              >About</a
+            >
+          </li>
+        </ul>
+        <form class="d-flex">
+          <div id="adminBtn" style="display: none">
+            <button class="btn p-0" style="display: flex" id="feedbackBtn">
+              <div style="display: flex" id="feedbackLink">
+                <a class="nav-link text-light">Feedbacks</a>
+              </div>
+            </button>
+            <button class="btn p-0 ms-2" style="display: flex" id="ticketsBtn">
+              <div style="display: flex" id="ticketLink">
+                <a class="nav-link text-light">Tickets</a>
+              </div>
+            </button>
+          </div>
 
-	<div class="container">
-		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-			<p class="col-md-4 mb-0 text-dark">&copy; 2025 BSCPE SENIORS INC.</p>
-				<ul class="nav col-md-4 justify-content-end">
-				<li class="nav-item"><a href="/smc-webassist/terms-of-service" class="nav-link px-2 text-dark">Terms of Service</a></li>
-				<li class="nav-item"><a href="/smc-webassist/home" class="nav-link px-2 text-dark">Home</a></li>
-				<li class="nav-item"><a href="/smc-webassist/about" class="nav-link px-2 text-dark">About</a></li>
-			</ul>
-		</footer>
-	</div>
-	<br>
-	<script src="https://kit.fontawesome.com/67f996be23.js" crossorigin="anonymous"></script>
-	<script src="/js/script.js"></script>
-    <script src="/js/viewticket.js"></script>
-	<script src="/bootstrap/bootstrap-5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+          <button class="btn p-0 ms-2" style="display: none" id="profileBtn">
+            <div style="display: none" id="navUserIcon">
+              <i
+                class="text-light fa-solid fa-user d-flex align-self-center pt-0 m-0 ps-3"
+              ></i>
+            </div>
+            <div style="display: none" id="navAdminIcon">
+              <i
+                class="text-light fa-solid fa-user-tie d-flex align-self-center pt-0 m-0 ps-3"
+              ></i>
+            </div>
+            <div style="display: flex">
+              <a class="nav-link text-light">Profile</a>
+            </div>
+          </button>
+          <div style="display: flex" id="loggedInDiv">
+            <button class="btn btn-danger ms-2" id="logoutBtn">
+              <i class="fa-solid fa-right-from-bracket ms-1 me-1"></i>
+            </button>
+          </div>
+          <div style="display: none" id="loggedOutDiv">
+            <a class="nav-link text-dark" href="/smc-webassist/signin"
+              >Log in</a
+            >
+          </div>
+          <div style="display: none" id="signUpDiv">
+            <a class="nav-link text-dark" href="/smc-webassist/signup"
+              >Sign up</a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row mt-3 d-flex justify-content-end">
+      <div
+        class="col-sm-9 text-center p-3 text-center d-flex flex-column"
+        id="archivedNotice"
+      >
+        <p class="m-1">
+          This ticket has been Archived, no further actions needed. Submit a new
+          ticket!
+        </p>
+        <p class="m-0 p-0 d-flex justify-content-center">
+          <button
+            class="btn btn-outline-warning d-flex justify-content-center"
+            id="submitLinkRes"
+          >
+            New Ticket
+          </button>
+        </p>
+      </div>
+      <div
+        class="col-sm-9 text-center p-3 d-flex flex-column"
+        id="resolvedNotice"
+      >
+        <p class="m-1">
+          This ticket has been Resolved, no further actions needed. Submit a new
+          ticket!
+        </p>
+        <p class="m-0 p-0 d-flex justify-content-center">
+          <button
+            class="btn btn-outline-success d-flex justify-content-center"
+            id="submitLinkArc"
+          >
+            New Ticket
+          </button>
+        </p>
+      </div>
+      <div class="col-sm-3 d-flex justify-content-end align-items-center">
+        <i class="mt-0 pt-0">Ticket Option</i>
+        <div class="text-end">
+          <button
+            class="btn"
+            data-bs-toggle="collapse"
+            id="optionBtn"
+            data-bs-target="#optionDiv"
+            aria-expanded="false"
+            aria-controls="optionDiv"
+          >
+            <i class="fa-solid fa-gear text-success"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="position-relative">
+      <div class="rounded collapse bg-success text-light" id="optionDiv">
+        <ul class="p-0 m-0" id="tktOptionList">
+          <li>
+            <button class="btn w-100 text-end rounded-0" id="archivedBtn">
+              Archive Ticket
+            </button>
+          </li>
+          <li>
+            <button class="btn w-100 text-end rounded-0" id="resolvedBtn">
+              Mark as Resolved
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div id="viewTicketContainer" class="container"></div>
+      <div class="container" id="messagesContainer"></div>
+    </div>
+  </div>
+
+  <input type="hidden" class="form-control" id="authorEmail" name="email" />
+  <div id="ticketMsgBox" class="container">
+    <hr />
+    <form>
+      <div class="row mt-2">
+        <div class="col-sm-9">
+          <textarea
+            class="form-control rounded-0 rounded-bottom"
+            id="msgBox"
+            name="msgBox"
+            rows="4"
+            placeholder="Send reply. . ."
+            required
+          ></textarea>
+        </div>
+        <div class="col text-center align-self-center">
+          <button
+            class="btn btn-success ps-5 pe-5 mt-2"
+            id="sendReplyBtn"
+            type="submit"
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="container">
+    <footer
+      class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+    >
+      <p class="col-md-4 mb-0 text-dark">&copy; 2025 BSCPE SENIORS INC.</p>
+      <ul class="nav col-md-4 justify-content-end">
+        <li class="nav-item">
+          <a
+            href="/smc-webassist/terms-of-service"
+            class="nav-link px-2 text-dark"
+            >Terms of Service</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="/smc-webassist/home" class="nav-link px-2 text-dark">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="/smc-webassist/about" class="nav-link px-2 text-dark"
+            >About</a
+          >
+        </li>
+      </ul>
+    </footer>
+  </div>
+  <br />
+  <script
+    src="https://kit.fontawesome.com/67f996be23.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="/js/script.js"></script>
+  <script src="/js/viewticket.js"></script>
+  <script
+    src="/bootstrap/bootstrap-5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"
+  ></script>
 </body>
