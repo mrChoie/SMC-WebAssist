@@ -7,10 +7,10 @@ keygenTXT.pub
 txt.pub
 txt
 logger.js
-./logs
+/logs/
+*.bat
 TEST.HTML
 test.js
-ssh.bat
-server.bat
 .env
 /node_modules/
+updated.sql
