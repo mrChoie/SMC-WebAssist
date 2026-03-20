@@ -13,3 +13,4 @@ test.js
 ssh.bat
 server.bat
 .env
+./node_modules
