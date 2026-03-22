@@ -71,6 +71,7 @@ function displayTickets(tickets) {
         content.classList.add("pcontent")
         date.classList.add("pdate")
         btn.classList.add("fa-solid","fa-circle-chevron-right")
+        btn.style.color = "rgb(98, 158, 30)";
         link.href = "/smc-webassist/view-ticket/ticket?id="+tickets.tickets[x].tktID;
         
 

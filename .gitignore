@@ -14,3 +14,4 @@ test.js
 .env
 /node_modules/
 updated.sql
+/.vscode/
