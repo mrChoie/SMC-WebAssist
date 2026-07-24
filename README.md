@@ -34,11 +34,13 @@ Project's Main Concept: Provide a user-friendly platform for students who wish t
 - Bootstrap
 
 ## Installation
-`Note: Make sure you have Node.js(LTS) and MySQL installed.`
+`Prerequisuites:`
+- Node.js
+- MySQL Server
 1. Clone the repo
 2. Open a terminal in the project's root folder and execute `npm install`
 3. Create the SQL database by executing the SQL Script file `root/sql-script.sql` into your choice of MySQL software.
-4. Set up environment variables by creating a `.env` file, inside it are:
+4. Set up environment variables by creating a `.env` file at the root directory... Inside it are:
 ```Dotenv
 MYSQL_HOST=''        # Your MySQL credentials
 MYSQL_USER=''        #
