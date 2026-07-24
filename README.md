@@ -34,7 +34,7 @@ Project's Main Concept: Provide a user-friendly platform for students who wish t
 - Bootstrap
 
 ## Installation
-`Prerequisuites:`
+`Prerequisites:`
 - Node.js
 - MySQL Server
 1. Clone the repo
