@@ -37,6 +37,8 @@ Project's Main Concept: Provide a user-friendly platform for students who wish t
 `Prerequisites:`
 - Node.js
 - MySQL Server
+
+`Steps:`
 1. Clone the repo
 2. Open a terminal in the project's root folder and execute `npm install`
 3. Create the SQL database by executing the SQL Script file `root/sql-script.sql` into your choice of MySQL software.
